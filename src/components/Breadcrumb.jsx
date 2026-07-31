@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Breadcrumb({ items }) {
   return (
     <nav aria-label="Breadcrumb" className="text-caption text-ink/60">
@@ -5,9 +7,9 @@ export default function Breadcrumb({ items }) {
         {items.map((item, i) => (
           <li key={item.label} className="flex items-center gap-1">
             {item.href ? (
-              <a href={item.href} className="hover:underline">
+              <Link href={item.href} className="hover:underline">
                 {item.label}
-              </a>
+              </Link>
             ) : (
               <span>{item.label}</span>
             )}

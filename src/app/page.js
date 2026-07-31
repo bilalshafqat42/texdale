@@ -72,8 +72,12 @@ export default function HomePage() {
           chemicals to mills and finishers across the UK and internationally.
         </p>
         <div className="mt-6 flex gap-3">
-          <Button variant="primary">Explore products</Button>
-          <Button variant="secondary">Request a sample</Button>
+          <Link href="/products">
+            <Button variant="primary">Explore products</Button>
+          </Link>
+          <Link href="/contact?reason=sample">
+            <Button variant="secondary">Request a sample</Button>
+          </Link>
         </div>
         <div className="bg-line/40 mt-10 h-64 rounded-lg" />
       </section>
@@ -143,9 +147,11 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6 text-center">
           <h2 className="text-h2">Need a tailored formulation?</h2>
           <p className="text-paper/70 mt-2">Talk to our technical team about your process.</p>
-          <Button variant="secondary" className="border-paper text-paper hover:bg-paper/10 mt-6">
-            Talk to our technical team
-          </Button>
+          <Link href="/contact?reason=general">
+            <Button variant="secondary" className="border-paper text-paper hover:bg-paper/10 mt-6">
+              Talk to our technical team
+            </Button>
+          </Link>
         </div>
       </section>
     </>
