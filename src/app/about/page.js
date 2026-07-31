@@ -1,8 +1,8 @@
-import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import Button from "@/components/Button";
 import Chip from "@/components/Chip";
 import Card from "@/components/Card";
+import Reveal from "@/components/Reveal";
 
 export const metadata = {
   title: "About",
@@ -102,11 +102,13 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-h2">What we value</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v) => (
-              <Card key={v.name}>
-                <h3 className="text-h4">{v.name}</h3>
-                <p className="text-ink/70 mt-2 text-sm">{v.desc}</p>
-              </Card>
+            {values.map((v, i) => (
+              <Reveal key={v.name} delay={i * 0.06}>
+                <Card>
+                  <h3 className="text-h4">{v.name}</h3>
+                  <p className="text-ink/70 mt-2 text-sm">{v.desc}</p>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -128,17 +130,15 @@ export default function AboutPage() {
       </section>
 
       <section className="border-line border-t py-16">
-        <div className="mx-auto max-w-6xl px-6 text-center">
+        <Reveal className="mx-auto max-w-6xl px-6 text-center">
           <h2 className="text-h2">Want to know more?</h2>
           <p className="text-ink/70 mt-2">
             Get in touch with our team to discuss your requirements.
           </p>
-          <Link href="/contact?reason=general">
-            <Button variant="primary" className="mt-6">
-              Get in touch
-            </Button>
-          </Link>
-        </div>
+          <Button href="/contact?reason=general" variant="primary" className="mt-6">
+            Get in touch
+          </Button>
+        </Reveal>
       </section>
     </>
   );

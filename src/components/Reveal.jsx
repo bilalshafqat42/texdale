@@ -1,16 +1,32 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/lib/motion";
 
-export default function Reveal({ children, className = "", y = 24, delay = 0 }) {
+// Runs before paint on the client (avoiding a flash of fully-visible content
+// before GSAP hides it) but falls back to a no-op on the server, since
+// useLayoutEffect isn't available during static export prerendering.
+const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+export default function Reveal({ children, className = "", y = 24, delay = 0, onMount = false }) {
   const ref = useRef(null);
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     const el = ref.current;
     if (!el || prefersReducedMotion()) return;
+
+    if (onMount) {
+      const tween = gsap.from(el, {
+        opacity: 0,
+        y,
+        duration: 0.7,
+        delay,
+        ease: "power2.out",
+      });
+      return () => tween.kill();
+    }
 
     gsap.registerPlugin(ScrollTrigger);
     const tween = gsap.from(el, {
@@ -30,7 +46,7 @@ export default function Reveal({ children, className = "", y = 24, delay = 0 }) 
       tween.scrollTrigger?.kill();
       tween.kill();
     };
-  }, [y, delay]);
+  }, [y, delay, onMount]);
 
   return (
     <div ref={ref} className={className}>

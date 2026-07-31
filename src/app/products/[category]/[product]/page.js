@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
+import Reveal from "@/components/Reveal";
 import { getCategory, getProduct, getRelatedProducts, products } from "@/lib/products";
 
 export async function generateStaticParams() {
@@ -45,8 +46,25 @@ export default async function ProductPage({ params }) {
     { label: "Talk to our technical team", reason: "general" },
   ];
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.functionSummary,
+    category: category?.name ?? product.category,
+    additionalProperty: product.specs.map((spec) => ({
+      "@type": "PropertyValue",
+      name: spec.label,
+      value: spec.value,
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <Breadcrumb
         items={[
           { label: "Home", href: "/" },
@@ -81,11 +99,15 @@ export default async function ProductPage({ params }) {
         </table>
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-3">
+      <div className="mt-8 flex flex-wrap gap-4">
         {ctas.map((cta) => (
-          <Link key={cta.reason} href={`/contact?reason=${cta.reason}&product=${encodedName}`}>
-            <Button variant={cta.reason === "quote" ? "primary" : "secondary"}>{cta.label}</Button>
-          </Link>
+          <Button
+            key={cta.reason}
+            href={`/contact?reason=${cta.reason}&product=${encodedName}`}
+            variant={cta.reason === "quote" ? "primary" : "secondary"}
+          >
+            {cta.label}
+          </Button>
         ))}
       </div>
 
@@ -93,17 +115,19 @@ export default async function ProductPage({ params }) {
         <section className="mt-16">
           <h2 className="text-h2">Related products</h2>
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {relatedProducts.map((related) => (
-              <Card key={related.slug}>
-                <h3 className="text-h4">{related.name}</h3>
-                <p className="text-ink/70 mt-2 text-sm">{related.functionSummary}</p>
-                <Link
-                  href={`/products/${related.category}/${related.slug}`}
-                  className="text-accent mt-4 inline-block text-sm font-medium"
-                >
-                  View product →
-                </Link>
-              </Card>
+            {relatedProducts.map((related, i) => (
+              <Reveal key={related.slug} delay={i * 0.06}>
+                <Card>
+                  <h3 className="text-h4">{related.name}</h3>
+                  <p className="text-ink/70 mt-2 text-sm">{related.functionSummary}</p>
+                  <Link
+                    href={`/products/${related.category}/${related.slug}`}
+                    className="text-accent mt-4 inline-block text-sm font-medium"
+                  >
+                    View product →
+                  </Link>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </section>

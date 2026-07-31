@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import Badge from "@/components/Badge";
 import Button from "@/components/Button";
@@ -125,9 +124,9 @@ export default function SustainabilityPage() {
             Request certificates, technical data sheets or safety data sheets and our technical team
             will send them directly.
           </p>
-          <Link href="/contact?reason=general" className="mt-6 inline-block">
-            <Button variant="primary">Request documentation</Button>
-          </Link>
+          <Button href="/contact?reason=general" variant="primary" className="mt-6">
+            Request documentation
+          </Button>
         </div>
       </section>
     </>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import Card from "@/components/Card";
+import Reveal from "@/components/Reveal";
 import { categories } from "@/lib/products";
 
 export const metadata = {
@@ -20,17 +21,19 @@ export default function ProductsPage() {
       </p>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {categories.map((category) => (
-          <Card key={category.slug}>
-            <h3 className="text-h4">{category.name}</h3>
-            <p className="text-ink/70 mt-2 text-sm">{category.summary}</p>
-            <Link
-              href={`/products/${category.slug}`}
-              className="text-accent mt-4 inline-block text-sm font-medium"
-            >
-              View range →
-            </Link>
-          </Card>
+        {categories.map((category, i) => (
+          <Reveal key={category.slug} delay={i * 0.06}>
+            <Card>
+              <h3 className="text-h4">{category.name}</h3>
+              <p className="text-ink/70 mt-2 text-sm">{category.summary}</p>
+              <Link
+                href={`/products/${category.slug}`}
+                className="text-accent mt-4 inline-block text-sm font-medium"
+              >
+                View range →
+              </Link>
+            </Card>
+          </Reveal>
         ))}
       </div>
     </div>
