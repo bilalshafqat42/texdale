@@ -48,7 +48,7 @@ export default async function CategoryPage({ params }) {
 
       <div className="mt-10">
         {products.length > 0 ? (
-          <ProductFinder products={products} />
+          <ProductFinder products={products} groups={category.groups || []} />
         ) : (
           <div className="border-line rounded-lg border p-6">
             <p className="text-ink/70 text-sm">

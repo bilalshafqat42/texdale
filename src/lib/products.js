@@ -58,6 +58,7 @@ export const categories = [
       "Enzymes and the reducing agents, resins, fixers and softeners denim wash-down draws on.",
     intro:
       "Denim wash-down draws on several parts of our range — enzymes, reducing agents, resins, wetting agents, fixers, anti-back-staining agents and silicones — to produce consistent faded and worn-out effects.",
+    groups: [{ slug: "enzymes", name: "Enzymes" }],
     faqs: [],
   },
   {
@@ -67,6 +68,12 @@ export const categories = [
       "Low-formaldehyde resins, water/oil repellents, anti-microbial and flame-retardant finishes.",
     intro:
       "Functional finishes for performance and protective textiles: low-formaldehyde easy-care resins, C6/C8 water and oil repellents, anti-microbial treatments and flame retardants.",
+    groups: [
+      { slug: "resins", name: "Resins" },
+      { slug: "water-repellent", name: "Water repellent" },
+      { slug: "flame-retardant", name: "Flame retardant" },
+      { slug: "anti-microbial", name: "Anti-microbial" },
+    ],
     faqs: [],
   },
   {
@@ -415,6 +422,7 @@ export const products = [
   {
     slug: "desize-enz",
     category: "denim-washing",
+    group: "enzymes",
     name: "Desize-ENZ",
     functionSummary:
       "Removes starch and sizes from all types of textiles, with optimum results for denim washing.",
@@ -424,78 +432,91 @@ export const products = [
   {
     slug: "easy-finish-lor",
     category: "special-finishes",
+    group: "resins",
     name: "Easy Finish-LOR",
     functionSummary: "Very low-formaldehyde, low-temperature curing resin.",
   },
   {
     slug: "easy-finish-pcr",
     category: "special-finishes",
+    group: "resins",
     name: "Easy Finish-PCR",
     functionSummary: "Very low-formaldehyde pre-catalyzed resin.",
   },
   {
     slug: "easy-finish-fbo",
     category: "special-finishes",
+    group: "resins",
     name: "Easy Finish-FBO",
     functionSummary: "Formaldehyde-free resin for crease-recovery finishes.",
   },
   {
     slug: "easy-finish-4030",
     category: "special-finishes",
+    group: "resins",
     name: "Easy Finish-4030",
     functionSummary: "Highly concentrated, low-formaldehyde resin for easy-care finishes.",
   },
   {
     slug: "easy-finish-2010",
     category: "special-finishes",
+    group: "resins",
     name: "Easy Finish-2010",
     functionSummary: "Very low-formaldehyde resin.",
   },
   {
     slug: "easy-finish-lr",
     category: "special-finishes",
+    group: "resins",
     name: "Easy Finish-LR",
     functionSummary: "Cost-effective low-formaldehyde resin.",
   },
   {
     slug: "daleguard-wc6",
     category: "special-finishes",
+    group: "water-repellent",
     name: "Daleguard-WC6",
     functionSummary: "Oil, water and stain repellent with C6 technology.",
   },
   {
     slug: "daleguard-nld",
     category: "special-finishes",
+    group: "water-repellent",
     name: "Daleguard-NLD",
     functionSummary: "Low cost oil, water and stain repellent with C6 technology.",
   },
   {
     slug: "daleguard-wr6",
     category: "special-finishes",
+    group: "water-repellent",
     name: "Daleguard-WR6",
     functionSummary: "C6-based, cost-effective oil and water repellent.",
   },
   {
     slug: "daleguard-fcg",
     category: "special-finishes",
+    group: "water-repellent",
     name: "Daleguard-FCG",
     functionSummary: "C8-based oil and water repellent for durable wash requirements.",
   },
   {
     slug: "daleguard-fcsp",
     category: "special-finishes",
+    group: "water-repellent",
     name: "Daleguard-FCSP",
     functionSummary: "C6-based stain-release agent for durable wash requirements.",
   },
   {
     slug: "microbial-phm",
     category: "special-finishes",
+    group: "anti-microbial",
     name: "Microbial-PHM",
     functionSummary: "Durable odour control and anti-microbial protection.",
   },
   {
     slug: "microbial-dnd",
     category: "special-finishes",
+    group: "anti-microbial",
     name: "Microbial-DND",
     functionSummary:
       "Highly durable silver-based microbial protection, approved by EPA and EU regulators.",
@@ -503,42 +524,49 @@ export const products = [
   {
     slug: "microbial-bkv",
     category: "special-finishes",
+    group: "anti-microbial",
     name: "Microbial-BKV",
     functionSummary: "Highly effective broad-spectrum protection against fungi and bacteria.",
   },
   {
     slug: "microbial-km80",
     category: "special-finishes",
+    group: "anti-microbial",
     name: "Microbial-KM80",
     functionSummary: "Anti-insect and anti-allergenic protection.",
   },
   {
     slug: "microbial-br-ps",
     category: "special-finishes",
+    group: "anti-microbial",
     name: "Microbial-BR-PS",
     functionSummary: "Durable odour control and anti-microbial protection.",
   },
   {
     slug: "microbial-mnp",
     category: "special-finishes",
+    group: "anti-microbial",
     name: "Microbial-MNP",
     functionSummary: "Durable anti-microbial protection.",
   },
   {
     slug: "daleflame-nv3",
     category: "special-finishes",
+    group: "flame-retardant",
     name: "Daleflame-NV3",
     functionSummary: "Non-durable flame retardant for cotton, cellulosics and synthetics.",
   },
   {
     slug: "daleflame-sem",
     category: "special-finishes",
+    group: "flame-retardant",
     name: "Daleflame-SEM",
     functionSummary: "Semi-durable flame retardant for cotton, cellulosics and synthetics.",
   },
   {
     slug: "daleflame-frb",
     category: "special-finishes",
+    group: "flame-retardant",
     name: "Daleflame-FRB",
     functionSummary:
       "Semi-durable flame retardant for cotton, cellulosics and synthetics, developed for high-hazard areas.",
@@ -546,6 +574,7 @@ export const products = [
   {
     slug: "daleflame-per50",
     category: "special-finishes",
+    group: "flame-retardant",
     name: "Daleflame-PER50",
     functionSummary: "Durable flame retardant for cotton, cellulosics and synthetics.",
   },
@@ -585,8 +614,10 @@ export function getCategory(slug) {
   return categories.find((c) => c.slug === slug);
 }
 
-export function getProductsByCategory(categorySlug) {
-  return products.filter((p) => p.category === categorySlug);
+export function getProductsByCategory(categorySlug, groupSlug) {
+  return products.filter(
+    (p) => p.category === categorySlug && (!groupSlug || p.group === groupSlug),
+  );
 }
 
 export function getProduct(categorySlug, productSlug) {

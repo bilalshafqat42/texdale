@@ -1,16 +1,44 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import Link from "next/link";
+import Chip from "./Chip";
 
-export default function ProductFinder({ products }) {
+export default function ProductFinder({ products, groups = [] }) {
   const [search, setSearch] = useState("");
+  const [activeGroup, setActiveGroup] = useState(null);
   const inputId = useId();
 
-  const filtered = products.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
+  useEffect(() => {
+    // window.location is unavailable during static export prerendering, so the
+    // query string can only be read client-side after mount.
+    const params = new URLSearchParams(window.location.search);
+    const groupParam = params.get("group");
+    if (groupParam && groups.some((g) => g.slug === groupParam)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setActiveGroup(groupParam);
+    }
+  }, [groups]);
+
+  const filtered = products
+    .filter((p) => !activeGroup || p.group === activeGroup)
+    .filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div>
+      {groups.length > 0 && (
+        <div className="mb-4 flex flex-wrap gap-2">
+          <button type="button" onClick={() => setActiveGroup(null)}>
+            <Chip active={activeGroup === null}>All</Chip>
+          </button>
+          {groups.map((g) => (
+            <button key={g.slug} type="button" onClick={() => setActiveGroup(g.slug)}>
+              <Chip active={activeGroup === g.slug}>{g.name}</Chip>
+            </button>
+          ))}
+        </div>
+      )}
+
       <label htmlFor={inputId} className="sr-only">
         Search this category&rsquo;s products
       </label>
