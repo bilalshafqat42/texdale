@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -38,8 +39,15 @@ export default function Header() {
           condensed ? "py-2" : "py-4"
         }`}
       >
-        <Link href="/" className="font-mono text-sm">
-          TEXDALE
+        <Link href="/" className="shrink-0">
+          <Image
+            src="/texdale-dark.svg"
+            alt="Texdale"
+            width={91}
+            height={32}
+            priority
+            className="h-8 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm md:flex">
