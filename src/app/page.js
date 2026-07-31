@@ -1,65 +1,153 @@
-import Image from "next/image";
+import Link from "next/link";
+import Button from "@/components/Button";
+import Chip from "@/components/Chip";
+import Badge from "@/components/Badge";
+import Card from "@/components/Card";
+import FAQAccordion from "@/components/FAQAccordion";
 
-export default function Home() {
+const productFamilies = [
+  {
+    name: "Pretreatment",
+    desc: "Detergents, sequestrants and peroxide stabilisers for scouring and bleaching.",
+    href: "/products/pretreatment",
+  },
+  {
+    name: "Dyeing auxiliaries",
+    desc: "Levelling, dispersing and fixing agents for consistent, fast colour.",
+    href: "/products/dyeing-auxiliaries",
+  },
+  {
+    name: "Finishing",
+    desc: "Softeners and functional finishes for handle, feel and performance.",
+    href: "/products/finishing",
+  },
+  {
+    name: "Special finishes",
+    desc: "Water and oil repellents, flame retardants, resins.",
+    href: "/products/special-finishes",
+  },
+  {
+    name: "Denim washing",
+    desc: "Enzymes, reducing agents, fixers and anti-back-staining agents.",
+    href: "/products/denim-washing",
+  },
+  {
+    name: "Yarn lubricants",
+    desc: "Water-free lubricants and coning oils for lick-roll or precision pump.",
+    href: "/products/yarn-lubricants",
+  },
+];
+
+const faqs = [
+  {
+    question: "Is Texdale REACH compliant?",
+    answer:
+      "Yes. All raw materials are sourced from REACH-registered suppliers in the EU and internationally, and any SVHC content is disclosed in our Material Safety Data Sheets.",
+  },
+  {
+    question: "Where are Texdale products manufactured?",
+    answer:
+      "At our production and lab facility in the North of England, with distribution across our export markets.",
+  },
+  {
+    question: "Can I request a sample before ordering?",
+    answer:
+      "Yes. Use the request-a-sample button on any product page, or contact our technical team directly.",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex w-full max-w-3xl flex-1 flex-col items-center justify-between bg-white px-16 py-32 sm:items-start dark:bg-black">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl leading-10 font-semibold tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <p className="text-caption text-accent mb-3 tracking-wide uppercase">
+          Eco-friendly textile chemicals
+        </p>
+        <h1 className="text-h1 max-w-2xl">
+          Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH
+          compliant.
+        </h1>
+        <p className="text-ink/70 mt-4 max-w-xl">
+          Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing
+          chemicals to mills and finishers across the UK and internationally.
+        </p>
+        <div className="mt-6 flex gap-3">
+          <Button variant="primary">Explore products</Button>
+          <Button variant="secondary">Request a sample</Button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="bg-foreground text-background flex h-12 w-full items-center justify-center gap-2 rounded-full px-5 transition-colors hover:bg-[#383838] md:w-[158px] dark:hover:bg-[#ccc]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="bg-line/40 mt-10 h-64 rounded-lg" />
+      </section>
+
+      <section className="border-line bg-accent-light/40 border-t py-10">
+        <div className="mx-auto flex max-w-6xl flex-wrap gap-4 px-6">
+          <Badge>REACH compliant</Badge>
+          <Badge>ISO 9001</Badge>
+          <Badge>Oeko-Tex</Badge>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="text-h2">Product families</h2>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {productFamilies.map((p) => (
+            <Card key={p.name}>
+              <h3 className="text-h4">{p.name}</h3>
+              <p className="text-ink/70 mt-2 text-sm">{p.desc}</p>
+              <Link href={p.href} className="text-accent mt-4 inline-block text-sm font-medium">
+                View range →
+              </Link>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-line bg-paper border-t py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="text-h2">Our process</h2>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Chip active>01 Source</Chip>
+            <Chip>02 Formulate</Chip>
+            <Chip>03 Lab test</Chip>
+            <Chip>04 Produce</Chip>
+            <Chip>05 Deliver</Chip>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-line border-t py-16">
+        <div className="mx-auto grid max-w-6xl gap-8 px-6 md:grid-cols-2">
+          <div>
+            <h2 className="text-h2">Sustainability &amp; compliance</h2>
+            <p className="text-ink/70 mt-3">
+              We reduce Substances of Very High Concern across our range and buy only from
+              REACH-compliant suppliers, EU and international.
+            </p>
+            <Link href="/sustainability" className="mt-4 inline-block">
+              <Button variant="secondary">View compliance</Button>
+            </Link>
+          </div>
+          <div className="bg-line/40 h-40 rounded-lg" />
+        </div>
+      </section>
+
+      <section className="border-line border-t py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="text-h2">Frequently asked</h2>
+          <div className="mt-6">
+            <FAQAccordion items={faqs} />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-line bg-ink text-paper border-t py-16">
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <h2 className="text-h2">Need a tailored formulation?</h2>
+          <p className="text-paper/70 mt-2">Talk to our technical team about your process.</p>
+          <Button variant="secondary" className="border-paper text-paper hover:bg-paper/10 mt-6">
+            Talk to our technical team
+          </Button>
+        </div>
+      </section>
+    </>
   );
 }
