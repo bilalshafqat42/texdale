@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
+import Button from "@/components/Button";
 import FAQAccordion from "@/components/FAQAccordion";
 import ProductFinder from "@/components/ProductFinder";
 import { categories, getCategory, getProductsByCategory } from "@/lib/products";
@@ -46,7 +47,24 @@ export default async function CategoryPage({ params }) {
       <p className="text-ink/70 mt-3 max-w-xl">{category.intro}</p>
 
       <div className="mt-10">
-        <ProductFinder products={products} />
+        {products.length > 0 ? (
+          <ProductFinder products={products} />
+        ) : (
+          <div className="border-line rounded-lg border p-6">
+            <p className="text-ink/70 text-sm">
+              We formulate {category.name.toLowerCase()} products to specification rather than off a
+              fixed catalogue. Tell us what you need and our technical team will recommend a
+              formulation.
+            </p>
+            <Button
+              href={`/contact?reason=general&product=${encodeURIComponent(category.name)}`}
+              variant="secondary"
+              className="mt-4"
+            >
+              Talk to our technical team
+            </Button>
+          </div>
+        )}
       </div>
 
       {hasFaqs && (

@@ -5,50 +5,18 @@ import Badge from "@/components/Badge";
 import Card from "@/components/Card";
 import FAQAccordion from "@/components/FAQAccordion";
 import Reveal from "@/components/Reveal";
-
-const productFamilies = [
-  {
-    name: "Pretreatment",
-    desc: "Detergents, sequestrants and peroxide stabilisers for scouring and bleaching.",
-    href: "/products/pretreatment",
-  },
-  {
-    name: "Dyeing auxiliaries",
-    desc: "Levelling, dispersing and fixing agents for consistent, fast colour.",
-    href: "/products/dyeing-auxiliaries",
-  },
-  {
-    name: "Finishing",
-    desc: "Softeners and functional finishes for handle, feel and performance.",
-    href: "/products/finishing",
-  },
-  {
-    name: "Special finishes",
-    desc: "Water and oil repellents, flame retardants, resins.",
-    href: "/products/special-finishes",
-  },
-  {
-    name: "Denim washing",
-    desc: "Enzymes, reducing agents, fixers and anti-back-staining agents.",
-    href: "/products/denim-washing",
-  },
-  {
-    name: "Yarn lubricants",
-    desc: "Water-free lubricants and coning oils for lick-roll or precision pump.",
-    href: "/products/yarn-lubricants",
-  },
-];
+import { categories } from "@/lib/products";
 
 const faqs = [
   {
     question: "Is Texdale REACH compliant?",
     answer:
-      "Yes. All raw materials are sourced from REACH-registered suppliers in the EU and internationally, and any SVHC content is disclosed in our Material Safety Data Sheets.",
+      "Texdale does not manufacture new chemical substances that require REACH registration in their own right — our products are the result of raw materials sourced from EU and international REACH-compliant suppliers, whose registration status we verify before use.",
   },
   {
     question: "Where are Texdale products manufactured?",
     answer:
-      "At our production and lab facility in the North of England, with distribution across our export markets.",
+      "At our production and lab facility based in the North of England, with distribution across our export markets.",
   },
   {
     question: "Can I request a sample before ordering?",
@@ -89,21 +57,22 @@ export default function HomePage() {
 
       <section className="border-line bg-accent-light/40 border-t py-10">
         <Reveal className="mx-auto flex max-w-6xl flex-wrap gap-4 px-6">
-          <Badge>REACH compliant</Badge>
-          <Badge>ISO 9001</Badge>
-          <Badge>Oeko-Tex</Badge>
+          <Badge>REACH compliant sourcing</Badge>
         </Reveal>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="text-h2">Product families</h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {productFamilies.map((p, i) => (
-            <Reveal key={p.name} delay={i * 0.06}>
+          {categories.map((category, i) => (
+            <Reveal key={category.slug} delay={i * 0.06}>
               <Card>
-                <h3 className="text-h4">{p.name}</h3>
-                <p className="text-ink/70 mt-2 text-sm">{p.desc}</p>
-                <Link href={p.href} className="text-accent mt-4 inline-block text-sm font-medium">
+                <h3 className="text-h4">{category.name}</h3>
+                <p className="text-ink/70 mt-2 text-sm">{category.summary}</p>
+                <Link
+                  href={`/products/${category.slug}`}
+                  className="text-accent mt-4 inline-block text-sm font-medium"
+                >
                   View range →
                 </Link>
               </Card>
@@ -130,8 +99,8 @@ export default function HomePage() {
           <Reveal>
             <h2 className="text-h2">Sustainability &amp; compliance</h2>
             <p className="text-ink/70 mt-3">
-              We reduce Substances of Very High Concern across our range and buy only from
-              REACH-compliant suppliers, EU and international.
+              It is our aim to reduce the use of Substances of Very High Concern across our range,
+              sourcing only from REACH-compliant suppliers, EU and international.
             </p>
             <Button href="/sustainability" variant="secondary" className="mt-4">
               View compliance

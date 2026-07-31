@@ -1,6 +1,5 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import Button from "@/components/Button";
-import Chip from "@/components/Chip";
 import Card from "@/components/Card";
 import Reveal from "@/components/Reveal";
 
@@ -10,49 +9,24 @@ export const metadata = {
     "Texdale is a UK manufacturer of textile chemicals for pretreatment, dyeing, finishing and denim washing, supplying mills and finishers across the UK and internationally.",
 };
 
-const milestones = [
-  {
-    year: "2004",
-    text: "Texdale founded in the North of England as a small-batch textile auxiliaries producer.",
-  },
-  {
-    year: "2009",
-    text: "First export orders shipped, opening our initial markets in Europe.",
-  },
-  {
-    year: "2013",
-    text: "ISO 9001 certification achieved, formalising our quality management system.",
-  },
-  {
-    year: "2018",
-    text: "Production and lab facility expanded to increase batch capacity and testing throughput.",
-  },
-  {
-    year: "2022",
-    text: "REACH compliance programme extended across the full raw material supply chain.",
-  },
-];
-
 const values = [
   {
-    name: "Quality",
-    desc: "Every batch is lab-tested against specification before it leaves the facility.",
+    name: "No-compromise manufacturing",
+    desc: "We hold a no-compromise policy for the manufacturing process, across every batch we produce.",
+  },
+  {
+    name: "Lean and environmentally safe",
+    desc: "We observe lean manufacturing methods to ensure environmental safety throughout production.",
   },
   {
     name: "Technical partnership",
-    desc: "We work alongside mills and finishers to solve process problems, not just supply chemicals.",
+    desc: "Decades of experience and commitment, with the ability to develop bespoke products to a client's specification.",
   },
   {
-    name: "Sustainability",
-    desc: "We reduce Substances of Very High Concern and buy only from REACH-compliant suppliers.",
-  },
-  {
-    name: "Reliability",
-    desc: "Consistent formulations and dependable lead times, order after order.",
+    name: "On-site evaluation",
+    desc: "Our facility includes on-site evaluation and examination capabilities, so formulations are tested before they reach a customer.",
   },
 ];
-
-const regions = ["United Kingdom", "Europe", "Middle East", "Asia"];
 
 export default function AboutPage() {
   return (
@@ -70,17 +44,13 @@ export default function AboutPage() {
 
       <section className="border-line border-t py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-h2">Our story</h2>
-          <ol className="mt-8 space-y-6">
-            {milestones.map((m) => (
-              <li key={m.year} className="flex gap-4">
-                <span className="text-accent w-16 shrink-0 font-mono text-sm font-medium">
-                  {m.year}
-                </span>
-                <span className="text-ink/70 text-sm">{m.text}</span>
-              </li>
-            ))}
-          </ol>
+          <h2 className="text-h2">Our approach</h2>
+          <p className="text-ink/70 mt-3 max-w-2xl">
+            With decades of experience and commitment, Texdale positions its name as a symbol of
+            quality, efficiency and globally recognised standards. We develop bespoke products to a
+            client&apos;s specification, backed by an on-site facility for evaluation and
+            examination.
+          </p>
         </div>
       </section>
 
@@ -109,21 +79,6 @@ export default function AboutPage() {
                   <p className="text-ink/70 mt-2 text-sm">{v.desc}</p>
                 </Card>
               </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-line border-t py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-h2">Global reach</h2>
-          <p className="text-ink/70 mt-3 max-w-xl">
-            From our UK base, we supply mills and finishers across the following regions.
-          </p>
-          <div className="bg-line/40 mt-8 h-64 rounded-lg" />
-          <div className="mt-6 flex flex-wrap gap-3">
-            {regions.map((r) => (
-              <Chip key={r}>{r}</Chip>
             ))}
           </div>
         </div>

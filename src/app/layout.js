@@ -2,7 +2,7 @@ import { inter, plexMono } from "@/lib/fonts";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { SITE_URL, SITE_NAME, CONTACT } from "@/lib/site";
 
 const description =
   "Texdale manufactures pretreatment, dyeing, finishing and denim-washing chemicals for the textile industry, UK-made and REACH compliant.";
@@ -30,6 +30,15 @@ const organizationJsonLd = {
   name: SITE_NAME,
   url: SITE_URL,
   description,
+  telephone: CONTACT.phone,
+  email: CONTACT.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Unit 1, 45 Lambeth Road, Reddish",
+    addressLocality: "Stockport",
+    postalCode: "SK5 6TW",
+    addressCountry: "GB",
+  },
 };
 
 const websiteJsonLd = {

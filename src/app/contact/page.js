@@ -2,6 +2,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import Card from "@/components/Card";
 import FAQAccordion from "@/components/FAQAccordion";
 import ContactForm from "@/components/ContactForm";
+import { CONTACT, SITE_NAME } from "@/lib/site";
 
 export const metadata = {
   title: "Contact",
@@ -36,28 +37,23 @@ export default function ContactPage() {
           <ContactForm />
         </Card>
 
-        <div className="space-y-8">
-          <div>
-            <h2 className="text-h4">Our office</h2>
-            <p className="text-ink/70 mt-2 text-sm">
-              Texdale Chemicals
-              <br />
-              Unit 1, 45 Lambeth Road
-              <br />
-              Reddish, Stockport SK5 6TW
-              <br />
-              United Kingdom
-            </p>
-            <div className="bg-line/40 mt-4 h-48 rounded-lg" />
-          </div>
-
-          <div>
-            <h2 className="text-h4">Distributors</h2>
-            <p className="text-ink/70 mt-2 text-sm">
-              Looking for a regional distributor? Let us know your location in the form and
-              we&apos;ll point you to the nearest partner.
-            </p>
-          </div>
+        <div>
+          <h2 className="text-h4">Our office</h2>
+          <p className="text-ink/70 mt-2 text-sm">
+            {SITE_NAME}
+            <br />
+            {CONTACT.address}
+          </p>
+          <p className="mt-4 text-sm">
+            <a href={`tel:${CONTACT.phoneHref}`} className="text-accent font-medium">
+              {CONTACT.phone}
+            </a>
+            <br />
+            <a href={`mailto:${CONTACT.email}`} className="text-accent font-medium">
+              {CONTACT.email}
+            </a>
+          </p>
+          <div className="bg-line/40 mt-6 h-48 rounded-lg" />
         </div>
       </div>
 

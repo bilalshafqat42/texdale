@@ -52,11 +52,6 @@ export default async function ProductPage({ params }) {
     name: product.name,
     description: product.functionSummary,
     category: category?.name ?? product.category,
-    additionalProperty: product.specs.map((spec) => ({
-      "@type": "PropertyValue",
-      name: spec.label,
-      value: spec.value,
-    })),
   };
 
   return (
@@ -75,29 +70,10 @@ export default async function ProductPage({ params }) {
       />
       <h1 className="text-h1 mt-4">{product.name}</h1>
       <p className="text-ink/70 mt-3 max-w-xl">{product.functionSummary}</p>
-
-      <div className="mt-8 overflow-x-auto">
-        <table className="w-full max-w-xl text-left text-sm">
-          <thead>
-            <tr className="border-line border-b">
-              <th scope="col" className="py-2 pr-4 font-medium">
-                Property
-              </th>
-              <th scope="col" className="py-2 font-medium">
-                Value
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-line divide-y">
-            {product.specs.map((spec) => (
-              <tr key={spec.label}>
-                <td className="py-3 pr-4 align-top font-medium whitespace-nowrap">{spec.label}</td>
-                <td className="text-ink/70 py-3 align-top">{spec.value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <p className="text-ink/70 mt-3 max-w-xl text-sm">
+        Full technical specification (appearance, dosage, ionic character) is available on the
+        technical data sheet — request it below.
+      </p>
 
       <div className="mt-8 flex flex-wrap gap-4">
         {ctas.map((cta) => (

@@ -2,289 +2,582 @@ export const categories = [
   {
     slug: "pretreatment",
     name: "Pretreatment",
-    summary: "Detergents, sequestrants and peroxide stabilisers for scouring and bleaching.",
+    summary: "Wetting agents, detergents, sequestrants and peroxide stabilisers.",
     intro:
       "Our pretreatment range prepares fabric for even, predictable dyeing and finishing — removing size, oils and natural impurities before colour goes on.",
     faqs: [
       {
         question: "Why does pretreatment quality matter for dyeing results?",
         answer:
-          "Uneven scouring leaves residual oils and impurities on the fabric, which show up later as patchy dye uptake. Consistent pretreatment is the single biggest factor in first-time-right dyeing.",
-      },
-      {
-        question: "Are these products suitable for both cotton and cotton-blend fabrics?",
-        answer:
-          "Yes, the range is formulated for cotton and common cotton blends. Ask our technical team for guidance on synthetic-heavy blends.",
+          "Uneven scouring leaves residual oils and impurities on the fabric, which show up later as patchy dye uptake. Consistent pretreatment is one of the biggest factors in first-time-right dyeing.",
       },
     ],
   },
   {
     slug: "dyeing-auxiliaries",
     name: "Dyeing auxiliaries",
-    summary: "Levelling, dispersing and fixing agents for consistent, fast colour.",
+    summary: "Dispersing, washing, levelling and formaldehyde-free fixing agents.",
     intro:
-      "Levelling, dispersing and fixing agents that give consistent shade, batch-to-batch repeatability and strong wash and light fastness.",
+      "Dispersing, washing, levelling and fixing agents for reactive, VAT and disperse dyeing, formulated for consistent shade and colour fastness.",
     faqs: [
       {
-        question: "Do you supply auxiliaries for reactive and disperse dyeing?",
+        question: "Do you offer formaldehyde-free fixing agents?",
         answer:
-          "Yes, the range covers both reactive dyeing on cellulosics and disperse dyeing on polyester, including levelling and fixing agents for each.",
+          "Yes. Several of our fixing agents (the Dalefix range) are formulated to be formaldehyde-free or low-formaldehyde while maintaining colour fastness.",
       },
     ],
+  },
+  {
+    slug: "printing",
+    name: "Printing",
+    summary: "Thickening agents for textile printing.",
+    intro:
+      "We supply synthetic and natural thickening agents for textile printing, including acrylates, alginates and guar gum for cotton, wool and silk, and acrylate-based thickeners for polyester and silk.",
+    faqs: [],
   },
   {
     slug: "finishing",
     name: "Finishing",
-    summary: "Softeners and functional finishes for handle, feel and performance.",
+    summary: "Silicone and micro-emulsion softeners for handle, feel and performance.",
     intro:
-      "Softeners and functional finishing agents that shape the final hand-feel, drape and performance of the fabric.",
-    faqs: [
-      {
-        question: "Can finishing agents affect dye fastness?",
-        answer:
-          "Some cationic softeners can interact with anionic dyes and reduce fastness. Our technical team can recommend a compatible finish for your dye system.",
-      },
-    ],
+      "Silicone and micro-emulsion softeners that shape the final hand-feel, drape and sewability of the fabric, from cost-effective macro emulsions to ultra-smooth silicone micro-emulsions.",
+    faqs: [],
   },
   {
-    slug: "special-finishes",
-    name: "Special finishes",
-    summary: "Water and oil repellents, flame retardants, resins.",
+    slug: "softening",
+    name: "Softening",
+    summary: "Smoothing agents, antistatic softeners and denim-specific softeners.",
     intro:
-      "Functional finishes for performance and protective textiles, including water/oil repellency, flame retardancy and durable-press resins.",
-    faqs: [
-      {
-        question: "Are your repellent finishes PFAS-free?",
-        answer:
-          "We offer both PFAS-free and fluorocarbon-based repellent options. Ask our technical team which fits your performance and compliance requirements.",
-      },
-    ],
+      "Softening agents that function as smoothing and antistatic treatments across textile fibres, including dedicated denim-softening emulsions.",
+    faqs: [],
   },
   {
     slug: "denim-washing",
     name: "Denim washing",
-    summary: "Enzymes, reducing agents, fixers and anti-back-staining agents.",
+    summary:
+      "Enzymes and the reducing agents, resins, fixers and softeners denim wash-down draws on.",
     intro:
-      "Enzymes, reducing agents and fixing chemistry for consistent denim wash-down effects, batch after batch.",
-    faqs: [
-      {
-        question: "Do your enzymes replace stone washing?",
-        answer:
-          "Cellulase enzymes can reduce or eliminate the need for pumice stones in many wash-down effects, cutting garment damage and machine wear.",
-      },
-    ],
+      "Denim wash-down draws on several parts of our range — enzymes, reducing agents, resins, wetting agents, fixers, anti-back-staining agents and silicones — to produce consistent faded and worn-out effects.",
+    faqs: [],
   },
   {
-    slug: "yarn-lubricants",
-    name: "Yarn lubricants",
-    summary: "Water-free lubricants and coning oils for lick-roll or precision pump.",
+    slug: "special-finishes",
+    name: "Special finishes",
+    summary:
+      "Low-formaldehyde resins, water/oil repellents, anti-microbial and flame-retardant finishes.",
     intro:
-      "Water-free lubricants and coning oils formulated for lick-roll and precision-pump application on high-speed knitting and weaving.",
-    faqs: [
-      {
-        question: "Are these lubricants compatible with lick-roll application?",
-        answer:
-          "Yes, the range is formulated for both lick-roll and precision-pump systems. Let us know your machine setup and we'll confirm the right viscosity grade.",
-      },
-    ],
+      "Functional finishes for performance and protective textiles: low-formaldehyde easy-care resins, C6/C8 water and oil repellents, anti-microbial treatments and flame retardants.",
+    faqs: [],
+  },
+  {
+    slug: "special-yarn-lubricants",
+    name: "Special yarn lubricants",
+    summary: "DALEROL water-free lubricants and DALEFIL processing agents.",
+    intro:
+      "Our DALEROL range of water-free sewing-thread lubricants and DALEFIL processing agents smooth knitting, weaving and embroidery yarns for polyester, polyamide, cotton and rayon.",
+    faqs: [],
   },
 ];
 
 export const products = [
+  // Pretreatment
   {
-    slug: "texdale-scour-200",
+    slug: "daleclean-wa600",
     category: "pretreatment",
-    name: "Texdale Scour 200",
-    functionSummary: "Low-foam scouring detergent for continuous and batch preparation.",
-    specs: [
-      { label: "Appearance", value: "Clear to pale yellow liquid" },
-      { label: "Ionic character", value: "Non-ionic" },
-      { label: "pH (1% solution)", value: "6.5 - 7.5" },
-      { label: "Dosage", value: "2 - 5 g/L" },
-    ],
-    related: ["texdale-sequest-40", "texdale-perox-stab-10"],
+    name: "Daleclean-WA600",
+    functionSummary: "Low foaming multi functional non-ionic wetting agent.",
   },
   {
-    slug: "texdale-sequest-40",
+    slug: "daleclean-wa501",
     category: "pretreatment",
-    name: "Texdale Sequest 40",
-    functionSummary: "Sequestrant for hard-water preparation and peroxide bleaching.",
-    specs: [
-      { label: "Appearance", value: "Clear liquid" },
-      { label: "Ionic character", value: "Anionic" },
-      { label: "pH (1% solution)", value: "4.0 - 5.5" },
-      { label: "Dosage", value: "1 - 3 g/L" },
-    ],
-    related: ["texdale-scour-200", "texdale-perox-stab-10"],
+    name: "Daleclean-WA501",
+    functionSummary: "Exceptional emulsification and removal of waxy and oily contaminants.",
   },
   {
-    slug: "texdale-perox-stab-10",
+    slug: "daleclean-dz300",
     category: "pretreatment",
-    name: "Texdale Perox-Stab 10",
-    functionSummary: "Peroxide stabiliser for consistent hydrogen peroxide bleaching.",
-    specs: [
-      { label: "Appearance", value: "Clear liquid" },
-      { label: "Ionic character", value: "Anionic" },
-      { label: "pH (1% solution)", value: "10.0 - 11.5" },
-      { label: "Dosage", value: "1 - 4 g/L" },
-    ],
-    related: ["texdale-scour-200", "texdale-sequest-40"],
+    name: "Daleclean-DZ300",
+    functionSummary: "Non-ionic low foaming detergent and scouring agent.",
   },
   {
-    slug: "texdale-level-rd",
+    slug: "daleclean-dz200",
+    category: "pretreatment",
+    name: "Daleclean-DZ200",
+    functionSummary:
+      "Non-ionic detergent with excellent wetting properties, suitable for enzyme desizing.",
+  },
+  {
+    slug: "daleclean-d550",
+    category: "pretreatment",
+    name: "Daleclean-D550",
+    functionSummary: "Very low foaming, non-ionic deaerating agent.",
+  },
+  {
+    slug: "daleclean-csd",
+    category: "pretreatment",
+    name: "Daleclean CSD",
+    functionSummary:
+      "High caustic stable wetting agent, well suited to indigo rope dyeing and denim fabric.",
+  },
+  {
+    slug: "dalesequest-vfn",
+    category: "pretreatment",
+    name: "Dalesequest-VFN",
+    functionSummary: "Highly active, versatile multi-stage sequestrant agent.",
+  },
+  {
+    slug: "dalesequest-vmm",
+    category: "pretreatment",
+    name: "Dalesequest-VMM",
+    functionSummary: "Low cost, nitrogen-free sequestrant, dispersing and levelling agent.",
+  },
+  {
+    slug: "dalesequest-g5000",
+    category: "pretreatment",
+    name: "Dalesequest-G5000",
+    functionSummary: "Highly concentrated multi-function sequestration agent.",
+  },
+  {
+    slug: "dalesequest-rvn",
+    category: "pretreatment",
+    name: "Dalesequest-RVN",
+    functionSummary: "Low cost, multi-functional sequestrant agent.",
+  },
+  {
+    slug: "dalesequest-ehl",
+    category: "pretreatment",
+    name: "Dalesequest-EHL",
+    functionSummary:
+      "Sequestrant agent, specially suited to dyeing of metal dyes such as turquoise.",
+  },
+  {
+    slug: "dalesequest-irg",
+    category: "pretreatment",
+    name: "Dalesequest-IRG",
+    functionSummary: "Highly cost-effective glucose-based iron sequestrant.",
+  },
+  {
+    slug: "dalestab-osp",
+    category: "pretreatment",
+    name: "Dalestab-OSP",
+    functionSummary:
+      "All-round high-performance organic stabiliser for hydrogen peroxide bleaching.",
+  },
+  {
+    slug: "dalestab-ocb",
+    category: "pretreatment",
+    name: "Dalestab-OCB",
+    functionSummary: "Cost-effective stabiliser for peroxide bleaching.",
+  },
+  {
+    slug: "dalestab-epm",
+    category: "pretreatment",
+    name: "Dalestab-EPM",
+    functionSummary: "Organic stabiliser for hydrogen peroxide bleaching.",
+  },
+
+  // Dyeing auxiliaries
+  {
+    slug: "dalewash-7sk",
     category: "dyeing-auxiliaries",
-    name: "Texdale Level RD",
-    functionSummary: "Levelling agent for reactive and direct dyeing on cellulosics.",
-    specs: [
-      { label: "Appearance", value: "Pale yellow liquid" },
-      { label: "Ionic character", value: "Non-ionic / anionic blend" },
-      { label: "pH (1% solution)", value: "6.0 - 7.0" },
-      { label: "Dosage", value: "0.5 - 2 g/L" },
-    ],
-    related: ["texdale-fix-pw", "texdale-disp-hs"],
+    name: "Dalewash-7SK",
+    functionSummary: "Very effective dispersing and washing agent for reactive dyed fabric.",
   },
   {
-    slug: "texdale-disp-hs",
+    slug: "dalewash-kn330",
     category: "dyeing-auxiliaries",
-    name: "Texdale Disp HS",
-    functionSummary: "High-temperature dispersing agent for disperse dyeing on polyester.",
-    specs: [
-      { label: "Appearance", value: "Brown liquid" },
-      { label: "Ionic character", value: "Anionic" },
-      { label: "pH (1% solution)", value: "6.5 - 8.0" },
-      { label: "Dosage", value: "0.5 - 1.5 g/L" },
-    ],
-    related: ["texdale-level-rd", "texdale-fix-pw"],
+    name: "Dalewash-KN330",
+    functionSummary:
+      "Highly concentrated effective washing agent, specially designed for turquoise and blue shades.",
   },
   {
-    slug: "texdale-fix-pw",
+    slug: "dalewash-k400-conc",
     category: "dyeing-auxiliaries",
-    name: "Texdale Fix PW",
-    functionSummary: "Formaldehyde-free fixing agent for improved wash and rub fastness.",
-    specs: [
-      { label: "Appearance", value: "Clear liquid" },
-      { label: "Ionic character", value: "Cationic" },
-      { label: "pH (1% solution)", value: "4.5 - 6.0" },
-      { label: "Dosage", value: "1 - 3% owf" },
-    ],
-    related: ["texdale-level-rd", "texdale-disp-hs"],
+    name: "Dalewash-K400 Conc",
+    functionSummary:
+      "Very effective colloidal-based dispersing agent for VAT and reactive dyed fabric.",
   },
   {
-    slug: "texdale-soft-cs",
+    slug: "dalewash-kl20",
+    category: "dyeing-auxiliaries",
+    name: "Dalewash-KL20",
+    functionSummary:
+      "Cost-effective colloidal-based dispersing and washing agent for reactive dyeing.",
+  },
+  {
+    slug: "daledye-anc-conc",
+    category: "dyeing-auxiliaries",
+    name: "Daledye-ANC Conc",
+    functionSummary: "High-performance, polymeric dye bath lubricant.",
+  },
+  {
+    slug: "daledye-e2d-conc",
+    category: "dyeing-auxiliaries",
+    name: "Daledye-E2D Conc",
+    functionSummary: "Concentrated and strong levelling/dispersing agent for reactive dyes.",
+  },
+  {
+    slug: "daledye-pnk-new",
+    category: "dyeing-auxiliaries",
+    name: "Daledye PNK New",
+    functionSummary: "Levelling and dispersing agent for polyester and blends.",
+  },
+  {
+    slug: "daledye-pmn",
+    category: "dyeing-auxiliaries",
+    name: "Daledye-PMN",
+    functionSummary: "Low cost, highly efficient cationising agent for pigment dyeing.",
+  },
+  {
+    slug: "dalefix-fef-conc",
+    category: "dyeing-auxiliaries",
+    name: "Dalefix-FEF Conc",
+    functionSummary: "Low-foam dyeing assistant for polyester/cellulosic blends and nylon.",
+  },
+  {
+    slug: "dalefix-fef",
+    category: "dyeing-auxiliaries",
+    name: "Dalefix-FEF",
+    functionSummary:
+      "Highly concentrated formaldehyde-free fixing agent for reactive dyed cellulosic fabric.",
+  },
+  {
+    slug: "dalefix-rcn",
+    category: "dyeing-auxiliaries",
+    name: "Dalefix-RCN",
+    functionSummary: "Cost-effective formaldehyde-free fixing agent for effective colour fastness.",
+  },
+  {
+    slug: "dalefix-fxn",
+    category: "dyeing-auxiliaries",
+    name: "Dalefix-FXN",
+    functionSummary: "Low-formaldehyde fixing agent for reactive dyes.",
+  },
+  {
+    slug: "dalefix-bsn",
+    category: "dyeing-auxiliaries",
+    name: "Dalefix-BSN",
+    functionSummary: "Cost-effective, low-formaldehyde fixing agent for reactive dyes.",
+  },
+  {
+    slug: "daledye-cpd",
+    category: "dyeing-auxiliaries",
+    name: "Daledye-CPD",
+    functionSummary: "Strong, low-formaldehyde fixing agent for reactive dyes.",
+  },
+
+  // Finishing
+  {
+    slug: "dalesoft-vm80",
     category: "finishing",
-    name: "Texdale Soft CS",
-    functionSummary: "Cationic silicone softener for a smooth, supple hand-feel.",
-    specs: [
-      { label: "Appearance", value: "White emulsion" },
-      { label: "Ionic character", value: "Cationic" },
-      { label: "pH (1% solution)", value: "5.0 - 6.5" },
-      { label: "Dosage", value: "1 - 3% owf" },
-    ],
-    related: ["texdale-hydrophil-20"],
+    name: "Dalesoft-VM80",
+    functionSummary: "Cost-effective, high-solid micro-emulsion silicone softener.",
   },
   {
-    slug: "texdale-hydrophil-20",
+    slug: "dalesoft-nyd20",
     category: "finishing",
-    name: "Texdale Hydrophil 20",
-    functionSummary: "Hydrophilic softener that retains absorbency for towelling and workwear.",
-    specs: [
-      { label: "Appearance", value: "White emulsion" },
-      { label: "Ionic character", value: "Non-ionic" },
-      { label: "pH (1% solution)", value: "5.5 - 7.0" },
-      { label: "Dosage", value: "1 - 4% owf" },
-    ],
-    related: ["texdale-soft-cs"],
+    name: "Dalesoft-NYD20",
+    functionSummary: "Highly concentrated micro-emulsion for all types of fabrics.",
   },
   {
-    slug: "texdale-repel-fc",
+    slug: "dalesoft-mac",
+    category: "finishing",
+    name: "Dalesoft-MAC",
+    functionSummary: "Macro emulsion for durable and wash-resistant finishes.",
+  },
+  {
+    slug: "dalesoft-vm22",
+    category: "finishing",
+    name: "Dalesoft-VM22",
+    functionSummary:
+      "Soft handle with drape, plus crease recovery, sewability, strength and abrasion-resistance improvements.",
+  },
+  {
+    slug: "dalesoft-vmh",
+    category: "finishing",
+    name: "Dalesoft-VMH",
+    functionSummary: "Silicone micro-emulsion for use in harsh processing conditions.",
+  },
+  {
+    slug: "dalesoft-ns1",
+    category: "finishing",
+    name: "Dalesoft-NS1",
+    functionSummary: "Silicone semi-micro emulsion for an ultra-smooth handle.",
+  },
+  {
+    slug: "dalesoft-w1c-conc",
+    category: "finishing",
+    name: "Dalesoft-W1C conc",
+    functionSummary: "Hydrophilic micro-emulsion silicone softener and anti-static agent.",
+  },
+  {
+    slug: "dalesoft-knb",
+    category: "finishing",
+    name: "Dalesoft-KNB",
+    functionSummary: "Cost-effective hydrophilic micro-emulsion softener for towelling.",
+  },
+  {
+    slug: "dalesoft-pdy",
+    category: "finishing",
+    name: "Dalesoft-PDY",
+    functionSummary: "Anti-static properties and effective hydrophilic features.",
+  },
+  {
+    slug: "dalesoft-sl-30",
+    category: "finishing",
+    name: "Dalesoft-SL-30",
+    functionSummary: "Non-ionic polyethylene-based softener which improves sewability.",
+  },
+  {
+    slug: "dalesoft-sl",
+    category: "finishing",
+    name: "Dalesoft-SL",
+    functionSummary: "Non-ionic, high-quality and cost-effective polyethylene softener.",
+  },
+  {
+    slug: "dalesoft-hpe",
+    category: "finishing",
+    name: "Dalesoft-HPE",
+    functionSummary:
+      "Superior-grade high-density polyethylene wax emulsion for sewability improvement.",
+  },
+  {
+    slug: "dalesoft-slw",
+    category: "finishing",
+    name: "Dalesoft-SLW",
+    functionSummary: "Very cost-effective primary polyethylene wax-based softener.",
+  },
+  {
+    slug: "dalesoft-sol",
+    category: "finishing",
+    name: "Dalesoft-SOL",
+    functionSummary: "Fatty-acid-based cationic softener.",
+  },
+  {
+    slug: "dalewash-a50",
+    category: "finishing",
+    name: "Dalewash-A50",
+    functionSummary:
+      "Cost-effective colloidal-based dispersing and washing agent for reactive dyeing.",
+  },
+
+  // Softening
+  {
+    slug: "adasil",
+    category: "softening",
+    name: "ADASIL®",
+    functionSummary:
+      "Softener functioning as a smoothing agent and antistatic treatment for textile fibres.",
+  },
+  {
+    slug: "belfasin",
+    category: "softening",
+    name: "BELFASIN®",
+    functionSummary:
+      "Softener functioning as a smoothing agent and antistatic treatment for textile fibres.",
+  },
+  {
+    slug: "belsoft",
+    category: "softening",
+    name: "BELSOFT®",
+    functionSummary:
+      "Softener functioning as a smoothing agent and antistatic treatment for textile fibres.",
+  },
+  {
+    slug: "nonax-lube",
+    category: "softening",
+    name: "NONAX® Lube",
+    functionSummary: "Anti-friction properties for sewing threads, allowing quick sewing.",
+  },
+  {
+    slug: "denimsoft-mc",
+    category: "softening",
+    name: "Denimsoft-MC",
+    functionSummary:
+      "Highly concentrated hydrophilic softener giving a smooth handle across fibre types.",
+  },
+  {
+    slug: "denimsoft-nma",
+    category: "softening",
+    name: "Denimsoft-NMA",
+    functionSummary:
+      "Cost-effective, highly concentrated macro emulsion for cotton, cellulosic and synthetic blends.",
+  },
+  {
+    slug: "denimsoft-akm",
+    category: "softening",
+    name: "Denimsoft-AKM",
+    functionSummary:
+      "Highly concentrated macro emulsion for cotton, cellulosic and synthetic blends.",
+  },
+
+  // Denim washing
+  {
+    slug: "desize-enz",
+    category: "denim-washing",
+    name: "Desize-ENZ",
+    functionSummary:
+      "Removes starch and sizes from all types of textiles, with optimum results for denim washing.",
+  },
+
+  // Special finishes
+  {
+    slug: "easy-finish-lor",
     category: "special-finishes",
-    name: "Texdale Repel FC",
-    functionSummary: "Durable water and oil repellent finish for performance textiles.",
-    specs: [
-      { label: "Appearance", value: "White emulsion" },
-      { label: "Ionic character", value: "Non-ionic" },
-      { label: "pH (1% solution)", value: "5.0 - 6.5" },
-      { label: "Dosage", value: "3 - 6% owf" },
-    ],
-    related: ["texdale-fr-back"],
+    name: "Easy Finish-LOR",
+    functionSummary: "Very low-formaldehyde, low-temperature curing resin.",
   },
   {
-    slug: "texdale-fr-back",
+    slug: "easy-finish-pcr",
     category: "special-finishes",
-    name: "Texdale FR-Back",
-    functionSummary: "Durable flame-retardant back-coating for upholstery and contract textiles.",
-    specs: [
-      { label: "Appearance", value: "White paste" },
-      { label: "Ionic character", value: "Anionic" },
-      { label: "pH (1% solution)", value: "6.0 - 7.5" },
-      { label: "Dosage", value: "As per coating formulation" },
-    ],
-    related: ["texdale-repel-fc"],
+    name: "Easy Finish-PCR",
+    functionSummary: "Very low-formaldehyde pre-catalyzed resin.",
   },
   {
-    slug: "texdale-cellu-wash",
-    category: "denim-washing",
-    name: "Texdale Cellu-Wash",
-    functionSummary: "Neutral cellulase enzyme for low-damage denim wash-down effects.",
-    specs: [
-      { label: "Appearance", value: "Brown liquid" },
-      { label: "Activity", value: "Neutral cellulase" },
-      { label: "Optimal pH", value: "6.0 - 7.0" },
-      { label: "Optimal temperature", value: "50 - 55°C" },
-    ],
-    related: ["texdale-anti-back-x", "texdale-redux-40"],
+    slug: "easy-finish-fbo",
+    category: "special-finishes",
+    name: "Easy Finish-FBO",
+    functionSummary: "Formaldehyde-free resin for crease-recovery finishes.",
   },
   {
-    slug: "texdale-redux-40",
-    category: "denim-washing",
-    name: "Texdale Redux 40",
-    functionSummary: "Reducing agent for consistent indigo bleach-back effects.",
-    specs: [
-      { label: "Appearance", value: "White powder" },
-      { label: "Ionic character", value: "N/A" },
-      { label: "pH (1% solution)", value: "5.0 - 6.0" },
-      { label: "Dosage", value: "2 - 6 g/L" },
-    ],
-    related: ["texdale-cellu-wash", "texdale-anti-back-x"],
+    slug: "easy-finish-4030",
+    category: "special-finishes",
+    name: "Easy Finish-4030",
+    functionSummary: "Highly concentrated, low-formaldehyde resin for easy-care finishes.",
   },
   {
-    slug: "texdale-anti-back-x",
-    category: "denim-washing",
-    name: "Texdale Anti-Back X",
-    functionSummary: "Anti-back-staining agent that keeps indigo off pocket bags and lining.",
-    specs: [
-      { label: "Appearance", value: "Pale yellow liquid" },
-      { label: "Ionic character", value: "Cationic" },
-      { label: "pH (1% solution)", value: "4.5 - 6.0" },
-      { label: "Dosage", value: "1 - 2 g/L" },
-    ],
-    related: ["texdale-cellu-wash", "texdale-redux-40"],
+    slug: "easy-finish-2010",
+    category: "special-finishes",
+    name: "Easy Finish-2010",
+    functionSummary: "Very low-formaldehyde resin.",
   },
   {
-    slug: "texdale-lube-lr",
-    category: "yarn-lubricants",
-    name: "Texdale Lube LR",
-    functionSummary: "Water-free lick-roll lubricant for high-speed circular knitting.",
-    specs: [
-      { label: "Appearance", value: "Pale yellow oil" },
-      { label: "Viscosity (40°C)", value: "18 - 22 cSt" },
-      { label: "Flash point", value: "> 180°C" },
-      { label: "Application", value: "Lick-roll" },
-    ],
-    related: ["texdale-lube-pp"],
+    slug: "easy-finish-lr",
+    category: "special-finishes",
+    name: "Easy Finish-LR",
+    functionSummary: "Cost-effective low-formaldehyde resin.",
   },
   {
-    slug: "texdale-lube-pp",
-    category: "yarn-lubricants",
-    name: "Texdale Lube PP",
-    functionSummary: "Precision-pump coning oil for weaving preparation.",
-    specs: [
-      { label: "Appearance", value: "Pale yellow oil" },
-      { label: "Viscosity (40°C)", value: "12 - 16 cSt" },
-      { label: "Flash point", value: "> 180°C" },
-      { label: "Application", value: "Precision pump" },
-    ],
-    related: ["texdale-lube-lr"],
+    slug: "daleguard-wc6",
+    category: "special-finishes",
+    name: "Daleguard-WC6",
+    functionSummary: "Oil, water and stain repellent with C6 technology.",
+  },
+  {
+    slug: "daleguard-nld",
+    category: "special-finishes",
+    name: "Daleguard-NLD",
+    functionSummary: "Low cost oil, water and stain repellent with C6 technology.",
+  },
+  {
+    slug: "daleguard-wr6",
+    category: "special-finishes",
+    name: "Daleguard-WR6",
+    functionSummary: "C6-based, cost-effective oil and water repellent.",
+  },
+  {
+    slug: "daleguard-fcg",
+    category: "special-finishes",
+    name: "Daleguard-FCG",
+    functionSummary: "C8-based oil and water repellent for durable wash requirements.",
+  },
+  {
+    slug: "daleguard-fcsp",
+    category: "special-finishes",
+    name: "Daleguard-FCSP",
+    functionSummary: "C6-based stain-release agent for durable wash requirements.",
+  },
+  {
+    slug: "microbial-phm",
+    category: "special-finishes",
+    name: "Microbial-PHM",
+    functionSummary: "Durable odour control and anti-microbial protection.",
+  },
+  {
+    slug: "microbial-dnd",
+    category: "special-finishes",
+    name: "Microbial-DND",
+    functionSummary:
+      "Highly durable silver-based microbial protection, approved by EPA and EU regulators.",
+  },
+  {
+    slug: "microbial-bkv",
+    category: "special-finishes",
+    name: "Microbial-BKV",
+    functionSummary: "Highly effective broad-spectrum protection against fungi and bacteria.",
+  },
+  {
+    slug: "microbial-km80",
+    category: "special-finishes",
+    name: "Microbial-KM80",
+    functionSummary: "Anti-insect and anti-allergenic protection.",
+  },
+  {
+    slug: "microbial-br-ps",
+    category: "special-finishes",
+    name: "Microbial-BR-PS",
+    functionSummary: "Durable odour control and anti-microbial protection.",
+  },
+  {
+    slug: "microbial-mnp",
+    category: "special-finishes",
+    name: "Microbial-MNP",
+    functionSummary: "Durable anti-microbial protection.",
+  },
+  {
+    slug: "daleflame-nv3",
+    category: "special-finishes",
+    name: "Daleflame-NV3",
+    functionSummary: "Non-durable flame retardant for cotton, cellulosics and synthetics.",
+  },
+  {
+    slug: "daleflame-sem",
+    category: "special-finishes",
+    name: "Daleflame-SEM",
+    functionSummary: "Semi-durable flame retardant for cotton, cellulosics and synthetics.",
+  },
+  {
+    slug: "daleflame-frb",
+    category: "special-finishes",
+    name: "Daleflame-FRB",
+    functionSummary:
+      "Semi-durable flame retardant for cotton, cellulosics and synthetics, developed for high-hazard areas.",
+  },
+  {
+    slug: "daleflame-per50",
+    category: "special-finishes",
+    name: "Daleflame-PER50",
+    functionSummary: "Durable flame retardant for cotton, cellulosics and synthetics.",
+  },
+
+  // Special yarn lubricants
+  {
+    slug: "dalerol-pfr",
+    category: "special-yarn-lubricants",
+    name: "DALEROL® PFR",
+    functionSummary:
+      "Sewing thread cold-melt lubricant for endless or fibre yarns of polyester or polyamide, applied by lick-roll technique.",
+  },
+  {
+    slug: "dalerol-shq",
+    category: "special-yarn-lubricants",
+    name: "DALEROL® SHQ",
+    functionSummary:
+      "Sewing thread hot-melt lubricant for endless or fibre yarns of polyester or polyamide, applied by lick-roll technique.",
+  },
+  {
+    slug: "dalefil-ybl",
+    category: "special-yarn-lubricants",
+    name: "DALEFIL® YBL",
+    functionSummary:
+      "Highly effective processing agent for smoothing knitting, weaving and embroidery yarns by the exhaust method. Covers synthetic fibres, cotton and rayon.",
+  },
+  {
+    slug: "dalefil-yem",
+    category: "special-yarn-lubricants",
+    name: "DALEFIL® YEM",
+    functionSummary:
+      "Cost-effective processing agent for smoothing knitting, weaving and embroidery yarns by the exhaust method. Also suitable for synthetic fibres, cotton and rayon.",
   },
 ];
 
@@ -300,8 +593,8 @@ export function getProduct(categorySlug, productSlug) {
   return products.find((p) => p.category === categorySlug && p.slug === productSlug);
 }
 
-export function getRelatedProducts(product) {
-  return (product.related || [])
-    .map((slug) => products.find((p) => p.slug === slug))
-    .filter(Boolean);
+export function getRelatedProducts(product, count = 3) {
+  return products
+    .filter((p) => p.category === product.category && p.slug !== product.slug)
+    .slice(0, count);
 }
