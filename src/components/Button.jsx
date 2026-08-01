@@ -10,6 +10,8 @@ const variants = {
   // above would have insufficient (or inverted) contrast.
   light: "bg-paper text-ink hover:bg-paper/90",
   "light-outline": "border border-paper text-paper hover:bg-paper/10",
+  // Border and text only — no fill, not even on hover.
+  "light-outline-plain": "border border-paper text-paper",
 };
 
 export default function Button({ variant = "primary", className = "", href, ...props }) {

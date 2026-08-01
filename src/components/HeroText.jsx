@@ -15,10 +15,10 @@ export default function HeroText({ onOpenContact }) {
   useEffect(() => {
     if (prefersReducedMotion()) return;
 
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
     tl.from(eyebrowRef.current, { opacity: 0, y: 12, duration: 0.5 })
-      .from(wordmarkRef.current, { opacity: 0, y: 40, scale: 0.94, duration: 0.9 }, "-=0.2")
-      .from(subheadingRef.current, { opacity: 0, y: 20, duration: 0.6 }, "-=0.45")
+      .from(wordmarkRef.current, { opacity: 0, x: -160, duration: 1.8 }, "-=0.2")
+      .from(subheadingRef.current, { opacity: 0, y: 20, duration: 0.6 }, "-=0.9")
       .from(paragraphRef.current, { opacity: 0, y: 16, duration: 0.6 }, "-=0.4")
       .from(buttonsRef.current, { opacity: 0, y: 16, duration: 0.6 }, "-=0.4");
 
@@ -58,7 +58,7 @@ export default function HeroText({ onOpenContact }) {
         <Button
           type="button"
           onClick={onOpenContact}
-          variant="light-outline"
+          variant="light-outline-plain"
           className="cursor-pointer"
         >
           Contact us

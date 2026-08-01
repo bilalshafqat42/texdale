@@ -10,10 +10,10 @@ export default function HeroSection() {
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
-    <section className="relative overflow-hidden py-24">
+    <section className="relative -mt-20 flex min-h-screen items-center overflow-hidden">
       <HeroBackground />
-      <BubbleAccent className="absolute top-6 right-6 h-40 w-52 md:top-10 md:right-10" />
-      <div className="relative mx-auto max-w-6xl px-6">
+      <BubbleAccent className="absolute top-24 right-6 h-40 w-52 md:top-28 md:right-10" />
+      <div className="relative mx-auto w-full max-w-6xl px-6">
         <HeroText onOpenContact={() => setContactOpen(true)} />
       </div>
 

@@ -7,10 +7,21 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/lib/motion";
 import SiteMenu from "./SiteMenu";
+import ContactModal from "./ContactModal";
+import Button from "./Button";
+
+const NAV_LINKS = [
+  { label: "About", href: "/about" },
+  { label: "Products", href: "/products" },
+  { label: "Sustainability", href: "/sustainability" },
+  { label: "Insights", href: "/insights" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Header() {
   const [condensed, setCondensed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [demoOpen, setDemoOpen] = useState(false);
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
@@ -27,10 +38,16 @@ export default function Header() {
 
   return (
     <>
-      <header className="border-line bg-paper/95 sticky top-0 z-50 border-b backdrop-blur-sm">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
+          condensed
+            ? "border-line bg-paper/80 backdrop-blur-md"
+            : "border-transparent bg-transparent"
+        }`}
+      >
         <div
-          className={`mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-300 ${
-            condensed ? "py-2" : "py-4"
+          className={`mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-6 px-6 transition-all duration-300 ${
+            condensed ? "py-3" : "py-5"
           }`}
         >
           <Link href="/" className="shrink-0">
@@ -44,13 +61,27 @@ export default function Header() {
             />
           </Link>
 
-          <div className="flex items-center gap-3">
-            <Link
-              href="/contact?reason=quote"
-              className="border-ink hover:bg-ink hover:text-paper hidden rounded-md border px-4 py-2 text-sm transition-colors sm:inline-block"
+          <nav className="hidden justify-center gap-8 text-sm md:flex">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-ink hover:text-accent transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center justify-end gap-3">
+            <Button
+              type="button"
+              onClick={() => setDemoOpen(true)}
+              variant="secondary"
+              className="hidden sm:inline-flex"
             >
-              Request a quote
-            </Link>
+              Request a demo
+            </Button>
             <button
               type="button"
               aria-expanded={menuOpen}
@@ -73,6 +104,7 @@ export default function Header() {
       </header>
 
       <SiteMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <ContactModal open={demoOpen} onClose={() => setDemoOpen(false)} />
     </>
   );
 }
