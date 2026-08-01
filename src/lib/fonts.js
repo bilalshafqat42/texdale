@@ -1,4 +1,5 @@
 import { Inter, IBM_Plex_Mono, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -19,5 +20,13 @@ export const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-plex-mono",
+  display: "swap",
+});
+
+// Strasua (Typodermic Fonts) — public domain, free for commercial use.
+// Used only for the large "TEXDALE" wordmark treatment in the homepage hero.
+export const strasua = localFont({
+  src: "../fonts/Strasua.otf",
+  variable: "--font-strasua",
   display: "swap",
 });

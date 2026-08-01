@@ -5,8 +5,7 @@ import Badge from "@/components/Badge";
 import Card from "@/components/Card";
 import FAQAccordion from "@/components/FAQAccordion";
 import Reveal from "@/components/Reveal";
-import HeroBackground from "@/components/HeroBackground";
-import BubbleAccent from "@/components/BubbleAccent";
+import HeroSection from "@/components/HeroSection";
 import { categories } from "@/lib/products";
 
 const faqs = [
@@ -30,33 +29,7 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden py-24">
-        <HeroBackground />
-        <BubbleAccent className="absolute top-6 right-6 h-40 w-52 md:top-10 md:right-10" />
-        <div className="relative mx-auto max-w-6xl px-6">
-          <Reveal onMount>
-            <p className="text-caption text-paper/80 mb-3 tracking-wide uppercase">
-              Eco-friendly textile chemicals
-            </p>
-            <h1 className="text-h1 text-paper max-w-2xl">
-              Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH
-              compliant.
-            </h1>
-            <p className="text-paper/80 mt-4 max-w-xl">
-              Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing
-              chemicals to mills and finishers across the UK and internationally.
-            </p>
-            <div className="mt-6 flex gap-4">
-              <Button href="/products" variant="light">
-                Explore products
-              </Button>
-              <Button href="/contact?reason=sample" variant="light-outline">
-                Request a sample
-              </Button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <HeroSection />
 
       <section className="border-line bg-accent-light/40 border-t py-10">
         <Reveal className="mx-auto flex max-w-6xl flex-wrap gap-4 px-6">

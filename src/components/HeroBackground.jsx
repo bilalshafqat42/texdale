@@ -80,7 +80,7 @@ export default function HeroBackground() {
 
       <div
         className={`absolute inset-0 ${showVideo ? "" : "bg-ink/10"}`}
-        style={showVideo ? { background: "rgba(10, 32, 66, 0.55)" } : undefined}
+        style={showVideo ? { background: "rgba(0, 120, 210, 0.55)" } : undefined}
       />
     </div>
   );
