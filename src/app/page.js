@@ -5,6 +5,8 @@ import Badge from "@/components/Badge";
 import Card from "@/components/Card";
 import FAQAccordion from "@/components/FAQAccordion";
 import Reveal from "@/components/Reveal";
+import HeroBackground from "@/components/HeroBackground";
+import BubbleAccent from "@/components/BubbleAccent";
 import { categories } from "@/lib/products";
 
 const faqs = [
@@ -28,31 +30,32 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal onMount>
-          <p className="text-caption text-accent mb-3 tracking-wide uppercase">
-            Eco-friendly textile chemicals
-          </p>
-          <h1 className="text-h1 max-w-2xl">
-            Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH
-            compliant.
-          </h1>
-          <p className="text-ink/70 mt-4 max-w-xl">
-            Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing
-            chemicals to mills and finishers across the UK and internationally.
-          </p>
-          <div className="mt-6 flex gap-4">
-            <Button href="/products" variant="primary">
-              Explore products
-            </Button>
-            <Button href="/contact?reason=sample" variant="secondary">
-              Request a sample
-            </Button>
-          </div>
-        </Reveal>
-        <Reveal onMount delay={0.15}>
-          <div className="bg-line/40 mt-10 h-64 rounded-lg" />
-        </Reveal>
+      <section className="relative overflow-hidden py-24">
+        <HeroBackground />
+        <BubbleAccent className="absolute top-6 right-6 h-40 w-52 md:top-10 md:right-10" />
+        <div className="relative mx-auto max-w-6xl px-6">
+          <Reveal onMount>
+            <p className="text-caption text-paper/80 mb-3 tracking-wide uppercase">
+              Eco-friendly textile chemicals
+            </p>
+            <h1 className="text-h1 text-paper max-w-2xl">
+              Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH
+              compliant.
+            </h1>
+            <p className="text-paper/80 mt-4 max-w-xl">
+              Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing
+              chemicals to mills and finishers across the UK and internationally.
+            </p>
+            <div className="mt-6 flex gap-4">
+              <Button href="/products" variant="light">
+                Explore products
+              </Button>
+              <Button href="/contact?reason=sample" variant="light-outline">
+                Request a sample
+              </Button>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       <section className="border-line bg-accent-light/40 border-t py-10">
@@ -125,11 +128,7 @@ export default function HomePage() {
         <Reveal className="mx-auto max-w-6xl px-6 text-center">
           <h2 className="text-h2">Need a tailored formulation?</h2>
           <p className="text-paper/70 mt-2">Talk to our technical team about your process.</p>
-          <Button
-            href="/contact?reason=general"
-            variant="secondary"
-            className="border-paper text-paper hover:bg-paper/10 mt-6"
-          >
+          <Button href="/contact?reason=general" variant="light-outline" className="mt-6">
             Talk to our technical team
           </Button>
         </Reveal>
