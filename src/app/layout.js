@@ -1,4 +1,4 @@
-import { inter, plexMono } from "@/lib/fonts";
+import { inter, plexMono, playfair } from "@/lib/fonts";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -50,7 +50,7 @@ const websiteJsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${plexMono.variable} ${playfair.variable}`}>
       <body>
         <script
           type="application/ld+json"
