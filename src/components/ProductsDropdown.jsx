@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { PRODUCT_GROUPS } from "@/lib/navGroups";
 
-export default function ProductsDropdown() {
+export default function ProductsDropdown({ light = false }) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -32,7 +32,9 @@ export default function ProductsDropdown() {
         aria-expanded={open}
         aria-haspopup="true"
         onClick={() => setOpen((o) => !o)}
-        className="text-ink hover:text-accent flex items-center gap-1.5 transition-colors"
+        className={`flex items-center gap-1.5 transition-colors ${
+          light ? "text-paper hover:text-paper/70" : "text-ink hover:text-accent"
+        }`}
       >
         Products
         <svg
