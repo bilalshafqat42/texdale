@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import Button from "@/components/Button";
@@ -45,6 +46,19 @@ export default async function CategoryPage({ params }) {
       />
       <h1 className="text-h1 mt-4">{category.name}</h1>
       <p className="text-ink/70 mt-3 max-w-xl">{category.intro}</p>
+
+      {category.image && (
+        <div className="relative mt-8 h-64 w-full overflow-hidden rounded-lg md:h-80">
+          <Image
+            src={category.image}
+            alt={`${category.name} textile chemicals`}
+            fill
+            sizes="(min-width: 768px) 1152px, 100vw"
+            priority
+            className="object-cover"
+          />
+        </div>
+      )}
 
       <div className="mt-10">
         {products.length > 0 ? (

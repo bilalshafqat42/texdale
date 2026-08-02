@@ -9,10 +9,9 @@ import { prefersReducedMotion } from "@/lib/motion";
 import SiteMenu from "./SiteMenu";
 import ContactModal from "./ContactModal";
 import Button from "./Button";
+import ProductsDropdown from "./ProductsDropdown";
 
-const NAV_LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Products", href: "/products" },
+const NAV_LINKS_AFTER_PRODUCTS = [
   { label: "Sustainability", href: "/sustainability" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
@@ -61,8 +60,12 @@ export default function Header() {
             />
           </Link>
 
-          <nav className="hidden justify-center gap-8 text-sm md:flex">
-            {NAV_LINKS.map((link) => (
+          <nav className="hidden items-center justify-center gap-8 text-sm md:flex">
+            <Link href="/about" className="text-ink hover:text-accent transition-colors">
+              About
+            </Link>
+            <ProductsDropdown />
+            {NAV_LINKS_AFTER_PRODUCTS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -87,7 +90,7 @@ export default function Header() {
               aria-expanded={menuOpen}
               aria-label="Open menu"
               onClick={() => setMenuOpen(true)}
-              className="border-ink flex items-center gap-2 rounded-md border px-3 py-2 text-sm"
+              className="border-ink flex items-center gap-2 rounded-md border px-3 py-2 text-sm md:hidden"
             >
               Menu
               <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
