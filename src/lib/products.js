@@ -2,7 +2,7 @@ export const categories = [
   {
     slug: "pretreatment",
     name: "Pretreatment",
-    image: "/pretreatment.avif",
+    image: "/pretreatment.jpg",
     summary: "Wetting agents, detergents, sequestrants and peroxide stabilisers.",
     intro:
       "Our pretreatment range prepares fabric for even, predictable dyeing and finishing — removing size, oils and natural impurities before colour goes on.",
@@ -17,7 +17,7 @@ export const categories = [
   {
     slug: "dyeing-auxiliaries",
     name: "Dyeing auxiliaries",
-    image: "/dyeing-auxiliaries.avif",
+    image: "/dyeing-auxiliaries.jpg",
     summary: "Dispersing, washing, levelling and formaldehyde-free fixing agents.",
     intro:
       "Dispersing, washing, levelling and fixing agents for reactive, VAT and disperse dyeing, formulated for consistent shade and colour fastness.",
@@ -32,7 +32,7 @@ export const categories = [
   {
     slug: "printing",
     name: "Printing",
-    image: "/printing.avif",
+    image: "/printing.jpg",
     summary: "Thickening agents for textile printing.",
     intro:
       "We supply synthetic and natural thickening agents for textile printing, including acrylates, alginates and guar gum for cotton, wool and silk, and acrylate-based thickeners for polyester and silk.",
@@ -41,7 +41,7 @@ export const categories = [
   {
     slug: "finishing",
     name: "Finishing",
-    image: "/finishing.avif",
+    image: "/finishing.jpg",
     summary: "Silicone and micro-emulsion softeners for handle, feel and performance.",
     intro:
       "Silicone and micro-emulsion softeners that shape the final hand-feel, drape and sewability of the fabric, from cost-effective macro emulsions to ultra-smooth silicone micro-emulsions.",
@@ -50,7 +50,7 @@ export const categories = [
   {
     slug: "softening",
     name: "Softening",
-    image: "/soft-textile.avif",
+    image: "/soft-textile.jpg",
     summary: "Smoothing agents, antistatic softeners and denim-specific softeners.",
     intro:
       "Softening agents that function as smoothing and antistatic treatments across textile fibres, including dedicated denim-softening emulsions.",
@@ -59,7 +59,7 @@ export const categories = [
   {
     slug: "denim-washing",
     name: "Denim washing",
-    image: "/denim-washing.avif",
+    image: "/denim-washing.jpg",
     summary:
       "Enzymes and the reducing agents, resins, fixers and softeners denim wash-down draws on.",
     intro:
@@ -70,7 +70,7 @@ export const categories = [
   {
     slug: "special-finishes",
     name: "Special finishes",
-    image: "/special-finishes.avif",
+    image: "/special-finishes.jpg",
     summary:
       "Low-formaldehyde resins, water/oil repellents, anti-microbial and flame-retardant finishes.",
     intro:
@@ -86,7 +86,7 @@ export const categories = [
   {
     slug: "special-yarn-lubricants",
     name: "Special yarn lubricants",
-    image: "/special-yarn-lubricants.avif",
+    image: "/special-yarn-lubricants.jpg",
     summary: "DALEROL water-free lubricants and DALEFIL processing agents.",
     intro:
       "Our DALEROL range of water-free sewing-thread lubricants and DALEFIL processing agents smooth knitting, weaving and embroidery yarns for polyester, polyamide, cotton and rayon.",
