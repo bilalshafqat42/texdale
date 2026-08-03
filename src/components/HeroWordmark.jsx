@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/lib/motion";
 
 const WORDS = [
@@ -16,45 +17,64 @@ const WORDS = [
 ];
 
 export default function HeroWordmark() {
-  const wordmarkRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const wordRef = useRef(null);
 
   useEffect(() => {
-    const el = wordmarkRef.current;
+    const wrapper = wrapperRef.current;
+    const el = wordRef.current;
     if (prefersReducedMotion()) return;
+
+    gsap.registerPlugin(ScrollTrigger);
 
     const entrance = gsap.from(el, {
       opacity: 0,
-      x: -160,
-      duration: 1.8,
-      ease: "power2.out",
+      y: 24,
+      scale: 0.94,
+      blur: 14,
+      duration: 1.4,
+      ease: "power3.out",
     });
 
     let index = 0;
-    const flip = () => {
+    const morph = () => {
       index = (index + 1) % WORDS.length;
       const word = WORDS[index];
       gsap
         .timeline()
-        .to(el, { rotationX: 90, duration: 0.4, ease: "power1.in" })
+        .to(el, { opacity: 0, blur: 16, scale: 1.04, duration: 0.5, ease: "power1.in" })
         .call(() => {
           el.textContent = word.text;
           el.className = `text-paper leading-none ${word.className}`;
         })
-        .to(el, { rotationX: 0, duration: 0.4, ease: "power1.out" });
+        .fromTo(
+          el,
+          { opacity: 0, blur: 16, scale: 0.96 },
+          { opacity: 1, blur: 0, scale: 1, duration: 0.7, ease: "power2.out" },
+        );
     };
 
-    const interval = setInterval(flip, 3000);
+    const interval = setInterval(morph, 3400);
+
+    const parallax = ScrollTrigger.create({
+      trigger: wrapper.closest("section"),
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+      onUpdate: (self) => gsap.set(wrapper, { y: self.progress * 90 }),
+    });
 
     return () => {
       entrance.kill();
       clearInterval(interval);
+      parallax.kill();
     };
   }, []);
 
   return (
-    <div style={{ perspective: "800px" }}>
+    <div ref={wrapperRef}>
       <p
-        ref={wordmarkRef}
+        ref={wordRef}
         aria-hidden="true"
         className={`text-paper leading-none ${WORDS[0].className}`}
       >

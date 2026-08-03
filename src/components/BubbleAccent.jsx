@@ -1,6 +1,34 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { prefersReducedMotion } from "@/lib/motion";
+
 export default function BubbleAccent({ className = "" }) {
+  const svgRef = useRef(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    const circles = svgRef.current.querySelectorAll("circle");
+    const tweens = Array.from(circles).map((circle, i) =>
+      gsap.to(circle, {
+        y: i % 2 === 0 ? -8 : 8,
+        x: i % 3 === 0 ? 4 : -4,
+        duration: 3 + (i % 3),
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: i * 0.15,
+      }),
+    );
+
+    return () => tweens.forEach((tween) => tween.kill());
+  }, []);
+
   return (
     <svg
+      ref={svgRef}
       aria-hidden="true"
       viewBox="0 0 260 200"
       className={className}
