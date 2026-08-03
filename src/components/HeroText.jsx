@@ -17,8 +17,8 @@ export default function HeroText({ onOpenContact }) {
 
     const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
     tl.from(eyebrowRef.current, { opacity: 0, y: 12, duration: 0.5 })
-      .from(wordmarkRef.current, { opacity: 0, x: -160, duration: 1.8 }, "-=0.2")
-      .from(subheadingRef.current, { opacity: 0, y: 20, duration: 0.6 }, "-=0.9")
+      .from(wordmarkRef.current, { opacity: 0, x: -160, duration: 1.8 }, "-=0.3")
+      .from(subheadingRef.current, { opacity: 0, y: 20, duration: 0.6 }, "-=1.4")
       .from(paragraphRef.current, { opacity: 0, y: 16, duration: 0.6 }, "-=0.4")
       .from(buttonsRef.current, { opacity: 0, y: 16, duration: 0.6 }, "-=0.4");
 
@@ -26,43 +26,45 @@ export default function HeroText({ onOpenContact }) {
   }, []);
 
   return (
-    <div>
-      <p ref={eyebrowRef} className="text-caption text-paper/80 mb-3 tracking-wide uppercase">
-        Eco-friendly textile chemicals
-      </p>
+    <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
+      <div>
+        <p ref={eyebrowRef} className="text-caption text-paper/80 mb-3 tracking-wide uppercase">
+          Eco-friendly textile chemicals
+        </p>
 
-      <p
-        ref={wordmarkRef}
-        aria-hidden="true"
-        className="font-brand text-paper text-6xl leading-none tracking-wide sm:text-8xl md:text-9xl"
-      >
-        TEXDALE
-      </p>
+        <h1 ref={subheadingRef} className="text-h3 text-paper/95 sm:text-h2 max-w-xl font-normal">
+          Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH
+          compliant.
+        </h1>
 
-      <h1
-        ref={subheadingRef}
-        className="text-h3 text-paper/95 sm:text-h2 mt-6 max-w-xl font-normal"
-      >
-        Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH compliant.
-      </h1>
+        <p ref={paragraphRef} className="text-paper/80 mt-4 max-w-xl">
+          Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing
+          chemicals to mills and finishers across the UK and internationally.
+        </p>
 
-      <p ref={paragraphRef} className="text-paper/80 mt-4 max-w-xl">
-        Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing chemicals
-        to mills and finishers across the UK and internationally.
-      </p>
+        <div ref={buttonsRef} className="mt-6 flex gap-4">
+          <Button href="/products" variant="light">
+            Explore products
+          </Button>
+          <Button
+            type="button"
+            onClick={onOpenContact}
+            variant="light-outline-plain"
+            className="cursor-pointer"
+          >
+            Contact us
+          </Button>
+        </div>
+      </div>
 
-      <div ref={buttonsRef} className="mt-6 flex gap-4">
-        <Button href="/products" variant="light">
-          Explore products
-        </Button>
-        <Button
-          type="button"
-          onClick={onOpenContact}
-          variant="light-outline-plain"
-          className="cursor-pointer"
+      <div className="flex justify-center md:justify-end">
+        <p
+          ref={wordmarkRef}
+          aria-hidden="true"
+          className="font-brand text-paper text-7xl leading-none tracking-wide sm:text-8xl md:text-9xl"
         >
-          Contact us
-        </Button>
+          TEXDALE
+        </p>
       </div>
     </div>
   );

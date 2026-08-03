@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Button from "@/components/Button";
-import Chip from "@/components/Chip";
 import Badge from "@/components/Badge";
+import ProcessStep from "@/components/ProcessStep";
 import Card from "@/components/Card";
 import FAQAccordion from "@/components/FAQAccordion";
 import Reveal from "@/components/Reveal";
@@ -63,12 +63,12 @@ export default function HomePage() {
       <section className="border-line bg-paper border-t py-16">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-h2">Our process</h2>
-          <Reveal className="mt-8 flex flex-wrap gap-3">
-            <Chip active>01 Source</Chip>
-            <Chip>02 Formulate</Chip>
-            <Chip>03 Lab test</Chip>
-            <Chip>04 Produce</Chip>
-            <Chip>05 Deliver</Chip>
+          <Reveal className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-5 sm:gap-6">
+            <ProcessStep icon="source" number="01" label="Source" active />
+            <ProcessStep icon="formulate" number="02" label="Formulate" />
+            <ProcessStep icon="labTest" number="03" label="Lab test" />
+            <ProcessStep icon="produce" number="04" label="Produce" />
+            <ProcessStep icon="deliver" number="05" label="Deliver" />
           </Reveal>
         </div>
       </section>
