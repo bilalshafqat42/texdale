@@ -50,21 +50,18 @@ const ICONS = {
   ),
 };
 
-export default function ProcessStep({ icon, number, label, active = false }) {
+export default function ProcessStep({ icon, number, label, description }) {
   return (
-    <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
-      <div
-        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${
-          active ? "border-accent bg-accent-light text-accent" : "border-line text-ink/70"
-        }`}
-      >
+    <div className="border-line bg-paper flex flex-col gap-4 rounded-xl border p-6 transition-shadow duration-300 hover:shadow-md">
+      <div className="bg-accent-light text-accent flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
         <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
           {ICONS[icon]}
         </svg>
       </div>
       <div>
-        <p className="text-caption text-ink/70 tracking-wide uppercase">{number}</p>
-        <p className="text-ink mt-0.5 text-sm font-medium">{label}</p>
+        <p className="text-caption text-ink/60 tracking-wide uppercase">{number}</p>
+        <p className="text-ink mt-1 text-base font-semibold">{label}</p>
+        {description && <p className="text-ink/70 mt-1.5 text-sm">{description}</p>}
       </div>
     </div>
   );

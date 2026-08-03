@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 import Badge from "@/components/Badge";
@@ -7,6 +8,40 @@ import FAQAccordion from "@/components/FAQAccordion";
 import Reveal from "@/components/Reveal";
 import HeroSection from "@/components/HeroSection";
 import { categories } from "@/lib/products";
+
+const PROCESS_STEPS = [
+  {
+    icon: "source",
+    number: "01",
+    label: "Source",
+    description:
+      "Raw materials sourced from REACH-compliant suppliers in the EU and internationally.",
+  },
+  {
+    icon: "formulate",
+    number: "02",
+    label: "Formulate",
+    description: "Formulated in our lab to match your process, substrate and finish.",
+  },
+  {
+    icon: "labTest",
+    number: "03",
+    label: "Lab test",
+    description: "Trialled and tested for performance before it leaves the lab.",
+  },
+  {
+    icon: "produce",
+    number: "04",
+    label: "Produce",
+    description: "Manufactured at our production facility in the North of England.",
+  },
+  {
+    icon: "deliver",
+    number: "05",
+    label: "Deliver",
+    description: "Despatched to mills and finishers across the UK and export markets.",
+  },
+];
 
 const faqs = [
   {
@@ -31,6 +66,34 @@ export default function HomePage() {
     <>
       <HeroSection />
 
+      <section className="border-line border-t py-16">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2 md:gap-16">
+          <Reveal>
+            <p className="text-caption text-accent tracking-wide uppercase">About Texdale</p>
+            <h1 className="text-h2 mt-3">
+              Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH
+              compliant.
+            </h1>
+            <p className="text-ink/70 mt-4 max-w-xl">
+              Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing
+              chemicals to mills and finishers across the UK and internationally.
+            </p>
+            <Button href="/products" variant="primary" className="mt-6">
+              Explore products
+            </Button>
+          </Reveal>
+          <Reveal delay={0.1} className="flex justify-center md:justify-end">
+            <Image
+              src="/texdale-dark.svg"
+              alt="Texdale"
+              width={320}
+              height={112}
+              className="h-auto w-48 sm:w-64 md:w-80"
+            />
+          </Reveal>
+        </div>
+      </section>
+
       <section className="border-line bg-accent-light/40 border-t py-10">
         <Reveal className="mx-auto flex max-w-6xl flex-wrap gap-4 px-6">
           <Badge>REACH compliant sourcing</Badge>
@@ -50,8 +113,24 @@ export default function HomePage() {
                 >
                   <h3 className="text-h4">{category.name}</h3>
                   <p className="text-ink/70 mt-2 text-sm">{category.summary}</p>
-                  <span className="text-accent mt-4 inline-block text-sm font-medium">
-                    View range →
+                  <span className="text-accent mt-4 inline-flex items-center gap-1.5 text-sm font-medium">
+                    View range
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      aria-hidden="true"
+                      className="transition-transform duration-200 group-hover:translate-x-1"
+                    >
+                      <path
+                        d="M1 7h11M8 2l5 5-5 5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </span>
                 </Card>
               </Link>
@@ -63,12 +142,10 @@ export default function HomePage() {
       <section className="border-line bg-paper border-t py-16">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-h2">Our process</h2>
-          <Reveal className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-5 sm:gap-6">
-            <ProcessStep icon="source" number="01" label="Source" active />
-            <ProcessStep icon="formulate" number="02" label="Formulate" />
-            <ProcessStep icon="labTest" number="03" label="Lab test" />
-            <ProcessStep icon="produce" number="04" label="Produce" />
-            <ProcessStep icon="deliver" number="05" label="Deliver" />
+          <Reveal className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {PROCESS_STEPS.map((step) => (
+              <ProcessStep key={step.number} {...step} />
+            ))}
           </Reveal>
         </div>
       </section>

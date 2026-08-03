@@ -2,6 +2,7 @@ import { inter, plexMono, playfair, strasua } from "@/lib/fonts";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { SITE_URL, SITE_NAME, CONTACT } from "@/lib/site";
 
 const description =
@@ -71,6 +72,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

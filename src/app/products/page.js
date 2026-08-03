@@ -31,8 +31,24 @@ export default function ProductsPage() {
               >
                 <h3 className="text-h4">{category.name}</h3>
                 <p className="text-ink/70 mt-2 text-sm">{category.summary}</p>
-                <span className="text-accent mt-4 inline-block text-sm font-medium">
-                  View range →
+                <span className="text-accent mt-4 inline-flex items-center gap-1.5 text-sm font-medium">
+                  View range
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    aria-hidden="true"
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    <path
+                      d="M1 7h11M8 2l5 5-5 5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </span>
               </Card>
             </Link>
