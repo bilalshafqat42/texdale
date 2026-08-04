@@ -77,6 +77,11 @@ export default function HomePage() {
               Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing
               chemicals to mills and finishers across the UK and internationally.
             </p>
+            <p className="text-ink/70 mt-4 max-w-xl">
+              Every formulation is developed and lab-tested at our production facility in the North
+              of England, where our technical team works directly with mills to solve
+              process-specific problems rather than sell off-the-shelf chemistry.
+            </p>
             <Button href="/products" variant="primary" className="mt-6">
               Explore products
             </Button>

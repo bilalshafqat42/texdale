@@ -5,12 +5,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/lib/motion";
 
-const SIZE_CLASSES = "text-7xl sm:text-8xl md:text-9xl lg:text-[11rem]";
+const WORDS = ["TEXDALE", "TEXTILE", "CHEMICALS"];
 
-const WORDS = [
-  { text: "TEXDALE", className: `font-brand tracking-wide ${SIZE_CLASSES}` },
-  { text: "TEXTILE CHEMICALS", className: `font-sans font-bold tracking-wide ${SIZE_CLASSES}` },
-];
+const SIZE_CLASSES = "font-brand tracking-wide text-6xl sm:text-7xl md:text-9xl lg:text-[11rem]";
 
 export default function HeroWordmark() {
   const wrapperRef = useRef(null);
@@ -19,15 +16,6 @@ export default function HeroWordmark() {
   useEffect(() => {
     const wrapper = wrapperRef.current;
     const el = wordRef.current;
-
-    const fitToContainer = () => {
-      gsap.set(el, { scaleX: 1 });
-      const available = wrapper.clientWidth;
-      const natural = el.scrollWidth;
-      gsap.set(el, { scaleX: Math.min(1, available / natural) });
-    };
-
-    fitToContainer();
 
     if (prefersReducedMotion()) return;
 
@@ -43,25 +31,22 @@ export default function HeroWordmark() {
     });
 
     let index = 0;
-    const morph = () => {
+    const flip = () => {
       index = (index + 1) % WORDS.length;
-      const word = WORDS[index];
       gsap
         .timeline()
-        .to(el, { opacity: 0, blur: 16, scaleY: 1.04, duration: 0.5, ease: "power1.in" })
+        .to(el, { opacity: 0, blur: 16, scale: 1.04, duration: 0.45, ease: "power1.in" })
         .call(() => {
-          el.textContent = word.text;
-          el.className = `text-paper leading-none whitespace-nowrap ${word.className}`;
-          fitToContainer();
+          el.textContent = WORDS[index];
         })
         .fromTo(
           el,
-          { opacity: 0, blur: 16 },
-          { opacity: 1, blur: 0, scaleY: 1, duration: 0.7, ease: "power2.out" },
+          { opacity: 0, blur: 16, scale: 0.96 },
+          { opacity: 1, blur: 0, scale: 1, duration: 0.65, ease: "power2.out" },
         );
     };
 
-    const interval = setInterval(morph, 3400);
+    const interval = setInterval(flip, 3000);
 
     const parallax = ScrollTrigger.create({
       trigger: wrapper.closest("section"),
@@ -71,13 +56,10 @@ export default function HeroWordmark() {
       onUpdate: (self) => gsap.set(wrapper, { y: self.progress * 90 }),
     });
 
-    window.addEventListener("resize", fitToContainer);
-
     return () => {
       entrance.kill();
       clearInterval(interval);
       parallax.kill();
-      window.removeEventListener("resize", fitToContainer);
     };
   }, []);
 
@@ -86,9 +68,9 @@ export default function HeroWordmark() {
       <p
         ref={wordRef}
         aria-hidden="true"
-        className={`text-paper leading-none whitespace-nowrap ${WORDS[0].className}`}
+        className={`text-paper leading-none whitespace-nowrap ${SIZE_CLASSES}`}
       >
-        {WORDS[0].text}
+        {WORDS[0]}
       </p>
     </div>
   );
