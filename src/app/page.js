@@ -71,8 +71,7 @@ export default function HomePage() {
           <Reveal>
             <p className="text-caption text-accent tracking-wide uppercase">About Texdale</p>
             <h2 className="text-h2 mt-3">
-              Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH
-              compliant.
+              Creating cleaner textile chemistry for the modern mill.
             </h2>
             <p className="text-ink/70 mt-4 max-w-xl">
               Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing
