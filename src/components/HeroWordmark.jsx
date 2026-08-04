@@ -5,15 +5,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/lib/motion";
 
+const SIZE_CLASSES = "text-7xl sm:text-8xl md:text-9xl lg:text-[11rem]";
+
 const WORDS = [
-  {
-    text: "TEXDALE",
-    className: "font-brand tracking-wide text-7xl sm:text-8xl md:text-9xl lg:text-[11rem]",
-  },
-  {
-    text: "Textile Chemicals",
-    className: "font-sans font-medium tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl",
-  },
+  { text: "TEXDALE", className: `font-brand tracking-wide ${SIZE_CLASSES}` },
+  { text: "TEXTILE CHEMICALS", className: `font-sans font-bold tracking-wide ${SIZE_CLASSES}` },
 ];
 
 export default function HeroWordmark() {
@@ -23,6 +19,16 @@ export default function HeroWordmark() {
   useEffect(() => {
     const wrapper = wrapperRef.current;
     const el = wordRef.current;
+
+    const fitToContainer = () => {
+      gsap.set(el, { scaleX: 1 });
+      const available = wrapper.clientWidth;
+      const natural = el.scrollWidth;
+      gsap.set(el, { scaleX: Math.min(1, available / natural) });
+    };
+
+    fitToContainer();
+
     if (prefersReducedMotion()) return;
 
     gsap.registerPlugin(ScrollTrigger);
@@ -42,15 +48,16 @@ export default function HeroWordmark() {
       const word = WORDS[index];
       gsap
         .timeline()
-        .to(el, { opacity: 0, blur: 16, scale: 1.04, duration: 0.5, ease: "power1.in" })
+        .to(el, { opacity: 0, blur: 16, scaleY: 1.04, duration: 0.5, ease: "power1.in" })
         .call(() => {
           el.textContent = word.text;
-          el.className = `text-paper leading-none ${word.className}`;
+          el.className = `text-paper leading-none whitespace-nowrap ${word.className}`;
+          fitToContainer();
         })
         .fromTo(
           el,
-          { opacity: 0, blur: 16, scale: 0.96 },
-          { opacity: 1, blur: 0, scale: 1, duration: 0.7, ease: "power2.out" },
+          { opacity: 0, blur: 16 },
+          { opacity: 1, blur: 0, scaleY: 1, duration: 0.7, ease: "power2.out" },
         );
     };
 
@@ -64,19 +71,22 @@ export default function HeroWordmark() {
       onUpdate: (self) => gsap.set(wrapper, { y: self.progress * 90 }),
     });
 
+    window.addEventListener("resize", fitToContainer);
+
     return () => {
       entrance.kill();
       clearInterval(interval);
       parallax.kill();
+      window.removeEventListener("resize", fitToContainer);
     };
   }, []);
 
   return (
-    <div ref={wrapperRef}>
+    <div ref={wrapperRef} className="flex justify-center">
       <p
         ref={wordRef}
         aria-hidden="true"
-        className={`text-paper leading-none ${WORDS[0].className}`}
+        className={`text-paper leading-none whitespace-nowrap ${WORDS[0].className}`}
       >
         {WORDS[0].text}
       </p>

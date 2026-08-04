@@ -4,6 +4,7 @@ import Badge from "@/components/Badge";
 import ProcessStep from "@/components/ProcessStep";
 import FAQAccordion from "@/components/FAQAccordion";
 import Reveal from "@/components/Reveal";
+import IntroSection from "@/components/IntroSection";
 import HeroSection from "@/components/HeroSection";
 import ProductsCarousel from "@/components/ProductsCarousel";
 
@@ -62,16 +63,17 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
+      <IntroSection />
       <HeroSection />
 
       <section className="border-line border-t py-16">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2 md:gap-16">
           <Reveal>
             <p className="text-caption text-accent tracking-wide uppercase">About Texdale</p>
-            <h1 className="text-h2 mt-3">
+            <h2 className="text-h2 mt-3">
               Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH
               compliant.
-            </h1>
+            </h2>
             <p className="text-ink/70 mt-4 max-w-xl">
               Texdale formulates and supplies pretreatment, dyeing, finishing and denim-washing
               chemicals to mills and finishers across the UK and internationally.
@@ -80,14 +82,16 @@ export default function HomePage() {
               Explore products
             </Button>
           </Reveal>
-          <Reveal delay={0.1} className="flex justify-center md:justify-end">
-            <Image
-              src="/texdale-dark.svg"
-              alt="Texdale"
-              width={320}
-              height={112}
-              className="h-auto w-48 sm:w-64 md:w-80"
-            />
+          <Reveal delay={0.1}>
+            <div className="bg-brand-blue flex h-64 w-full items-center justify-center rounded-2xl sm:h-72 md:h-80 lg:h-96">
+              <Image
+                src="/texdale-light.svg"
+                alt="Texdale"
+                width={280}
+                height={98}
+                className="h-auto w-40 sm:w-48 md:w-56"
+              />
+            </div>
           </Reveal>
         </div>
       </section>

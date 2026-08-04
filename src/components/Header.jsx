@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/lib/motion";
@@ -22,7 +21,6 @@ export default function Header() {
   const [condensed, setCondensed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
@@ -36,14 +34,6 @@ export default function Header() {
 
     return () => trigger.kill();
   }, []);
-
-  // The homepage hero is the only dark/colourful backdrop the header ever
-  // sits on transparently — everywhere else, and once scrolled, the header
-  // sits on plain light content, so it should read dark there.
-  const onLight = pathname !== "/" || condensed;
-  const navLinkClass = onLight
-    ? "text-ink hover:text-accent transition-colors"
-    : "text-paper hover:text-paper/70 transition-colors";
 
   return (
     <>
@@ -61,7 +51,7 @@ export default function Header() {
         >
           <Link href="/" className="shrink-0">
             <Image
-              src={onLight ? "/texdale-dark.svg" : "/texdale-light.svg"}
+              src="/texdale-dark.svg"
               alt="Texdale"
               width={91}
               height={32}
@@ -71,12 +61,16 @@ export default function Header() {
           </Link>
 
           <nav className="hidden items-center justify-center gap-8 text-sm md:flex">
-            <Link href="/about" className={navLinkClass}>
+            <Link href="/about" className="text-ink hover:text-accent transition-colors">
               About
             </Link>
-            <ProductsDropdown light={!onLight} />
+            <ProductsDropdown />
             {NAV_LINKS_AFTER_PRODUCTS.map((link) => (
-              <Link key={link.href} href={link.href} className={navLinkClass}>
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-ink hover:text-accent transition-colors"
+              >
                 {link.label}
               </Link>
             ))}
@@ -86,7 +80,7 @@ export default function Header() {
             <Button
               type="button"
               onClick={() => setDemoOpen(true)}
-              variant={onLight ? "secondary" : "light-outline"}
+              variant="secondary"
               className="hidden sm:inline-flex"
             >
               Request a demo
@@ -96,9 +90,7 @@ export default function Header() {
               aria-expanded={menuOpen}
               aria-label="Open menu"
               onClick={() => setMenuOpen(true)}
-              className={`flex items-center gap-2 rounded-md border px-3 py-2 text-sm md:hidden ${
-                onLight ? "border-ink text-ink" : "border-paper text-paper"
-              }`}
+              className="border-ink text-ink flex items-center gap-2 rounded-md border px-3 py-2 text-sm md:hidden"
             >
               Menu
               <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
