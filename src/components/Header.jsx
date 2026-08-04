@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
@@ -10,6 +10,11 @@ import SiteMenu from "./SiteMenu";
 import ContactModal from "./ContactModal";
 import Button from "./Button";
 import ProductsDropdown from "./ProductsDropdown";
+
+// Runs before paint on the client (avoiding a flash of fully-visible content
+// before GSAP hides it) but falls back to a no-op on the server, since
+// useLayoutEffect isn't available during static export prerendering.
+const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const NAV_LINKS_AFTER_PRODUCTS = [
   { label: "Sustainability", href: "/sustainability" },
@@ -21,6 +26,20 @@ export default function Header() {
   const [condensed, setCondensed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
+  const headerRef = useRef(null);
+
+  useIsoLayoutEffect(() => {
+    if (!headerRef.current || prefersReducedMotion()) return;
+
+    const tween = gsap.from(headerRef.current, {
+      opacity: 0,
+      y: -40,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+
+    return () => tween.kill();
+  }, []);
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
@@ -38,6 +57,7 @@ export default function Header() {
   return (
     <>
       <header
+        ref={headerRef}
         className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
           condensed
             ? "border-line bg-paper/80 backdrop-blur-md"

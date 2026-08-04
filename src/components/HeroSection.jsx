@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/lib/motion";
@@ -8,16 +8,31 @@ import HeroBackground from "./HeroBackground";
 import BubbleAccent from "./BubbleAccent";
 import HeroWordmark from "./HeroWordmark";
 
+// Runs before paint on the client (avoiding a flash of fully-visible content
+// before GSAP hides it) but falls back to a no-op on the server, since
+// useLayoutEffect isn't available during static export prerendering.
+const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export default function HeroSection() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
+    if (!sectionRef.current || prefersReducedMotion()) return;
+
+    const entrance = gsap.from(sectionRef.current, {
+      opacity: 0,
+      y: 80,
+      duration: 0.9,
+      delay: 1.2,
+      ease: "power2.out",
+    });
+
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-    if (prefersReducedMotion() || !isDesktop) return;
+    if (!isDesktop) return () => entrance.kill();
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const tween = gsap.fromTo(
+    const widthTween = gsap.fromTo(
       sectionRef.current,
       { width: "70%", borderRadius: "32px" },
       {
@@ -32,7 +47,10 @@ export default function HeroSection() {
       },
     );
 
-    return () => tween.scrollTrigger?.kill();
+    return () => {
+      entrance.kill();
+      widthTween.scrollTrigger?.kill();
+    };
   }, []);
 
   return (

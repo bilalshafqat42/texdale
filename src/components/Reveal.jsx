@@ -10,7 +10,14 @@ import { prefersReducedMotion } from "@/lib/motion";
 // useLayoutEffect isn't available during static export prerendering.
 const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-export default function Reveal({ children, className = "", y = 24, delay = 0, onMount = false }) {
+export default function Reveal({
+  children,
+  className = "",
+  x = 0,
+  y = 24,
+  delay = 0,
+  onMount = false,
+}) {
   const ref = useRef(null);
 
   useIsoLayoutEffect(() => {
@@ -20,6 +27,7 @@ export default function Reveal({ children, className = "", y = 24, delay = 0, on
     if (onMount) {
       const tween = gsap.from(el, {
         opacity: 0,
+        x,
         y,
         duration: 0.7,
         delay,
@@ -31,6 +39,7 @@ export default function Reveal({ children, className = "", y = 24, delay = 0, on
     gsap.registerPlugin(ScrollTrigger);
     const tween = gsap.from(el, {
       opacity: 0,
+      x,
       y,
       duration: 0.6,
       delay,
@@ -46,7 +55,7 @@ export default function Reveal({ children, className = "", y = 24, delay = 0, on
       tween.scrollTrigger?.kill();
       tween.kill();
     };
-  }, [y, delay, onMount]);
+  }, [x, y, delay, onMount]);
 
   return (
     <div ref={ref} className={className}>

@@ -23,6 +23,7 @@ export default function HeroWordmark() {
       scale: 0.94,
       blur: 14,
       duration: 1.4,
+      delay: 1.9,
       ease: "power3.out",
     });
 
