@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 export default function IntroSection() {
   return (
     <section className="bg-paper relative">
-      <div className="mx-auto max-w-6xl px-6 py-10 md:py-[50px]">
+      <div className="mx-auto max-w-6xl px-6 pt-10 pb-5 md:pt-[50px] md:pb-5">
         <Reveal>
           <h1 className="text-ink text-5xl leading-[1.05] font-normal sm:text-6xl md:text-7xl">
             Textile chemicals for pretreatment, dyeing and finishing — UK manufactured, REACH

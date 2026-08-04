@@ -5,11 +5,11 @@ import { gsap } from "gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 
 const BLOBS = [
-  { color: "#0062C8", size: 520, top: "5%", left: "15%", duration: 9 },
+  { color: "#263760", size: 520, top: "5%", left: "15%", duration: 9 },
   { color: "#FFD800", size: 380, top: "50%", left: "72%", duration: 7 },
   { color: "#00A450", size: 440, top: "62%", left: "10%", duration: 10 },
   { color: "#D46060", size: 380, top: "10%", left: "78%", duration: 8 },
-  { color: "#0062C8", size: 320, top: "38%", left: "42%", duration: 11 },
+  { color: "#263760", size: 320, top: "38%", left: "42%", duration: 11 },
 ];
 
 export default function HeroBackground() {
@@ -44,7 +44,7 @@ export default function HeroBackground() {
     <div
       aria-hidden="true"
       className="absolute inset-0 overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #16294f 0%, #0062C8 55%, #0a4fa3 100%)" }}
+      style={{ background: "linear-gradient(160deg, #16294f 0%, #263760 55%, #1c2b4a 100%)" }}
     >
       {!showVideo &&
         BLOBS.map((blob, i) => (
@@ -80,7 +80,7 @@ export default function HeroBackground() {
 
       <div
         className={`absolute inset-0 ${showVideo ? "" : "bg-ink/10"}`}
-        style={showVideo ? { background: "rgba(0, 120, 210, 0.55)" } : undefined}
+        style={showVideo ? { background: "rgba(38, 55, 96, 0.8)" } : undefined}
       />
     </div>
   );

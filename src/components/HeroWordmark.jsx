@@ -5,10 +5,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/lib/motion";
 
-const WORDS = ["TEXDALE", "TEXTILE", "CHEMICALS"];
-
-const SIZE_CLASSES = "font-brand tracking-wide text-6xl sm:text-7xl md:text-9xl lg:text-[11rem]";
-
 export default function HeroWordmark() {
   const wrapperRef = useRef(null);
   const wordRef = useRef(null);
@@ -30,24 +26,6 @@ export default function HeroWordmark() {
       ease: "power3.out",
     });
 
-    let index = 0;
-    const flip = () => {
-      index = (index + 1) % WORDS.length;
-      gsap
-        .timeline()
-        .to(el, { opacity: 0, blur: 16, scale: 1.04, duration: 0.45, ease: "power1.in" })
-        .call(() => {
-          el.textContent = WORDS[index];
-        })
-        .fromTo(
-          el,
-          { opacity: 0, blur: 16, scale: 0.96 },
-          { opacity: 1, blur: 0, scale: 1, duration: 0.65, ease: "power2.out" },
-        );
-    };
-
-    const interval = setInterval(flip, 3000);
-
     const parallax = ScrollTrigger.create({
       trigger: wrapper.closest("section"),
       start: "top top",
@@ -58,7 +36,6 @@ export default function HeroWordmark() {
 
     return () => {
       entrance.kill();
-      clearInterval(interval);
       parallax.kill();
     };
   }, []);
@@ -68,9 +45,9 @@ export default function HeroWordmark() {
       <p
         ref={wordRef}
         aria-hidden="true"
-        className={`text-paper leading-none whitespace-nowrap ${SIZE_CLASSES}`}
+        className="font-brand text-paper text-6xl leading-none tracking-wide whitespace-nowrap sm:text-7xl md:text-9xl lg:text-[11rem]"
       >
-        {WORDS[0]}
+        TEXDALE
       </p>
     </div>
   );

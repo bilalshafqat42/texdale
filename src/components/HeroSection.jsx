@@ -12,21 +12,21 @@ export default function HeroSection() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    if (prefersReducedMotion() || !isDesktop) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
     const tween = gsap.fromTo(
       sectionRef.current,
-      { clipPath: "inset(20% 0% 20% 0% round 32px)", y: 80 },
+      { width: "70%", borderRadius: "32px" },
       {
-        clipPath: "inset(0% 0% 0% 0% round 0px)",
-        y: 0,
+        width: "100%",
+        borderRadius: "0px",
         ease: "none",
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "top top",
+          start: 0,
+          end: window.innerHeight,
           scrub: true,
         },
       },
@@ -39,7 +39,7 @@ export default function HeroSection() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative z-10 flex min-h-screen items-center justify-center overflow-hidden"
+      className="relative z-10 mx-auto flex min-h-screen items-center justify-center overflow-hidden"
     >
       <HeroBackground />
       <BubbleAccent className="absolute top-24 right-6 h-40 w-52 md:top-28 md:right-10" />
