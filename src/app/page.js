@@ -1,13 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import Button from "@/components/Button";
 import Badge from "@/components/Badge";
 import ProcessStep from "@/components/ProcessStep";
-import Card from "@/components/Card";
 import FAQAccordion from "@/components/FAQAccordion";
 import Reveal from "@/components/Reveal";
 import HeroSection from "@/components/HeroSection";
-import { categories } from "@/lib/products";
+import ProductsCarousel from "@/components/ProductsCarousel";
 
 const PROCESS_STEPS = [
   {
@@ -100,44 +98,7 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-h2">Product families</h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((category, i) => (
-            <Reveal key={category.slug} delay={i * 0.06}>
-              <Link href={`/products/${category.slug}`} className="block h-full">
-                <Card
-                  image={category.image}
-                  imageAlt={`${category.name} textile chemicals`}
-                  className="h-full"
-                >
-                  <h3 className="text-h4">{category.name}</h3>
-                  <p className="text-ink/70 mt-2 text-sm">{category.summary}</p>
-                  <span className="text-accent mt-4 inline-flex items-center gap-1.5 text-sm font-medium">
-                    View range
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      aria-hidden="true"
-                      className="transition-transform duration-200 group-hover:translate-x-1"
-                    >
-                      <path
-                        d="M1 7h11M8 2l5 5-5 5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </Card>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <ProductsCarousel />
 
       <section className="border-line bg-paper border-t py-16">
         <div className="mx-auto max-w-6xl px-6">

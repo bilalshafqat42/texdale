@@ -1,9 +1,14 @@
 import Image from "next/image";
 
-export default function Card({ children, className = "", image, imageAlt = "" }) {
+const ACCENT_BORDERS = {
+  green: "hover:border-accent/30",
+  blue: "hover:border-brand-blue/40",
+};
+
+export default function Card({ children, className = "", image, imageAlt = "", accent = "green" }) {
   return (
     <div
-      className={`border-line bg-paper group hover:border-accent/30 overflow-hidden rounded-xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${className}`}
+      className={`border-line bg-paper group overflow-hidden rounded-xl border transition-all duration-300 hover:-translate-y-1 ${ACCENT_BORDERS[accent]} hover:shadow-lg ${className}`}
     >
       {image && (
         <div className="relative h-52 w-full overflow-hidden">
