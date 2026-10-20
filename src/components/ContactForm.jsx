@@ -15,9 +15,9 @@ const REASONS = [
 const fieldClass =
   "w-full rounded-md border border-line bg-paper px-3 py-2 text-sm text-ink focus:outline-2 focus:outline-accent focus:outline-offset-2";
 
-export default function ContactForm() {
+export default function ContactForm({ defaultReason = "general" }) {
   const [status, setStatus] = useState("idle");
-  const [reason, setReason] = useState("general");
+  const [reason, setReason] = useState(defaultReason);
   const [product, setProduct] = useState("");
 
   useEffect(() => {

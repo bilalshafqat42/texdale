@@ -4,111 +4,82 @@ import { CONTACT } from "@/lib/site";
 import { categories } from "@/lib/products";
 
 const COMPANY_LINKS = [
-  { label: "About", href: "/about" },
+  { label: "About Texdale", href: "/about" },
+  { label: "Products", href: "/products" },
   { label: "Sustainability", href: "/sustainability" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
 ];
 
-const SOCIAL_LINKS = [
-  {
-    label: "X (Twitter)",
-    href: "https://twitter.com/texdaleukltd",
-    path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
-  },
-];
-
 export default function Footer() {
   return (
-    <footer className="border-line bg-paper border-t">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Image
-              src="/texdale-dark.svg"
-              alt="Texdale"
-              width={91}
-              height={32}
-              className="h-7 w-auto"
-            />
-            <p className="text-ink/70 mt-4 text-sm">
-              Textile chemicals for pretreatment, dyeing and finishing, manufactured in the UK and
-              supplied internationally.
+    <footer className="tx-foot">
+      <div className="tx-wrap">
+        <div className="tx-foot-top">
+          <div className="tx-foot-brand">
+            <Image src="/texdale-light.svg" alt="Texdale" width={97} height={34} />
+            <p>
+              Textile chemicals for pretreatment, dyeing, finishing and denim. Manufactured in the
+              North of England.
             </p>
-            <div className="mt-5 flex gap-3">
-              {SOCIAL_LINKS.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="border-line text-ink/70 hover:text-accent hover:border-accent flex h-9 w-9 items-center justify-center rounded-full border transition-colors"
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d={social.path} fill="currentColor" />
-                  </svg>
-                </a>
-              ))}
-            </div>
           </div>
 
           <div>
-            <p className="text-caption text-ink/70 tracking-wide uppercase">Products</p>
-            <ul className="mt-4 space-y-2 text-sm">
+            <h2>Range</h2>
+            <ul>
               {categories.map((category) => (
                 <li key={category.slug}>
-                  <Link
-                    href={`/products/${category.slug}`}
-                    className="text-ink/70 hover:text-accent transition-colors"
-                  >
-                    {category.name}
-                  </Link>
+                  <Link href={`/products/${category.slug}`}>{category.name}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <p className="text-caption text-ink/70 tracking-wide uppercase">Company</p>
-            <ul className="mt-4 space-y-2 text-sm">
+            <h2>Company</h2>
+            <ul>
               {COMPANY_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-ink/70 hover:text-accent transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  <Link href={link.href}>{link.label}</Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href="https://twitter.com/texdaleukltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  X (Twitter)
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
-            <p className="text-caption text-ink/70 tracking-wide uppercase">Get in touch</p>
-            <div className="text-ink/70 mt-4 space-y-2 text-sm">
-              <p>{CONTACT.address}</p>
-              <p>
-                <a
-                  href={`tel:${CONTACT.phoneHref}`}
-                  className="hover:text-accent transition-colors"
-                >
-                  {CONTACT.phone}
-                </a>
-              </p>
-              <p>
-                <a href={`mailto:${CONTACT.email}`} className="hover:text-accent transition-colors">
-                  {CONTACT.email}
-                </a>
-              </p>
-            </div>
+            <h2>Contact</h2>
+            <address className="addr">
+              Unit 1, 45 Lambeth Road
+              <br />
+              Reddish, Stockport
+              <br />
+              SK5 6TW, United Kingdom
+              <br />
+              <br />
+              <b>
+                <a href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a>
+              </b>
+              <br />
+              <b>
+                <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+              </b>
+            </address>
           </div>
         </div>
 
-        <div className="border-line text-ink/70 mt-10 flex flex-col gap-2 border-t pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Texdale Chemicals. All rights reserved.</p>
-          <p>Registered office: {CONTACT.registeredOffice}</p>
+        <div className="tx-foot-bottom">
+          <span>© {new Date().getFullYear()} Texdale</span>
+          <span>Registered office — {CONTACT.registeredOffice}</span>
+          <span>All rights reserved</span>
         </div>
       </div>
     </footer>

@@ -1,20 +1,11 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { prefersReducedMotion } from "@/lib/motion";
 import SiteMenu from "./SiteMenu";
 import ContactModal from "./ContactModal";
-import Button from "./Button";
 import ProductsDropdown from "./ProductsDropdown";
-
-// Runs before paint on the client (avoiding a flash of fully-visible content
-// before GSAP hides it) but falls back to a no-op on the server, since
-// useLayoutEffect isn't available during static export prerendering.
-const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const NAV_LINKS_AFTER_PRODUCTS = [
   { label: "Sustainability", href: "/sustainability" },
@@ -23,111 +14,49 @@ const NAV_LINKS_AFTER_PRODUCTS = [
 ];
 
 export default function Header() {
-  const [condensed, setCondensed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [demoOpen, setDemoOpen] = useState(false);
-  const headerRef = useRef(null);
-
-  useIsoLayoutEffect(() => {
-    if (!headerRef.current || prefersReducedMotion()) return;
-
-    const tween = gsap.from(headerRef.current, {
-      opacity: 0,
-      y: -40,
-      duration: 0.6,
-      ease: "power2.out",
-    });
-
-    return () => tween.kill();
-  }, []);
-
-  useEffect(() => {
-    if (prefersReducedMotion()) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-    const trigger = ScrollTrigger.create({
-      start: 40,
-      end: "max",
-      onUpdate: (self) => setCondensed(self.scroll() > 40),
-    });
-
-    return () => trigger.kill();
-  }, []);
+  const [sampleOpen, setSampleOpen] = useState(false);
 
   return (
     <>
-      <header
-        ref={headerRef}
-        className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
-          condensed
-            ? "border-line bg-paper/80 backdrop-blur-md"
-            : "border-transparent bg-transparent"
-        }`}
-      >
-        <div
-          className={`mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-6 px-6 transition-all duration-300 ${
-            condensed ? "py-3" : "py-5"
-          }`}
-        >
-          <Link href="/" className="shrink-0">
-            <Image
-              src="/texdale-dark.svg"
-              alt="Texdale"
-              width={91}
-              height={32}
-              priority
-              className="h-8 w-auto"
-            />
+      <header className="tx-header">
+        <div className="tx-wrap">
+          <Link href="/" className="logo shrink-0" aria-label="Texdale home">
+            <Image src="/texdale-dark.svg" alt="Texdale" width={91} height={32} priority />
           </Link>
 
-          <nav className="hidden items-center justify-center gap-8 text-sm md:flex">
-            <Link href="/about" className="text-ink hover:text-accent transition-colors">
-              About
-            </Link>
+          <nav className="tx-nav">
+            <Link href="/about">Company</Link>
             <ProductsDropdown />
             {NAV_LINKS_AFTER_PRODUCTS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-ink hover:text-accent transition-colors"
-              >
+              <Link key={link.href} href={link.href}>
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="flex items-center justify-end gap-3">
-            <Button
-              type="button"
-              onClick={() => setDemoOpen(true)}
-              variant="secondary"
-              className="hidden sm:inline-flex"
-            >
-              Request a demo
-            </Button>
-            <button
-              type="button"
-              aria-expanded={menuOpen}
-              aria-label="Open menu"
-              onClick={() => setMenuOpen(true)}
-              className="border-ink text-ink flex items-center gap-2 rounded-md border px-3 py-2 text-sm md:hidden"
-            >
-              Menu
-              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-                <path
-                  d="M1 4h14M1 8h14M1 12h14"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                />
-              </svg>
-            </button>
-          </div>
+          <button type="button" className="tx-head-cta" onClick={() => setSampleOpen(true)}>
+            Request a sample
+          </button>
+          <button
+            type="button"
+            className="tx-menu-btn"
+            aria-expanded={menuOpen}
+            aria-label="Open menu"
+            onClick={() => setMenuOpen(true)}
+          >
+            Menu
+          </button>
         </div>
       </header>
 
       <SiteMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-      <ContactModal open={demoOpen} onClose={() => setDemoOpen(false)} />
+      <ContactModal
+        open={sampleOpen}
+        onClose={() => setSampleOpen(false)}
+        title="Request a sample"
+        reason="sample"
+      />
     </>
   );
 }

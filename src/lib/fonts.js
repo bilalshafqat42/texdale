@@ -1,4 +1,4 @@
-import { Inter, IBM_Plex_Mono, Playfair_Display } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans, Inter, Playfair_Display } from "next/font/google";
 import localFont from "next/font/local";
 
 export const inter = Inter({
@@ -28,5 +28,21 @@ export const plexMono = IBM_Plex_Mono({
 export const strasua = localFont({
   src: "../fonts/Strasua.otf",
   variable: "--font-strasua",
+  display: "swap",
+});
+
+// Archivo + IBM Plex Sans carry the editorial homepage design, alongside Plex
+// Mono for anything read as data.
+export const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+export const plexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-sans",
   display: "swap",
 });

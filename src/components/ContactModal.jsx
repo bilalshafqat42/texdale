@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import ContactForm from "./ContactForm";
 import { prefersReducedMotion } from "@/lib/motion";
 
-export default function ContactModal({ open, onClose }) {
+export default function ContactModal({ open, onClose, title = "Contact us", reason = "general" }) {
   const cardRef = useRef(null);
   const onCloseRef = useRef(onClose);
 
@@ -64,12 +64,12 @@ export default function ContactModal({ open, onClose }) {
           </svg>
         </button>
 
-        <h2 className="text-h3">Contact us</h2>
+        <h2 className="text-h3">{title}</h2>
         <p className="text-ink/70 mt-2 mb-6 text-sm">
           Tell us what you need and we&apos;ll get back to you directly.
         </p>
 
-        <ContactForm />
+        <ContactForm defaultReason={reason} />
       </div>
     </div>
   );

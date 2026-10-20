@@ -1,5 +1,6 @@
-import { inter, plexMono, playfair, strasua } from "@/lib/fonts";
+import { archivo, inter, plexMono, plexSans, playfair, strasua } from "@/lib/fonts";
 import "./globals.css";
+import "./texdale.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -42,6 +43,11 @@ const organizationJsonLd = {
   },
 };
 
+// Flags the document before first paint so animated pages can stay hidden until
+// their GSAP set-up runs, instead of flashing fully visible and then vanishing.
+const MOTION_FLAG_SCRIPT =
+  "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('tx-motion')";
+
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -53,7 +59,8 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${plexMono.variable} ${playfair.variable} ${strasua.variable}`}
+      suppressHydrationWarning
+      className={`${inter.variable} ${plexMono.variable} ${plexSans.variable} ${archivo.variable} ${playfair.variable} ${strasua.variable}`}
     >
       <body>
         <script
@@ -64,13 +71,12 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
+        <script dangerouslySetInnerHTML={{ __html: MOTION_FLAG_SCRIPT }} />
         <a href="#main" className="sr-only focus:not-sr-only">
           Skip to content
         </a>
         <Header />
-        <main id="main" className="pt-20">
-          {children}
-        </main>
+        <main id="main">{children}</main>
         <Footer />
         <WhatsAppButton />
       </body>

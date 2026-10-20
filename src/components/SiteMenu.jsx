@@ -11,7 +11,7 @@ import { PRODUCT_GROUPS } from "@/lib/navGroups";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "Company", href: "/about" },
   { label: "Products", href: "/products", groups: PRODUCT_GROUPS },
   { label: "Sustainability", href: "/sustainability" },
   { label: "Insights", href: "/insights" },
