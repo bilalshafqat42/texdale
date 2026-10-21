@@ -1,83 +1,124 @@
-import Breadcrumb from "@/components/Breadcrumb";
-import Button from "@/components/Button";
 import FAQAccordion from "@/components/FAQAccordion";
+import PageMotion from "@/components/PageMotion";
+import { CtaBand, EdHead, PageHead } from "@/components/Editorial";
 
 export const metadata = {
   title: "Sustainability & compliance",
   description:
-    "How Texdale approaches REACH compliance and SVHC disclosure across its textile chemical range.",
+    "How Texdale approaches sustainability, REACH compliance and SVHC disclosure across its textile chemical range.",
 };
+
+const PILLARS = [
+  {
+    title: "Health, Safety & Security",
+    body: "Safe handling from the plant floor to your dye house.",
+  },
+  {
+    title: "Environmental Performance",
+    body: "Eco-friendly formulations, with substances of very high concern reduced wherever we can.",
+  },
+  {
+    title: "Energy Efficiencies",
+    body: "Lean manufacturing methods that keep waste and cost down.",
+  },
+];
 
 const faqs = [
   {
     question: "Is Texdale REACH compliant?",
     answer:
-      "Texdale does not manufacture new chemical substances that require REACH registration in their own right — our products are the result of raw materials sourced from EU and international REACH-compliant suppliers, whose registration status we verify before approving a material for use.",
+      "Our products are blended from raw materials, and no new substances are formed during formulation, so our current range does not itself require REACH registration. We buy only from EU and international REACH-compliant suppliers and confirm they hold the documentation for registration and compliance.",
   },
   {
     question: "How do you disclose Substances of Very High Concern (SVHC)?",
     answer:
-      "It is our aim to reduce the use of such materials. Where a formulation contains an SVHC identified on the REACH candidate list, this is disclosed in the relevant Material Safety Data Sheet, and our technical team can recommend alternatives.",
+      "We aim to reduce the use of SVHCs. Where a product does contain one, it is listed in that product's Material Safety Data Sheet, and our technical team can recommend alternatives where practical.",
   },
   {
-    question: "Can I request certification documents or data sheets?",
+    question: "Can I request data sheets or compliance documents?",
     answer:
-      "Yes. Get in touch with our technical team and we'll send the relevant technical data sheets or safety data sheets directly.",
+      "Yes. Ask for the technical data sheet or safety data sheet for any product and our technical team will send it directly.",
   },
 ];
 
 export default function SustainabilityPage() {
   return (
-    <>
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Sustainability" }]} />
-        <h1 className="text-h1 mt-4">Sustainability &amp; compliance</h1>
-        <p className="text-ink/70 mt-3 max-w-xl">
-          We take a cautious, transparent approach to chemical compliance, from supplier
-          verification through to what goes on the label of every safety data sheet we issue.
-        </p>
-      </section>
+    <PageMotion>
+      <PageHead
+        crumbs={[{ label: "Home", href: "/" }, { label: "Sustainability" }]}
+        title="Lower impact. Same performance."
+        lede="We are committed to reducing our effect on the planet and offering more sustainable products and solutions to our customers."
+      />
 
-      <section className="border-line border-t py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-h2">REACH and SVHC</h2>
-          <p className="text-ink/70 mt-3 max-w-2xl">
-            All products manufactured at Texdale are the result of raw materials obtained from
-            various suppliers — we do not form new compounds that would themselves require REACH
-            registration. Instead, we verify that our suppliers, sourced from EU and international
-            REACH-compliant firms, hold the necessary documentation before any material is approved
-            for use in our formulations.
-          </p>
-          <p className="text-ink/70 mt-3 max-w-2xl">
-            It is our aim to reduce the use of Substances of Very High Concern (SVHC) across our
-            range. Where a product does contain an SVHC identified on the REACH candidate list, this
-            is disclosed in the corresponding Material Safety Data Sheet, and our technical team
-            actively promotes alternatives to clients.
-          </p>
+      <section className="band dark">
+        <div className="tx-wrap">
+          <EdHead label="01 — Framework" title="Three commitments." dark />
+          <div className="pillars">
+            {PILLARS.map((p, i) => (
+              <div className="pil" data-fade key={p.title}>
+                <span className="no">{String(i + 1).padStart(2, "0")}</span>
+                <b>{p.title}</b>
+                <span className="d">{p.body}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="border-line border-t py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-h2">Frequently asked</h2>
-          <div className="mt-6">
+      <section className="band">
+        <div className="tx-wrap">
+          <EdHead label="02 — REACH" title="Registered suppliers. Documented materials.">
+            <div className="prose" data-fade>
+              <p>
+                Every Texdale product is made from raw materials bought from our suppliers. No new
+                substances or compounds form when we formulate, blend and mix them, so our current
+                range does not need REACH registration of its own.
+              </p>
+              <p>
+                We do confirm that each supplier holds the documentation for registration and
+                compliance. We buy only from EU and international REACH-compliant firms, and we keep
+                alternative registered suppliers, local and international, so the range stays on the
+                shelf.
+              </p>
+            </div>
+          </EdHead>
+        </div>
+      </section>
+
+      <section className="band" style={{ paddingTop: 0 }}>
+        <div className="tx-wrap">
+          <EdHead label="03 — SVHC" title="Less of what matters least.">
+            <div className="prose" data-fade>
+              <p>
+                We aim to reduce the use of Substances of Very High Concern across the range. Where
+                a product contains an SVHC, it is listed in the product&apos;s Material Safety Data
+                Sheet.
+              </p>
+              <p>
+                We also help our clients understand the alternatives, wherever that is practical.
+              </p>
+            </div>
+          </EdHead>
+        </div>
+      </section>
+
+      <section className="band" style={{ paddingTop: 0 }}>
+        <div className="tx-wrap">
+          <EdHead label="04 — Questions" title="Frequently asked." />
+          <div style={{ marginTop: "clamp(36px,4vw,56px)" }}>
             <FAQAccordion items={faqs} />
           </div>
         </div>
       </section>
 
-      <section className="border-line border-t py-16">
-        <div className="mx-auto max-w-6xl px-6 text-center">
-          <h2 className="text-h2">Need compliance documentation?</h2>
-          <p className="text-ink/70 mx-auto mt-2 max-w-xl">
-            Request technical data sheets or safety data sheets and our technical team will send
-            them directly.
-          </p>
-          <Button href="/contact?reason=general" variant="primary" className="mt-6">
-            Request documentation
-          </Button>
-        </div>
-      </section>
-    </>
+      <CtaBand
+        title="Need compliance documents?"
+        lede="Ask for a technical data sheet or safety data sheet and a technician will send it."
+        links={[
+          { href: "/contact/?reason=msds", label: "Request a safety data sheet" },
+          { href: "/contact/?reason=tds", label: "Request a technical data sheet" },
+        ]}
+      />
+    </PageMotion>
   );
 }

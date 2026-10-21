@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Breadcrumb from "@/components/Breadcrumb";
-import Button from "@/components/Button";
-import Card from "@/components/Card";
-import Reveal from "@/components/Reveal";
+import PageMotion from "@/components/PageMotion";
+import { CtaBand, EdHead, PageHead, RowArrow, TextLink } from "@/components/Editorial";
 import { getCategory, getProduct, getRelatedProducts, products } from "@/lib/products";
 
 export async function generateStaticParams() {
@@ -36,78 +34,120 @@ export default async function ProductPage({ params }) {
   }
 
   const category = getCategory(product.category);
+  const group = category.groups?.find((g) => g.slug === product.group);
+  const sharedWith = (product.alsoIn ?? []).map((a) => getCategory(a.category)).filter(Boolean);
   const relatedProducts = getRelatedProducts(product);
   const encodedName = encodeURIComponent(product.name);
-
-  const ctas = [
-    { label: "Request a quote", reason: "quote" },
-    { label: "Request TDS", reason: "tds" },
-    { label: "Request MSDS", reason: "msds" },
-    { label: "Talk to our technical team", reason: "general" },
-  ];
 
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
     description: product.functionSummary,
-    category: category?.name ?? product.category,
+    category: category.name,
+    brand: { "@type": "Brand", name: "Texdale" },
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12">
+    <PageMotion>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
       />
-      <Breadcrumb
-        items={[
+      <PageHead
+        compact
+        crumbs={[
           { label: "Home", href: "/" },
           { label: "Products", href: "/products" },
-          { label: category?.name ?? product.category, href: `/products/${product.category}` },
+          { label: category.name, href: `/products/${category.slug}` },
           { label: product.name },
         ]}
-      />
-      <h1 className="text-h1 mt-4">{product.name}</h1>
-      <p className="text-ink/70 mt-3 max-w-xl">{product.functionSummary}</p>
-      <p className="text-ink/70 mt-3 max-w-xl text-sm">
-        Full technical specification (appearance, dosage, ionic character) is available on the
-        technical data sheet — request it below.
-      </p>
+        title={product.name}
+        lede={product.functionSummary}
+      >
+        <TextLink href={`/contact/?reason=quote&product=${encodedName}`}>Request a quote</TextLink>
+        <TextLink href={`/contact/?reason=sample&product=${encodedName}`}>
+          Request a sample
+        </TextLink>
+      </PageHead>
 
-      <div className="mt-8 flex flex-wrap gap-4">
-        {ctas.map((cta) => (
-          <Button
-            key={cta.reason}
-            href={`/contact?reason=${cta.reason}&product=${encodedName}`}
-            variant={cta.reason === "quote" ? "primary" : "secondary"}
-          >
-            {cta.label}
-          </Button>
-        ))}
-      </div>
+      <section className="band" style={{ paddingTop: "clamp(30px,4vw,64px)" }}>
+        <div className="tx-wrap">
+          <dl className="spec">
+            <div data-fade>
+              <dt>Range</dt>
+              <dd>
+                <Link href={`/products/${category.slug}`}>{category.name}</Link>
+              </dd>
+            </div>
+            <div data-fade>
+              <dt>{group ? "Type" : "Samples"}</dt>
+              <dd>{group ? group.name : "Available on request"}</dd>
+            </div>
+            <div data-fade>
+              <dt>{sharedWith.length ? "Also used in" : "Made in"}</dt>
+              <dd>
+                {sharedWith.length
+                  ? sharedWith.map((c, i) => (
+                      <span key={c.slug}>
+                        {i > 0 && ", "}
+                        <Link href={`/products/${c.slug}`}>{c.name}</Link>
+                      </span>
+                    ))
+                  : "North of England"}
+              </dd>
+            </div>
+            <div data-fade>
+              <dt>Documents</dt>
+              <dd>TDS · MSDS on request</dd>
+            </div>
+          </dl>
+
+          <div className="two-col" style={{ marginTop: "clamp(44px,5vw,76px)" }}>
+            <div className="prose" data-fade>
+              <p>
+                The full technical specification, including appearance, dosage and ionic character,
+                is on the technical data sheet. Handling and any listed substances are on the
+                material safety data sheet.
+              </p>
+            </div>
+            <div className="mast-links" data-fade style={{ alignContent: "flex-start" }}>
+              <TextLink href={`/contact/?reason=tds&product=${encodedName}`}>Request TDS</TextLink>
+              <TextLink href={`/contact/?reason=msds&product=${encodedName}`}>
+                Request MSDS
+              </TextLink>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {relatedProducts.length > 0 && (
-        <section className="mt-16">
-          <h2 className="text-h2">Related products</h2>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {relatedProducts.map((related, i) => (
-              <Reveal key={related.slug} delay={i * 0.06}>
-                <Card>
-                  <h3 className="text-h4">{related.name}</h3>
-                  <p className="text-ink/70 mt-2 text-sm">{related.functionSummary}</p>
-                  <Link
-                    href={`/products/${related.category}/${related.slug}`}
-                    className="text-accent mt-4 inline-block text-sm font-medium"
-                  >
-                    View product →
+        <section className="band" style={{ paddingTop: 0 }}>
+          <div className="tx-wrap">
+            <EdHead
+              label="Related"
+              title={`More from ${category.name.toLowerCase()}.`}
+              style={{ marginBottom: "clamp(36px,4vw,56px)" }}
+            />
+            <ul className="prows">
+              {relatedProducts.map((related) => (
+                <li key={related.slug}>
+                  <Link className="prow" href={`/products/${related.category}/${related.slug}`}>
+                    <span className="nm">{related.name}</span>
+                    <span className="fn">{related.functionSummary}</span>
+                    <span className="tag mono">
+                      {category.groups?.find((g) => g.slug === related.group)?.name ?? ""}
+                    </span>
+                    <RowArrow />
                   </Link>
-                </Card>
-              </Reveal>
-            ))}
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       )}
-    </div>
+
+      <CtaBand product={product.name} />
+    </PageMotion>
   );
 }

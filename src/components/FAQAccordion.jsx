@@ -40,7 +40,7 @@ export default function FAQAccordion({ items }) {
   };
 
   return (
-    <div className="divide-line border-line divide-y border-y">
+    <div className="faq">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -48,24 +48,27 @@ export default function FAQAccordion({ items }) {
       {items.map((item, i) => {
         const isOpen = openIndex === i;
         return (
-          <div key={item.question}>
+          <div key={item.question} className="faq-item" data-fade>
             <button
-              className="flex w-full items-center justify-between py-4 text-left text-sm font-medium"
+              type="button"
+              className="faq-q"
               aria-expanded={isOpen}
               onClick={() => setOpenIndex(isOpen ? null : i)}
             >
-              {item.question}
-              <span aria-hidden="true">{isOpen ? "−" : "+"}</span>
+              <span>{item.question}</span>
+              <span className="faq-ic" aria-hidden="true">
+                {isOpen ? "−" : "+"}
+              </span>
             </button>
             <div
               ref={(el) => {
                 panelRefs.current[i] = el;
               }}
-              className="overflow-hidden"
+              className="faq-a"
               style={{ height: 0, opacity: 0 }}
               aria-hidden={!isOpen}
             >
-              <p className="text-ink/70 pb-4 text-sm">{item.answer}</p>
+              <p>{item.answer}</p>
             </div>
           </div>
         );

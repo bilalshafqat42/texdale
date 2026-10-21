@@ -12,10 +12,10 @@ const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : use
 
 const EASE = "power3.out";
 
-// Drives every reveal on the homepage from data attributes: data-split headings
+// Drives every reveal on a .tx page from data attributes: data-split headings
 // (pre-split into words by SplitWords), data-rule lines, data-fade groups,
 // data-row index rows and data-shot image chapters.
-export default function HomeMotion({ children }) {
+export default function PageMotion({ children }) {
   const ref = useRef(null);
 
   useIsoLayoutEffect(() => {
@@ -81,13 +81,17 @@ export default function HomeMotion({ children }) {
         );
       });
 
-      gsap.from(q("[data-row]"), {
-        y: 24,
-        opacity: 0,
-        duration: 0.75,
-        stagger: 0.075,
-        ease: EASE,
-        scrollTrigger: { trigger: q(".idx")[0], start: "top 84%", once: true },
+      q(".idx").forEach((idx) => {
+        const rows = idx.querySelectorAll("[data-row]");
+        if (!rows.length) return;
+        gsap.from(rows, {
+          y: 24,
+          opacity: 0,
+          duration: 0.75,
+          stagger: 0.075,
+          ease: EASE,
+          scrollTrigger: { trigger: idx, start: "top 84%", once: true },
+        });
       });
 
       q("[data-shot]").forEach((s) => {

@@ -1,11 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
-import HomeMotion, { SplitWords } from "@/components/HomeMotion";
-import { CONTACT } from "@/lib/site";
+import PageMotion, { SplitWords } from "@/components/PageMotion";
+import { Arrow, ContactStack, EdHead, RowArrow, Shot, TextLink } from "@/components/Editorial";
+import { categories, products } from "@/lib/products";
 
 const FACTS = [
-  { k: "Six", v: "Product families" },
-  { k: "REACH", v: "Compliant as standard" },
+  { k: String(products.length), v: "Products in the range" },
+  { k: "REACH", v: "Compliant sourcing" },
   { k: "On site", v: "Testing & evaluation" },
   { k: "Bespoke", v: "Built to your cloth" },
 ];
@@ -21,7 +21,7 @@ const STAGES = [
     colour: "var(--tx-yellow)",
     title: "Dyeing",
     body: "Shade holds through the cycle. Fastness holds long after it.",
-    sub: ["Levelling · Dispersing", "Sequestering · Fixing"],
+    sub: ["Washing · Levelling", "Dispersing · Fixing"],
   },
   {
     colour: "var(--tx-green)",
@@ -31,40 +31,11 @@ const STAGES = [
   },
 ];
 
-const RANGE = [
-  {
-    name: "Pretreatment",
-    href: "/products/pretreatment",
-    sub: "Desizing · Scouring · Bleaching · Wetting agents",
-  },
-  {
-    name: "Dyeing Auxiliaries",
-    href: "/products/dyeing-auxiliaries",
-    sub: "Levelling · Dispersing · Sequestering · Fixers",
-  },
-  { name: "Finishing", href: "/products/finishing", sub: "Softeners · Silicones · Hand builders" },
-  {
-    name: "Special Finishes",
-    href: "/products/special-finishes",
-    sub: "Water & oil repellents · Flame retardants · Resins",
-  },
-  {
-    name: "Denim Washing",
-    href: "/products/denim-washing",
-    sub: "Enzymes · Reducing agents · Anti back-staining · Fixers",
-  },
-  {
-    name: "Yarn Lubricants",
-    href: "/products/special-yarn-lubricants",
-    sub: "DALEROL coning oils · Water-free · Lick-roll or pump",
-  },
-];
-
 const STEPS = [
   { title: "Consult", body: "Your cloth, your machinery, your target result." },
   { title: "Formulate", body: "Developed to the requirement, on decades of research." },
-  { title: "Test", body: "Run through our own facility before a drum ships." },
-  { title: "Supply", body: "Stock held, so lead times follow your production." },
+  { title: "Test", body: "Evaluated in our own on-site facility before supply." },
+  { title: "Supply", body: "Raw materials held in stock, so we can make to order fast." },
 ];
 
 const PILLARS = [
@@ -74,74 +45,25 @@ const PILLARS = [
   },
   {
     title: "Environmental Performance",
-    body: "Eco-friendly formulations as the default, not the premium.",
+    body: "Eco-friendly formulations, with substances of very high concern reduced wherever we can.",
   },
   {
     title: "Energy Efficiencies",
-    body: "Lean manufacturing that cuts energy load and cost together.",
+    body: "Lean manufacturing methods that keep waste and cost down.",
   },
 ];
 
-function Arrow() {
-  return (
-    <svg className="ar" width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
-      <path d="M.8 6h14m0 0L10.3 1.3M14.8 6l-4.5 4.7" stroke="currentColor" strokeWidth="1.4" />
-    </svg>
-  );
-}
-
-function RowArrow() {
-  return (
-    <svg className="ar" width="26" height="16" viewBox="0 0 26 16" fill="none" aria-hidden="true">
-      <path d="M0 8h24m0 0-7-7m7 7-7 7" stroke="currentColor" strokeWidth="1.4" />
-    </svg>
-  );
-}
-
-// An image chapter. Shows the "Image to supply" placeholder until `src` is set.
-function Shot({ fig, title, spec, src, wide = false, sizes = "100vw" }) {
-  return (
-    <figure className={`shot ${wide ? "shot-xl" : "shot-sq"}`} data-shot>
-      {src ? (
-        <Image src={src} alt={title} fill sizes={sizes} />
-      ) : (
-        <div className="await">
-          <span>Image to supply</span>
-        </div>
-      )}
-      <span className="tick" />
-      {wide && <span className="tick r" />}
-      <figcaption className="ph">
-        <div className="cap">
-          <span className="mono">{fig}</span>
-          <span className="t">{title}</span>
-          {spec && <span className="mono">{spec}</span>}
-        </div>
-      </figcaption>
-    </figure>
-  );
-}
-
-function SectionLabel({ children, dark = false }) {
-  return (
-    <div className="ed-label">
-      <span className="mono">{children}</span>
-      <div className={`rule${dark ? " rule-dk" : ""}`} data-rule style={{ maxWidth: 90 }} />
-    </div>
-  );
-}
-
 export default function HomePage() {
   return (
-    <HomeMotion>
+    <PageMotion>
       {/* ================= MASTHEAD ================= */}
       <section className="mast">
         <div className="tx-wrap">
           <div className="mast-meta">
-            <span className="mono">Texdale Ltd</span>
+            <span className="mono">Texdale Chemicals</span>
             <span className="mono">Textile chemicals</span>
             <span className="mono">Stockport, England</span>
-            <span className="mono">Est. North of England</span>
+            <span className="mono">REACH-compliant sourcing</span>
           </div>
           <div className="rule" data-rule />
           <h1 data-split>
@@ -149,7 +71,7 @@ export default function HomePage() {
           </h1>
           <div className="mast-foot">
             <p className="lede">
-              Pretreatment, dyeing, finishing and denim — formulated in England, supplied to mills
+              Pretreatment, dyeing, finishing and denim. Formulated in England, supplied to mills
               worldwide.
             </p>
             <div className="mast-links">
@@ -174,21 +96,18 @@ export default function HomePage() {
       {/* ================= COMPANY ================= */}
       <section className="band" id="company">
         <div className="tx-wrap">
-          <div className="ed">
-            <SectionLabel>01 — Company</SectionLabel>
-            <div className="ed-body">
-              <h2 data-split>
-                <SplitWords text="A no-compromise policy on manufacturing." />
-              </h2>
-              <p className="lede" data-fade style={{ maxWidth: "46ch" }}>
-                Quality control sits at every stage of production, not at the end of it. Nothing
-                leaves the site that has not been through our own evaluation facility.
-              </p>
+          <EdHead label="01 — Company" title="A no-compromise policy on manufacturing.">
+            <p className="lede" data-fade style={{ maxWidth: "46ch" }}>
+              Quality control sits at every stage of production, not at the end of it. Our on-site
+              facility evaluates every crucial textile process, from construction to finishing.
+            </p>
+            <div data-fade>
+              <TextLink href="/about">About Texdale</TextLink>
             </div>
-          </div>
+          </EdHead>
           <div className="facts" style={{ marginTop: "clamp(44px,5vw,76px)" }}>
             {FACTS.map((f) => (
-              <div className="fact" data-fade key={f.k}>
+              <div className="fact" data-fade key={f.v}>
                 <div className="k">{f.k}</div>
                 <div className="v">{f.v}</div>
               </div>
@@ -200,14 +119,7 @@ export default function HomePage() {
       {/* ================= PROCESS ================= */}
       <section className="band" id="process" style={{ paddingTop: 0 }}>
         <div className="tx-wrap">
-          <div className="ed">
-            <SectionLabel>02 — Process</SectionLabel>
-            <div className="ed-body">
-              <h2 data-split>
-                <SplitWords text="One supplier, the whole chain." />
-              </h2>
-            </div>
-          </div>
+          <EdHead label="02 — Process" title="One supplier, the whole chain." />
           <div className="stages" style={{ marginTop: "clamp(42px,5vw,72px)" }}>
             {STAGES.map((s, i) => (
               <div className="stage" data-fade key={s.title}>
@@ -236,23 +148,23 @@ export default function HomePage() {
       {/* ================= RANGE ================= */}
       <section className="band" id="range">
         <div className="tx-wrap">
-          <div className="ed" style={{ marginBottom: "clamp(38px,4.4vw,64px)" }}>
-            <SectionLabel>03 — Range</SectionLabel>
-            <div className="ed-body">
-              <h2 data-split>
-                <SplitWords text="Six families." />
-              </h2>
-            </div>
-          </div>
+          <EdHead
+            label="03 — Range"
+            title="Eight ranges."
+            style={{ marginBottom: "clamp(38px,4.4vw,64px)" }}
+          />
           <div className="idx">
-            {RANGE.map((r, i) => (
-              <Link className="idx-row" href={r.href} data-row key={r.href}>
+            {categories.map((c, i) => (
+              <Link className="idx-row" href={`/products/${c.slug}`} data-row key={c.slug}>
                 <span className="no">{String(i + 1).padStart(2, "0")}</span>
-                <span className="nm">{r.name}</span>
-                <span className="sub">{r.sub}</span>
+                <span className="nm">{c.name}</span>
+                <span className="sub">{c.tags}</span>
                 <RowArrow />
               </Link>
             ))}
+          </div>
+          <div style={{ marginTop: "clamp(30px,3.6vw,48px)" }} data-fade>
+            <TextLink href="/products">Search all {products.length} products</TextLink>
           </div>
         </div>
       </section>
@@ -276,14 +188,7 @@ export default function HomePage() {
       {/* ================= METHOD ================= */}
       <section className="band">
         <div className="tx-wrap">
-          <div className="ed">
-            <SectionLabel>04 — Method</SectionLabel>
-            <div className="ed-body">
-              <h2 data-split>
-                <SplitWords text="Sample in. Bulk out." />
-              </h2>
-            </div>
-          </div>
+          <EdHead label="04 — Method" title="Sample in. Bulk out." />
           <div className="steps" style={{ marginTop: "clamp(40px,4.8vw,66px)" }}>
             {STEPS.map((s, i) => (
               <div className="stp" data-fade key={s.title}>
@@ -301,14 +206,7 @@ export default function HomePage() {
       {/* ================= SUSTAINABILITY ================= */}
       <section className="band dark" id="sustainability">
         <div className="tx-wrap">
-          <div className="ed">
-            <SectionLabel dark>05 — Sustainability</SectionLabel>
-            <div className="ed-body">
-              <h2 data-split>
-                <SplitWords text="Lower impact. Same performance." />
-              </h2>
-            </div>
-          </div>
+          <EdHead label="05 — Sustainability" title="Lower impact. Same performance." dark />
           <div className="pillars">
             {PILLARS.map((p, i) => (
               <div className="pil" data-fade key={p.title}>
@@ -318,10 +216,10 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <div style={{ marginTop: "clamp(34px,4vw,52px)" }}>
-            <Link className="lk on-dark" href="/sustainability" data-fade>
-              Read our REACH position <Arrow />
-            </Link>
+          <div style={{ marginTop: "clamp(34px,4vw,52px)" }} data-fade>
+            <TextLink href="/sustainability" dark>
+              Read our REACH position
+            </TextLink>
           </div>
         </div>
       </section>
@@ -341,33 +239,10 @@ export default function HomePage() {
                 We will tell you what is possible, what it costs and how fast we can supply it.
               </p>
             </div>
-            <div className="cstack">
-              <div className="cblock" data-fade>
-                <span className="mono">Telephone</span>
-                <a className="v" href={`tel:${CONTACT.phoneHref}`}>
-                  {CONTACT.phone}
-                </a>
-              </div>
-              <div className="cblock" data-fade>
-                <span className="mono">Email</span>
-                <a className="v" href={`mailto:${CONTACT.email}`}>
-                  {CONTACT.email}
-                </a>
-              </div>
-              <div className="cblock" data-fade>
-                <span className="mono">Works</span>
-                <address>
-                  Unit 1, 45 Lambeth Road
-                  <br />
-                  Reddish, Stockport
-                  <br />
-                  SK5 6TW, United Kingdom
-                </address>
-              </div>
-            </div>
+            <ContactStack />
           </div>
         </div>
       </section>
-    </HomeMotion>
+    </PageMotion>
   );
 }

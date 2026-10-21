@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Button from "./Button";
+import { useEffect, useId, useState } from "react";
 import { submitToZapier } from "@/lib/zapier";
 
 const REASONS = [
@@ -12,13 +11,12 @@ const REASONS = [
   { value: "msds", label: "Request a safety data sheet (MSDS)" },
 ];
 
-const fieldClass =
-  "w-full rounded-md border border-line bg-paper px-3 py-2 text-sm text-ink focus:outline-2 focus:outline-accent focus:outline-offset-2";
-
 export default function ContactForm({ defaultReason = "general" }) {
   const [status, setStatus] = useState("idle");
   const [reason, setReason] = useState(defaultReason);
   const [product, setProduct] = useState("");
+  const uid = useId();
+  const fid = (name) => `${uid}-${name}`;
 
   useEffect(() => {
     // window.location is unavailable during static export prerendering, so the
@@ -65,7 +63,7 @@ export default function ContactForm({ defaultReason = "general" }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+    <form onSubmit={handleSubmit} className="tx-form">
       <input
         type="text"
         name="company_website"
@@ -76,21 +74,18 @@ export default function ContactForm({ defaultReason = "general" }) {
       />
 
       {product && (
-        <p className="bg-accent-light text-accent rounded-md px-3 py-2 text-sm">
+        <p className="tx-form-ref">
           Regarding: <strong>{product}</strong>
         </p>
       )}
 
       <div>
-        <label htmlFor="reason" className="mb-1 block text-sm font-medium">
-          What can we help with?
-        </label>
+        <label htmlFor={fid("reason")}>What can we help with?</label>
         <select
-          id="reason"
+          id={fid("reason")}
           name="reason"
           value={reason}
           onChange={(e) => setReason(e.target.value)}
-          className={fieldClass}
         >
           {REASONS.map((r) => (
             <option key={r.value} value={r.value}>
@@ -100,45 +95,37 @@ export default function ContactForm({ defaultReason = "general" }) {
         </select>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="tx-form-row">
         <div>
-          <label htmlFor="name" className="mb-1 block text-sm font-medium">
-            Name
-          </label>
-          <input id="name" name="name" type="text" required className={fieldClass} />
+          <label htmlFor={fid("name")}>Name</label>
+          <input id={fid("name")} name="name" type="text" required />
         </div>
         <div>
-          <label htmlFor="email" className="mb-1 block text-sm font-medium">
-            Email
-          </label>
-          <input id="email" name="email" type="email" required className={fieldClass} />
+          <label htmlFor={fid("email")}>Email</label>
+          <input id={fid("email")} name="email" type="email" required />
         </div>
       </div>
 
       <div>
-        <label htmlFor="company" className="mb-1 block text-sm font-medium">
-          Company
-        </label>
-        <input id="company" name="company" type="text" className={fieldClass} />
+        <label htmlFor={fid("company")}>Company</label>
+        <input id={fid("company")} name="company" type="text" />
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-1 block text-sm font-medium">
-          Message
-        </label>
-        <textarea id="message" name="message" rows={4} required className={fieldClass} />
+        <label htmlFor={fid("message")}>Message</label>
+        <textarea id={fid("message")} name="message" rows={4} required />
       </div>
 
-      <Button type="submit" disabled={status === "submitting"}>
+      <button type="submit" className="tx-btn" disabled={status === "submitting"}>
         {status === "submitting" ? "Sending…" : "Send message"}
-      </Button>
+      </button>
 
-      <div aria-live="polite" className="text-sm">
+      <div aria-live="polite" className="tx-form-status">
         {status === "success" && (
-          <p className="text-accent">Thanks — we&apos;ll be in touch shortly.</p>
+          <p className="ok">Thanks. A member of our team will be in touch shortly.</p>
         )}
         {status === "error" && (
-          <p className="text-red-700">
+          <p className="err">
             Something went wrong sending your message. Please email us directly instead.
           </p>
         )}

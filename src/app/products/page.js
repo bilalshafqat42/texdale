@@ -1,60 +1,60 @@
 import Link from "next/link";
-import Breadcrumb from "@/components/Breadcrumb";
-import Card from "@/components/Card";
-import Reveal from "@/components/Reveal";
-import { categories } from "@/lib/products";
+import PageMotion from "@/components/PageMotion";
+import ProductFinder from "@/components/ProductFinder";
+import { CtaBand, EdHead, PageHead, RowArrow } from "@/components/Editorial";
+import { categories, getProductsByCategory, products } from "@/lib/products";
 
 export const metadata = {
   title: "Products",
   description:
-    "Browse Texdale's range of pretreatment, dyeing, finishing and denim-washing chemicals for textile mills and finishers.",
+    "Browse Texdale's range of pretreatment, dyeing, printing, finishing, softening, denim-washing, special-finish and yarn-lubricant chemicals for textile mills and finishers.",
 };
 
 export default function ProductsPage() {
-  return (
-    <div className="mx-auto max-w-6xl px-6 py-12">
-      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Products" }]} />
-      <h1 className="text-h1 mt-4">Products</h1>
-      <p className="text-ink/70 mt-3 max-w-xl">
-        Eight ranges covering the textile wet-processing chain, from pretreatment through to
-        finishing and denim washing.
-      </p>
+  const rangeFilters = categories.map((c) => ({ slug: c.slug, name: c.name }));
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {categories.map((category, i) => (
-          <Reveal key={category.slug} delay={i * 0.06}>
-            <Link href={`/products/${category.slug}`} className="block h-full">
-              <Card
-                image={category.image}
-                imageAlt={`${category.name} textile chemicals`}
-                className="h-full"
-              >
-                <h3 className="text-h4">{category.name}</h3>
-                <p className="text-ink/70 mt-2 text-sm">{category.summary}</p>
-                <span className="text-accent mt-4 inline-flex items-center gap-1.5 text-sm font-medium">
-                  View range
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    aria-hidden="true"
-                    className="transition-transform duration-200 group-hover:translate-x-1"
-                  >
-                    <path
-                      d="M1 7h11M8 2l5 5-5 5"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </Card>
-            </Link>
-          </Reveal>
-        ))}
-      </div>
-    </div>
+  return (
+    <PageMotion>
+      <PageHead
+        crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
+        title={`Eight ranges. ${products.length} products.`}
+        lede="The whole wet-processing chain, from pretreatment to the final finish, with denim washing and yarn lubricants alongside."
+      />
+
+      <section className="band" style={{ paddingTop: "clamp(30px,4vw,64px)" }}>
+        <div className="tx-wrap">
+          <div className="idx with-count">
+            {categories.map((c, i) => {
+              const count = getProductsByCategory(c.slug).length;
+              return (
+                <Link className="idx-row" href={`/products/${c.slug}`} data-row key={c.slug}>
+                  <span className="no">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="nm">{c.name}</span>
+                  <span className="sub">{c.tags}</span>
+                  <span className="ct">{count ? `${count} products` : "To specification"}</span>
+                  <RowArrow />
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="band" style={{ paddingTop: 0 }}>
+        <div className="tx-wrap">
+          <EdHead
+            label="Catalogue"
+            title="Search every product."
+            style={{ marginBottom: "clamp(36px,4vw,56px)" }}
+          />
+          <ProductFinder products={products} groups={rangeFilters} groupKey="category" />
+        </div>
+      </section>
+
+      <CtaBand
+        title="Not in the list?"
+        lede="We also develop products to a client's exact requirement. Tell us about your cloth and your process."
+      />
+    </PageMotion>
   );
 }

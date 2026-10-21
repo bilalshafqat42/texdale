@@ -1,8 +1,8 @@
-import Breadcrumb from "@/components/Breadcrumb";
-import Card from "@/components/Card";
-import FAQAccordion from "@/components/FAQAccordion";
 import ContactForm from "@/components/ContactForm";
-import { CONTACT, SITE_NAME } from "@/lib/site";
+import FAQAccordion from "@/components/FAQAccordion";
+import PageMotion from "@/components/PageMotion";
+import { ContactStack, EdHead, PageHead } from "@/components/Editorial";
+import { CONTACT } from "@/lib/site";
 
 export const metadata = {
   title: "Contact",
@@ -12,57 +12,56 @@ export const metadata = {
 
 const faqs = [
   {
-    question: "How quickly do you respond to enquiries?",
-    answer: "We aim to respond to all enquiries within one working day.",
-  },
-  {
     question: "Can I request a TDS or MSDS without placing an order?",
     answer:
-      "Yes. Select the relevant option in the form below and our technical team will send the documents directly.",
+      "Yes. Choose the data sheet you need in the form and our technical team will send it directly.",
+  },
+  {
+    question: "Do you supply outside the UK?",
+    answer:
+      "Yes. We manufacture in the North of England and supply mills and finishers internationally.",
+  },
+  {
+    question: "Can you develop a product for our process?",
+    answer:
+      "Yes. Tell us about your cloth, your machinery and the result you need, and we can develop a product tailored to your requirement.",
   },
 ];
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12">
-      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
-      <h1 className="text-h1 mt-4">Contact us</h1>
-      <p className="text-ink/70 mt-3 max-w-xl">
-        Tell us what you need — a quote, a sample, a data sheet, or just a question for our
-        technical team — and we&apos;ll get back to you directly.
-      </p>
+    <PageMotion>
+      <PageHead
+        crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+        title="Send us the cloth."
+        lede="A quote, a sample, a data sheet or a technical question. Tell us what you need and a technician will reply directly."
+      />
 
-      <div className="mt-10 grid gap-10 md:grid-cols-2">
-        <Card>
-          <ContactForm />
-        </Card>
-
-        <div>
-          <h2 className="text-h4">Our office</h2>
-          <p className="text-ink/70 mt-2 text-sm">
-            {SITE_NAME}
-            <br />
-            {CONTACT.address}
-          </p>
-          <p className="mt-4 text-sm">
-            <a href={`tel:${CONTACT.phoneHref}`} className="text-accent font-medium">
-              {CONTACT.phone}
-            </a>
-            <br />
-            <a href={`mailto:${CONTACT.email}`} className="text-accent font-medium">
-              {CONTACT.email}
-            </a>
-          </p>
-          <div className="bg-line/40 mt-6 h-48 rounded-lg" />
-        </div>
-      </div>
-
-      <section className="mt-16">
-        <h2 className="text-h2">Frequently asked</h2>
-        <div className="mt-6">
-          <FAQAccordion items={faqs} />
+      <section className="band" style={{ paddingTop: "clamp(30px,4vw,64px)" }}>
+        <div className="tx-wrap">
+          <div className="contact-grid" style={{ alignItems: "start" }}>
+            <div data-fade>
+              <ContactForm />
+            </div>
+            <div>
+              <ContactStack />
+              <div className="cblock" data-fade>
+                <span className="mono">Registered office</span>
+                <address>{CONTACT.registeredOffice}</address>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-    </div>
+
+      <section className="band" style={{ paddingTop: 0 }}>
+        <div className="tx-wrap">
+          <EdHead label="Questions" title="Frequently asked." />
+          <div style={{ marginTop: "clamp(36px,4vw,56px)" }}>
+            <FAQAccordion items={faqs} />
+          </div>
+        </div>
+      </section>
+    </PageMotion>
   );
 }

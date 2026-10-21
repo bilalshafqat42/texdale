@@ -1,11 +1,12 @@
 export const categories = [
   {
     slug: "pretreatment",
+    tags: "Wetting agents · Detergents · Sequestrants · Peroxide stabilisers",
     name: "Pretreatment",
     image: "/pretreatment.jpg",
     summary: "Wetting agents, detergents, sequestrants and peroxide stabilisers.",
     intro:
-      "Our pretreatment range prepares fabric for even, predictable dyeing and finishing — removing size, oils and natural impurities before colour goes on.",
+      "Our pretreatment range prepares fabric for even, predictable dyeing and finishing. It removes size, oils and natural impurities before colour goes on.",
     faqs: [
       {
         question: "Why does pretreatment quality matter for dyeing results?",
@@ -16,6 +17,7 @@ export const categories = [
   },
   {
     slug: "dyeing-auxiliaries",
+    tags: "Washing · Levelling · Dispersing · Fixing",
     name: "Dyeing auxiliaries",
     image: "/dyeing-auxiliaries.jpg",
     summary: "Dispersing, washing, levelling and formaldehyde-free fixing agents.",
@@ -31,15 +33,17 @@ export const categories = [
   },
   {
     slug: "printing",
+    tags: "Thickeners · Acrylates · Alginates · Guar gum",
     name: "Printing",
     image: "/printing.jpg",
     summary: "Thickening agents for textile printing.",
     intro:
-      "We supply synthetic and natural thickening agents for textile printing, including acrylates, alginates and guar gum for cotton, wool and silk, and acrylate-based thickeners for polyester and silk.",
+      "We supply natural and synthetic thickening agents for flat screen, rotary screen, transfer and jet printing: natural thickeners such as alginates and guar gum for cotton, wool and silk, and acrylates for polyester and silk. We use natural-source, biodegradable materials wherever possible.",
     faqs: [],
   },
   {
     slug: "finishing",
+    tags: "Silicone softeners · Polyethylene softeners · Wax emulsions",
     name: "Finishing",
     image: "/finishing.jpg",
     summary: "Silicone and micro-emulsion softeners for handle, feel and performance.",
@@ -49,6 +53,7 @@ export const categories = [
   },
   {
     slug: "softening",
+    tags: "Hydrophilic softeners · Macro emulsions · Denim softeners",
     name: "Softening",
     image: "/soft-textile.jpg",
     summary: "Smoothing agents, antistatic softeners and denim-specific softeners.",
@@ -58,17 +63,27 @@ export const categories = [
   },
   {
     slug: "denim-washing",
+    tags: "Enzymes · Reducing agents · Fixers · Anti back-staining",
     name: "Denim washing",
     image: "/denim-washing.jpg",
     summary:
-      "Enzymes and the reducing agents, resins, fixers and softeners denim wash-down draws on.",
+      "Enzymes, reducing agents, resins, wetting agents, fixers, anti back-staining agents and silicones for denim.",
     intro:
-      "Denim wash-down draws on several parts of our range — enzymes, reducing agents, resins, wetting agents, fixers, anti-back-staining agents and silicones — to produce consistent faded and worn-out effects.",
-    groups: [{ slug: "enzymes", name: "Enzymes" }],
+      "Denim washing gives fabric its softness and its faded, worn-in look. Our denim range covers each step of the wash: enzymes for wash-down, reducing agents and resins for effects, wetting agents, fixers for indigo, anti back-staining agents to keep whites clean, and silicones for the final handle.",
+    groups: [
+      { slug: "enzymes", name: "Enzymes" },
+      { slug: "reducing-agents", name: "Reducing agents" },
+      { slug: "resins", name: "Resins" },
+      { slug: "wetting-agents", name: "Wetting agents" },
+      { slug: "fixers", name: "Fixers" },
+      { slug: "anti-back-staining", name: "Anti back-staining" },
+      { slug: "silicones", name: "Silicones" },
+    ],
     faqs: [],
   },
   {
     slug: "special-finishes",
+    tags: "Resins · Water & oil repellents · Anti-microbial · Flame retardants",
     name: "Special finishes",
     image: "/special-finishes.jpg",
     summary:
@@ -85,11 +100,16 @@ export const categories = [
   },
   {
     slug: "special-yarn-lubricants",
+    tags: "DALEROL water-free · DALEFIL emulsions",
     name: "Special yarn lubricants",
     image: "/special-yarn-lubricants.jpg",
     summary: "DALEROL water-free lubricants and DALEFIL processing agents.",
     intro:
       "Our DALEROL range of water-free sewing-thread lubricants and DALEFIL processing agents smooth knitting, weaving and embroidery yarns for polyester, polyamide, cotton and rayon.",
+    groups: [
+      { slug: "dalerol", name: "DALEROL water-free" },
+      { slug: "dalefil", name: "DALEFIL emulsions" },
+    ],
     faqs: [],
   },
 ];
@@ -130,6 +150,7 @@ export const products = [
   {
     slug: "daleclean-csd",
     category: "pretreatment",
+    alsoIn: [{ category: "denim-washing", group: "wetting-agents" }],
     name: "Daleclean CSD",
     functionSummary:
       "High caustic stable wetting agent, well suited to indigo rope dyeing and denim fabric.",
@@ -378,35 +399,9 @@ export const products = [
 
   // Softening
   {
-    slug: "adasil",
-    category: "softening",
-    name: "ADASIL®",
-    functionSummary:
-      "Softener functioning as a smoothing agent and antistatic treatment for textile fibres.",
-  },
-  {
-    slug: "belfasin",
-    category: "softening",
-    name: "BELFASIN®",
-    functionSummary:
-      "Softener functioning as a smoothing agent and antistatic treatment for textile fibres.",
-  },
-  {
-    slug: "belsoft",
-    category: "softening",
-    name: "BELSOFT®",
-    functionSummary:
-      "Softener functioning as a smoothing agent and antistatic treatment for textile fibres.",
-  },
-  {
-    slug: "nonax-lube",
-    category: "softening",
-    name: "NONAX® Lube",
-    functionSummary: "Anti-friction properties for sewing threads, allowing quick sewing.",
-  },
-  {
     slug: "denimsoft-mc",
     category: "softening",
+    alsoIn: [{ category: "denim-washing", group: "silicones" }],
     name: "Denimsoft-MC",
     functionSummary:
       "Highly concentrated hydrophilic softener giving a smooth handle across fibre types.",
@@ -414,6 +409,7 @@ export const products = [
   {
     slug: "denimsoft-nma",
     category: "softening",
+    alsoIn: [{ category: "denim-washing", group: "silicones" }],
     name: "Denimsoft-NMA",
     functionSummary:
       "Cost-effective, highly concentrated macro emulsion for cotton, cellulosic and synthetic blends.",
@@ -421,6 +417,7 @@ export const products = [
   {
     slug: "denimsoft-akm",
     category: "softening",
+    alsoIn: [{ category: "denim-washing", group: "silicones" }],
     name: "Denimsoft-AKM",
     functionSummary:
       "Highly concentrated macro emulsion for cotton, cellulosic and synthetic blends.",
@@ -434,6 +431,112 @@ export const products = [
     name: "Desize-ENZ",
     functionSummary:
       "Removes starch and sizes from all types of textiles, with optimum results for denim washing.",
+  },
+  {
+    slug: "dalewash-mra",
+    category: "denim-washing",
+    group: "reducing-agents",
+    name: "Dalewash-MRA",
+    functionSummary:
+      "Concentrated reducing agent for removing manganese dioxide, working at temperatures as low as 20°C. Also used for dechlorination after hypochlorite bleaching.",
+  },
+  {
+    slug: "dalecare-ct",
+    category: "denim-washing",
+    group: "resins",
+    name: "Dalecare-CT",
+    functionSummary:
+      "Self-catalysed easy-care finishing agent for 3D permanent effects, also suited to grey-shade and unwashed looks.",
+  },
+  {
+    slug: "dalecare-ff",
+    category: "denim-washing",
+    group: "resins",
+    name: "Dalecare-FF",
+    functionSummary:
+      "Self-catalysed, formaldehyde-free resin for wash-and-wear finishes on cellulose.",
+  },
+  {
+    slug: "dalecare-rct",
+    category: "denim-washing",
+    group: "resins",
+    name: "Dalecare-RCT",
+    functionSummary: "Formaldehyde-free resin for cotton, cellulose and synthetic blends.",
+  },
+  {
+    slug: "dalecare-3de",
+    category: "denim-washing",
+    group: "resins",
+    name: "Dalecare-3DE",
+    functionSummary: "Highly concentrated, water-soluble resin that enhances 3D effects.",
+  },
+  {
+    slug: "dalewash-lf",
+    category: "denim-washing",
+    group: "wetting-agents",
+    name: "Dalewash-LF",
+    functionSummary:
+      "Cost-effective, low-foam, non-ionic wetting agent that performs across all process conditions.",
+  },
+  {
+    slug: "dalewash-dcb",
+    category: "denim-washing",
+    group: "wetting-agents",
+    name: "Dalewash-DCB",
+    functionSummary: "Highly alkali-stable detergent for indigo dyeing.",
+  },
+  {
+    slug: "dalefix-xbf-conc",
+    category: "denim-washing",
+    group: "fixers",
+    name: "Dalefix-XBF Conc",
+    functionSummary:
+      "Highly concentrated, formaldehyde-free fixing agent for indigo. Improves rubbing fastness and wet crocking.",
+  },
+  {
+    slug: "dalefix-flz",
+    category: "denim-washing",
+    group: "fixers",
+    name: "Dalefix-FLZ",
+    functionSummary:
+      "Low-cost, formaldehyde-free fixing agent with strong fixing properties on cotton and indigo.",
+  },
+  {
+    slug: "dalefix-xol",
+    category: "denim-washing",
+    group: "fixers",
+    name: "Dalefix-XOL",
+    functionSummary: "Low-formaldehyde fixing agent for indigo-dyed fabric.",
+  },
+  {
+    slug: "daledisperse-brm",
+    category: "denim-washing",
+    group: "anti-back-staining",
+    name: "Daledisperse-BRM",
+    functionSummary:
+      "Anti back-staining agent designed for indigo washing, effective across a broad pH range.",
+  },
+  {
+    slug: "daledisperse-dnv-conc",
+    category: "denim-washing",
+    group: "anti-back-staining",
+    name: "Daledisperse-DNV Conc",
+    functionSummary: "Concentrated anti back-staining agent that can be diluted 1:3 with water.",
+  },
+  {
+    slug: "daledisperse-aza",
+    category: "denim-washing",
+    group: "anti-back-staining",
+    name: "Daledisperse-AZA",
+    functionSummary:
+      "Dispersing agent for all fabric types, especially indigo-dyed denim. Resistant to water hardness.",
+  },
+  {
+    slug: "daledisperse-cos",
+    category: "denim-washing",
+    group: "anti-back-staining",
+    name: "Daledisperse-COS",
+    functionSummary: "Very cost-effective anti back-staining agent for all fabric types.",
   },
 
   // Special finishes
@@ -591,6 +694,7 @@ export const products = [
   {
     slug: "dalerol-pfr",
     category: "special-yarn-lubricants",
+    group: "dalerol",
     name: "DALEROL® PFR",
     functionSummary:
       "Sewing thread cold-melt lubricant for endless or fibre yarns of polyester or polyamide, applied by lick-roll technique.",
@@ -598,6 +702,7 @@ export const products = [
   {
     slug: "dalerol-shq",
     category: "special-yarn-lubricants",
+    group: "dalerol",
     name: "DALEROL® SHQ",
     functionSummary:
       "Sewing thread hot-melt lubricant for endless or fibre yarns of polyester or polyamide, applied by lick-roll technique.",
@@ -605,6 +710,7 @@ export const products = [
   {
     slug: "dalefil-ybl",
     category: "special-yarn-lubricants",
+    group: "dalefil",
     name: "DALEFIL® YBL",
     functionSummary:
       "Highly effective processing agent for smoothing knitting, weaving and embroidery yarns by the exhaust method. Covers synthetic fibres, cotton and rayon.",
@@ -612,6 +718,7 @@ export const products = [
   {
     slug: "dalefil-yem",
     category: "special-yarn-lubricants",
+    group: "dalefil",
     name: "DALEFIL® YEM",
     functionSummary:
       "Cost-effective processing agent for smoothing knitting, weaving and embroidery yarns by the exhaust method. Also suitable for synthetic fibres, cotton and rayon.",
@@ -623,17 +730,24 @@ export function getCategory(slug) {
 }
 
 export function getProductsByCategory(categorySlug, groupSlug) {
-  return products.filter(
-    (p) => p.category === categorySlug && (!groupSlug || p.group === groupSlug),
-  );
+  return products
+    .map((p) => {
+      if (p.category === categorySlug) return p;
+      const shared = p.alsoIn?.find((a) => a.category === categorySlug);
+      return shared ? { ...p, group: shared.group } : null;
+    })
+    .filter((p) => p && (!groupSlug || p.group === groupSlug));
 }
 
 export function getProduct(categorySlug, productSlug) {
   return products.find((p) => p.category === categorySlug && p.slug === productSlug);
 }
 
+// Same range, with products of the same type (group) listed first.
 export function getRelatedProducts(product, count = 3) {
-  return products
-    .filter((p) => p.category === product.category && p.slug !== product.slug)
-    .slice(0, count);
+  const sameRange = products.filter(
+    (p) => p.category === product.category && p.slug !== product.slug,
+  );
+  const sameGroup = sameRange.filter((p) => product.group && p.group === product.group);
+  return [...sameGroup, ...sameRange.filter((p) => !sameGroup.includes(p))].slice(0, count);
 }

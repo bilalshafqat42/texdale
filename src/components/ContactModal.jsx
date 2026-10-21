@@ -41,7 +41,7 @@ export default function ContactModal({ open, onClose, title = "Contact us", reas
 
   return (
     <div
-      className="bg-ink/60 fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4 py-10"
+      className="tx-modal"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -50,23 +50,22 @@ export default function ContactModal({ open, onClose, title = "Contact us", reas
         ref={cardRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Contact us"
-        className="bg-paper relative w-full max-w-lg rounded-lg p-6 sm:p-8"
+        aria-labelledby="tx-modal-title"
+        className="tx-modal-card"
       >
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="text-ink/60 hover:text-ink absolute top-4 right-4"
-        >
+        <button type="button" onClick={onClose} aria-label="Close" className="tx-modal-close">
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
             <path d="M1 1l16 16M17 1L1 17" stroke="currentColor" strokeWidth="1.5" fill="none" />
           </svg>
         </button>
 
-        <h2 className="text-h3">{title}</h2>
-        <p className="text-ink/70 mt-2 mb-6 text-sm">
-          Tell us what you need and we&apos;ll get back to you directly.
+        <span className="tx-modal-kicker">Texdale technical team</span>
+        <h2 id="tx-modal-title" className="tx-modal-title">
+          {title}
+        </h2>
+        <p className="tx-modal-copy">
+          Tell us about your cloth, your process and the result you need. A technician will reply
+          directly.
         </p>
 
         <ContactForm defaultReason={reason} />

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteMenu from "./SiteMenu";
 import ContactModal from "./ContactModal";
-import ProductsDropdown from "./ProductsDropdown";
+import MegaMenu from "./MegaMenu";
 
 const NAV_LINKS_AFTER_PRODUCTS = [
   { label: "Sustainability", href: "/sustainability" },
@@ -27,7 +27,7 @@ export default function Header() {
 
           <nav className="tx-nav">
             <Link href="/about">Company</Link>
-            <ProductsDropdown />
+            <MegaMenu onRequestSample={() => setSampleOpen(true)} />
             {NAV_LINKS_AFTER_PRODUCTS.map((link) => (
               <Link key={link.href} href={link.href}>
                 {link.label}

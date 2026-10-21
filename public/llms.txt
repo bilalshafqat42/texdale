@@ -8,9 +8,10 @@ internationally, with SVHC content disclosed in Material Safety Data Sheets.
 ## Key pages
 
 - /about — company background, facility, values, markets served
-- /products — six product families: pretreatment, dyeing auxiliaries,
-  finishing, special finishes, denim washing, yarn lubricants
-- /sustainability — REACH/SVHC compliance statement and certifications
+- /products — eight ranges and 87 products: pretreatment, dyeing auxiliaries,
+  printing, finishing, softening, denim washing, special finishes and special
+  yarn lubricants, with a searchable catalogue
+- /sustainability — sustainability framework and REACH/SVHC compliance statement
 - /insights — technical articles from the applications team
 - /contact — enquiries, quote requests, sample requests, TDS/MSDS requests
 

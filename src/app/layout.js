@@ -1,4 +1,4 @@
-import { archivo, inter, plexMono, plexSans, playfair, strasua } from "@/lib/fonts";
+import { archivo, inter, plexMono, plexSans } from "@/lib/fonts";
 import "./globals.css";
 import "./texdale.css";
 import Header from "@/components/Header";
@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${plexMono.variable} ${plexSans.variable} ${archivo.variable} ${playfair.variable} ${strasua.variable}`}
+      className={`${inter.variable} ${plexMono.variable} ${plexSans.variable} ${archivo.variable}`}
     >
       <body>
         <script

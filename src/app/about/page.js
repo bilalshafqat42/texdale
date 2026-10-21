@@ -1,100 +1,129 @@
-import Breadcrumb from "@/components/Breadcrumb";
-import Button from "@/components/Button";
-import Card from "@/components/Card";
-import Reveal from "@/components/Reveal";
+import PageMotion, { SplitWords } from "@/components/PageMotion";
+import { CtaBand, EdHead, PageHead, TextLink } from "@/components/Editorial";
 
 export const metadata = {
   title: "About",
   description:
-    "Texdale is a UK manufacturer of textile chemicals for pretreatment, dyeing, finishing and denim washing, supplying mills and finishers across the UK and internationally.",
+    "Texdale is a UK manufacturer of textile chemicals for pretreatment, dyeing, finishing and denim washing, based in the North of England and supplying mills internationally.",
 };
 
-const values = [
+const FACTS = [
+  { k: "Decades", v: "Of research behind the range" },
+  { k: "Bespoke", v: "Products to your requirement" },
+  { k: "In stock", v: "Raw materials on hand" },
+  { k: "Lean", v: "Manufacturing methods" },
+];
+
+const HOW = [
   {
-    name: "No-compromise manufacturing",
-    desc: "We hold a no-compromise policy for the manufacturing process, across every batch we produce.",
+    title: "People",
+    body: "A seasoned technical team, backed by a sales team that knows the mill floor.",
   },
   {
-    name: "Lean and environmentally safe",
-    desc: "We observe lean manufacturing methods to ensure environmental safety throughout production.",
+    title: "Facility",
+    body: "On-site evaluation of every crucial textile process, from construction to finishing.",
   },
   {
-    name: "Technical partnership",
-    desc: "Decades of experience and commitment, with the ability to develop bespoke products to a client's specification.",
+    title: "Stock",
+    body: "A wide range of raw materials held, so fresh product is made quickly once you order.",
   },
   {
-    name: "On-site evaluation",
-    desc: "Our facility includes on-site evaluation and examination capabilities, so formulations are tested before they reach a customer.",
+    title: "Price",
+    body: "Lean methods and long experience keep our products competitively priced.",
   },
 ];
 
 export default function AboutPage() {
   return (
-    <>
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "About" }]} />
-        <h1 className="text-h1 mt-4">About Texdale</h1>
-        <p className="text-ink/70 mt-3 max-w-xl">
-          Texdale is a UK manufacturer of textile chemicals, formulating pretreatment, dyeing,
-          finishing and denim-washing auxiliaries for mills and finishers. We combine an in-house
-          lab with REACH-compliant sourcing to deliver consistent, technically supported products
-          across our export markets.
-        </p>
-      </section>
+    <PageMotion>
+      <PageHead
+        crumbs={[{ label: "Home", href: "/" }, { label: "Company" }]}
+        title="Made in the North of England."
+        lede="Texdale formulates and manufactures textile chemicals for pretreatment, dyeing, finishing and denim washing, and supplies mills and finishers across continents."
+      >
+        <TextLink href="/products">Our range</TextLink>
+        <TextLink href="/contact/?reason=general">Talk to a technician</TextLink>
+      </PageHead>
 
-      <section className="border-line border-t py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-h2">Our approach</h2>
-          <p className="text-ink/70 mt-3 max-w-2xl">
-            With decades of experience and commitment, Texdale positions its name as a symbol of
-            quality, efficiency and globally recognised standards. We develop bespoke products to a
-            client&apos;s specification, backed by an on-site facility for evaluation and
-            examination.
-          </p>
-        </div>
-      </section>
-
-      <section className="border-line border-t py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 md:grid-cols-2 md:items-center">
-          <div className="bg-line/40 h-64 rounded-lg" />
-          <div>
-            <h2 className="text-h2">Our facility</h2>
-            <p className="text-ink/70 mt-3">
-              Our production and lab facility in the North of England houses formulation, batch
-              manufacturing and quality testing under one roof. This lets our technical team move
-              quickly from a customer trial to a repeatable, specification-checked production batch.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-line border-t py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-h2">What we value</h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v, i) => (
-              <Reveal key={v.name} delay={i * 0.06}>
-                <Card>
-                  <h3 className="text-h4">{v.name}</h3>
-                  <p className="text-ink/70 mt-2 text-sm">{v.desc}</p>
-                </Card>
-              </Reveal>
+      <section className="band" style={{ paddingTop: "clamp(40px,5vw,80px)" }}>
+        <div className="tx-wrap">
+          <EdHead label="01 — Approach" title="A no-compromise policy on manufacturing.">
+            <div className="prose" data-fade>
+              <p>
+                Product development stays in the spotlight at Texdale. We hold every product to the
+                same high standard at every step of production, so what reaches you is the best we
+                can make.
+              </p>
+              <p>
+                Our on-site facility evaluates and examines every crucial textile process, whether
+                construction or finishing. Technical information and documentation reach you
+                promptly, by whatever channel suits you.
+              </p>
+            </div>
+          </EdHead>
+          <div className="facts" style={{ marginTop: "clamp(44px,5vw,76px)" }}>
+            {FACTS.map((f) => (
+              <div className="fact" data-fade key={f.k}>
+                <div className="k">{f.k}</div>
+                <div className="v">{f.v}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-line border-t py-16">
-        <Reveal className="mx-auto max-w-6xl px-6 text-center">
-          <h2 className="text-h2">Want to know more?</h2>
-          <p className="text-ink/70 mt-2">
-            Get in touch with our team to discuss your requirements.
-          </p>
-          <Button href="/contact?reason=general" variant="primary" className="mt-6">
-            Get in touch
-          </Button>
-        </Reveal>
+      <section className="band" style={{ paddingTop: 0 }}>
+        <div className="tx-wrap">
+          <EdHead label="02 — How we work" title="Built around the people who use it." />
+          <div className="steps" style={{ marginTop: "clamp(40px,4.8vw,66px)" }}>
+            {HOW.map((s, i) => (
+              <div className="stp" data-fade key={s.title}>
+                <span className="no">{String(i + 1).padStart(2, "0")}</span>
+                <b>{s.title}</b>
+                <span className="d">{s.body}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
-    </>
+
+      <section className="band stmt">
+        <div className="tx-wrap">
+          <span className="mono" data-fade>
+            Company statement
+          </span>
+          <blockquote data-split>
+            <SplitWords text="A symbol of quality, efficiency and globally recognised standards." />
+          </blockquote>
+          <div className="attr" data-fade>
+            <span className="bar" />
+            <span className="mono">Texdale, Stockport</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="band">
+        <div className="tx-wrap">
+          <EdHead label="03 — Partnership" title="Tailored to your process.">
+            <div className="prose" data-fade>
+              <p>
+                Our range is the result of decades of research, and we can develop products to match
+                a client&apos;s exact requirement. Our staff know the company&apos;s manufacturing
+                standards and are motivated to meet them.
+              </p>
+              <p>
+                We aim to be responsive and to support our customers beyond the norm, and we look
+                for a long-term relationship with every client.
+              </p>
+            </div>
+            <div data-fade>
+              <TextLink href="/sustainability">Our REACH position</TextLink>
+            </div>
+          </EdHead>
+        </div>
+      </section>
+
+      <CtaBand />
+    </PageMotion>
   );
 }

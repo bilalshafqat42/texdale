@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import Breadcrumb from "@/components/Breadcrumb";
-import { articles, getArticle } from "@/lib/articles";
+import PageMotion from "@/components/PageMotion";
+import { CtaBand, PageHead, TextLink } from "@/components/Editorial";
+import { articles, formatDate, getArticle } from "@/lib/articles";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 export async function generateStaticParams() {
@@ -20,14 +20,6 @@ export async function generateMetadata({ params }) {
     title: article.title,
     description: article.excerpt,
   };
-}
-
-function formatDate(date) {
-  return new Date(date).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 }
 
 export default async function InsightArticlePage({ params }) {
@@ -56,32 +48,48 @@ export default async function InsightArticlePage({ params }) {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12">
+    <PageMotion>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
-      <Breadcrumb
-        items={[
+      <PageHead
+        compact
+        crumbs={[
           { label: "Home", href: "/" },
           { label: "Insights", href: "/insights" },
-          { label: article.title },
+          { label: article.category },
         ]}
+        title={article.title}
+        lede={article.excerpt}
       />
-      <h1 className="text-h1 mt-4 max-w-2xl">{article.title}</h1>
-      <p className="text-caption text-ink/70 mt-3">
-        {article.author} · {formatDate(article.date)} · {article.category}
-      </p>
-      <div className="mt-8 max-w-2xl space-y-4">
-        {article.body.map((paragraph, index) => (
-          <p key={index} className="text-ink/80">
-            {paragraph}
-          </p>
-        ))}
-      </div>
-      <Link href="/insights" className="text-accent mt-10 inline-block text-sm font-medium">
-        ← Back to insights
-      </Link>
-    </div>
+
+      <section className="band" style={{ paddingTop: "clamp(30px,4vw,64px)" }}>
+        <div className="tx-wrap">
+          <div className="ed">
+            <div className="ed-label">
+              <span className="mono">{formatDate(article.date)}</span>
+              <span className="mono">{article.author}</span>
+              <div className="rule" data-rule style={{ maxWidth: 90 }} />
+            </div>
+            <div className="ed-body">
+              <div className="prose" data-fade>
+                {article.body.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+              <div data-fade>
+                <TextLink href="/insights">All insights</TextLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CtaBand
+        title="Have a process question?"
+        lede="Our technicians work through pretreatment, dyeing and finishing problems with mills every day."
+      />
+    </PageMotion>
   );
 }

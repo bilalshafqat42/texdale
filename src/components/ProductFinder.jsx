@@ -1,89 +1,130 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { Suspense, useId, useState } from "react";
 import Link from "next/link";
-import Chip from "./Chip";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { RowArrow } from "./Editorial";
 
-export default function ProductFinder({ products, groups = [] }) {
+// Filterable, searchable product list. The active group lives in the URL
+// (?group=...) so mega-menu links, chips and the back button all agree.
+// `groupKey` picks which product field the chips filter on: "group" within a
+// range, or "category" on the all-products page.
+export default function ProductFinder(props) {
+  return (
+    <Suspense fallback={<FinderView {...props} activeGroup={null} search="" />}>
+      <Finder {...props} />
+    </Suspense>
+  );
+}
+
+function Finder(props) {
+  const { groups = [] } = props;
+  const params = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const [search, setSearch] = useState("");
-  const [activeGroup, setActiveGroup] = useState(null);
-  const inputId = useId();
 
-  useEffect(() => {
-    // window.location is unavailable during static export prerendering, so the
-    // query string can only be read client-side after mount.
-    const params = new URLSearchParams(window.location.search);
-    const groupParam = params.get("group");
-    if (groupParam && groups.some((g) => g.slug === groupParam)) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setActiveGroup(groupParam);
-    }
-  }, [groups]);
+  const param = params.get("group");
+  const activeGroup = groups.some((g) => g.slug === param) ? param : null;
 
-  const filtered = products
-    .filter((p) => !activeGroup || p.group === activeGroup)
-    .filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
+  function setGroup(slug) {
+    const next = new URLSearchParams(params.toString());
+    if (slug) next.set("group", slug);
+    else next.delete("group");
+    const qs = next.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  }
 
   return (
-    <div>
-      {groups.length > 0 && (
-        <div className="mb-4 flex flex-wrap gap-2">
-          <button type="button" onClick={() => setActiveGroup(null)}>
-            <Chip active={activeGroup === null}>All</Chip>
-          </button>
-          {groups.map((g) => (
-            <button key={g.slug} type="button" onClick={() => setActiveGroup(g.slug)}>
-              <Chip active={activeGroup === g.slug}>{g.name}</Chip>
+    <FinderView
+      {...props}
+      activeGroup={activeGroup}
+      search={search}
+      onSearch={setSearch}
+      onGroup={setGroup}
+    />
+  );
+}
+
+function FinderView({
+  products,
+  groups = [],
+  groupKey = "group",
+  activeGroup,
+  search,
+  onSearch,
+  onGroup,
+}) {
+  const inputId = useId();
+  const term = search.trim().toLowerCase();
+  const groupName = Object.fromEntries(groups.map((g) => [g.slug, g.name]));
+
+  const filtered = products
+    .filter((p) => !activeGroup || p[groupKey] === activeGroup)
+    .filter(
+      (p) =>
+        !term ||
+        p.name.toLowerCase().includes(term) ||
+        p.functionSummary.toLowerCase().includes(term),
+    );
+
+  return (
+    <div className="finder">
+      <div className="finder-bar">
+        {groups.length > 0 && (
+          <div className="chips" role="group" aria-label="Filter products">
+            <button type="button" aria-pressed={!activeGroup} onClick={() => onGroup?.(null)}>
+              All
             </button>
-          ))}
-        </div>
-      )}
-
-      <label htmlFor={inputId} className="sr-only">
-        Search this category&rsquo;s products
-      </label>
-      <input
-        id={inputId}
-        type="search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search this category's products…"
-        className="border-line focus:border-accent w-full max-w-sm rounded-md border px-3 py-2 text-sm outline-none"
-      />
-
-      <div className="mt-6">
-        {filtered.length === 0 ? (
-          <p className="text-ink/70 text-sm">No products match your search.</p>
-        ) : (
-          <table className="w-full text-left text-sm">
-            <thead>
-              <tr className="border-line border-b">
-                <th scope="col" className="py-2 pr-4 font-medium">
-                  Product
-                </th>
-                <th scope="col" className="py-2 font-medium">
-                  Function
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-line divide-y">
-              {filtered.map((p) => (
-                <tr key={p.slug}>
-                  <td className="py-3 pr-4 align-top whitespace-nowrap">
-                    <Link
-                      href={`/products/${p.category}/${p.slug}`}
-                      className="text-accent font-medium"
-                    >
-                      {p.name}
-                    </Link>
-                  </td>
-                  <td className="text-ink/70 py-3 align-top">{p.functionSummary}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            {groups.map((g) => (
+              <button
+                key={g.slug}
+                type="button"
+                aria-pressed={activeGroup === g.slug}
+                onClick={() => onGroup?.(g.slug)}
+              >
+                {g.name}
+              </button>
+            ))}
+          </div>
         )}
+        <div className="finder-search">
+          <label htmlFor={inputId} className="mono">
+            Search
+          </label>
+          <input
+            id={inputId}
+            type="search"
+            value={search}
+            onChange={(e) => onSearch?.(e.target.value)}
+            placeholder="Product name or function"
+          />
+        </div>
       </div>
+
+      <p className="finder-count mono" aria-live="polite">
+        {filtered.length} {filtered.length === 1 ? "product" : "products"}
+      </p>
+
+      {filtered.length === 0 ? (
+        <p className="finder-empty">
+          Nothing matches that search. Try a different term, or{" "}
+          <Link href="/contact/?reason=general">ask a technician</Link>.
+        </p>
+      ) : (
+        <ul className="prows">
+          {filtered.map((p) => (
+            <li key={`${p.category}-${p.slug}`}>
+              <Link className="prow" href={`/products/${p.category}/${p.slug}`}>
+                <span className="nm">{p.name}</span>
+                <span className="fn">{p.functionSummary}</span>
+                <span className="tag mono">{groupName[p[groupKey]] ?? ""}</span>
+                <RowArrow />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
