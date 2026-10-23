@@ -88,8 +88,11 @@ export default function HomePage() {
 
       <Shot
         fig="Fig. 01"
-        title="The finishing line, Reddish works"
-        spec="Full bleed · 2880 × 1234"
+        title="Indigo denim"
+        spec="Pretreatment to finish"
+        src="/home/hero.jpg"
+        alt="Folded indigo denim in several shades of blue"
+        priority
         wide
       />
 
@@ -140,8 +143,20 @@ export default function HomePage() {
 
       <div className="tx-wrap">
         <div className="shot-duo">
-          <Shot fig="Fig. 02" title="Dye house" sizes="(max-width: 680px) 100vw, 50vw" />
-          <Shot fig="Fig. 03" title="Laboratory" sizes="(max-width: 680px) 100vw, 50vw" />
+          <Shot
+            fig="Fig. 02"
+            title="Colour that holds"
+            src="/home/colour.jpg"
+            alt="Hand-dyed yarn skeins in blues, purples and rust"
+            sizes="(max-width: 680px) 100vw, 50vw"
+          />
+          <Shot
+            fig="Fig. 03"
+            title="Formulation"
+            src="/home/laboratory.jpg"
+            alt="Laboratory flasks of blue and green liquid"
+            sizes="(max-width: 680px) 100vw, 50vw"
+          />
         </div>
       </div>
 
@@ -201,7 +216,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Shot fig="Fig. 04" title="Drum store and dispatch" spec="Full bleed · 2880 × 1234" wide />
+      <Shot
+        fig="Fig. 04"
+        title="Thread and yarn"
+        spec="Yarn lubricants"
+        src="/home/thread.jpg"
+        alt="Spools of blue and green thread stacked on a shelf"
+        wide
+      />
 
       {/* ================= SUSTAINABILITY ================= */}
       <section className="band dark" id="sustainability">

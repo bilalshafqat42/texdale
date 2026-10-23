@@ -367,6 +367,7 @@
 .tx .shot .ph {
   position: absolute;
   inset: 0;
+  background: linear-gradient(to top, rgba(12, 17, 25, 0.6) 0%, rgba(12, 17, 25, 0) 45%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1550,6 +1551,80 @@
 /* ---------- not found ---------- */
 .tx .nf {
   min-height: 60vh;
+}
+
+/* ---------- logo intro ----------
+   0–0.35s   bars fade in and scale up, stacked as one block
+   0.3–0.85s bars slide apart into the brand stripe
+   0.7–1.25s wordmark reveals left to right (max-width)
+   1.3–1.7s  overlay fades out and stops painting */
+.tx-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  pointer-events: none;
+  animation: tx-intro-out 0.4s ease 1.3s forwards;
+}
+.tx-intro-logo {
+  --iw: min(64vw, 340px);
+  width: var(--iw);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--iw) * 0.0674);
+}
+.tx-intro-wm {
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  animation: tx-intro-wm 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.7s forwards;
+}
+.tx-intro-wm svg {
+  display: block;
+  width: var(--iw);
+  height: auto;
+}
+.tx-intro-bars {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.6);
+  animation: tx-intro-in 0.35s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+.tx-intro-bars rect {
+  transform: translateX(var(--dx));
+  animation: tx-intro-split 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+}
+@keyframes tx-intro-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes tx-intro-split {
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes tx-intro-wm {
+  to {
+    max-width: var(--iw);
+    opacity: 1;
+  }
+}
+@keyframes tx-intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tx-intro {
+    display: none;
+  }
 }
 
 /* ---------- responsive ---------- */

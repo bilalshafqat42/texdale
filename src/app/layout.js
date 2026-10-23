@@ -4,6 +4,7 @@ import "./texdale.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import LogoIntro from "@/components/LogoIntro";
 import { SITE_URL, SITE_NAME, CONTACT } from "@/lib/site";
 
 const description =
@@ -72,6 +73,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <script dangerouslySetInnerHTML={{ __html: MOTION_FLAG_SCRIPT }} />
+        <LogoIntro />
         <a href="#main" className="sr-only focus:not-sr-only">
           Skip to content
         </a>

@@ -1,0 +1,63 @@
+# Static hosting rules for the exported site (Apache / cPanel / LiteSpeed).
+
+ErrorDocument 404 /404.html
+AddDefaultCharset UTF-8
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Always serve over HTTPS.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Old WordPress addresses -> new pages, so links and search rankings carry over.
+  RewriteRule ^(home|homepage)/?$ / [R=301,L]
+  RewriteRule ^about-us/?$ /about/ [R=301,L]
+  RewriteRule ^reach-compilance/?$ /sustainability/ [R=301,L]
+  RewriteRule ^contact-us/?$ /contact/ [R=301,L]
+  RewriteRule ^blog/?$ /insights/ [R=301,L]
+  RewriteRule ^textile/?$ /products/ [R=301,L]
+  RewriteRule ^pretreatment-2/?$ /products/pretreatment/ [R=301,L]
+  RewriteRule ^dyeing-auxiliaries/?$ /products/dyeing-auxiliaries/ [R=301,L]
+  RewriteRule ^dyeing/?$ /products/dyeing-auxiliaries/ [R=301,L]
+  RewriteRule ^printing/?$ /products/printing/ [R=301,L]
+  RewriteRule ^(finishing|finishes)/?$ /products/finishing/ [R=301,L]
+  RewriteRule ^softening/?$ /products/softening/ [R=301,L]
+  RewriteRule ^(denim|denim-washing)/?$ /products/denim-washing/ [R=301,L]
+  RewriteRule ^enzymes/?$ /products/denim-washing/?group=enzymes [R=301,L]
+  RewriteRule ^reducing-agent/?$ /products/denim-washing/?group=reducing-agents [R=301,L]
+  RewriteRule ^resins/?$ /products/denim-washing/?group=resins [R=301,L]
+  RewriteRule ^wetting-agent/?$ /products/denim-washing/?group=wetting-agents [R=301,L]
+  RewriteRule ^fixer/?$ /products/denim-washing/?group=fixers [R=301,L]
+  RewriteRule ^antiback-staining-agent/?$ /products/denim-washing/?group=anti-back-staining [R=301,L]
+  RewriteRule ^silicones/?$ /products/denim-washing/?group=silicones [R=301,L]
+  RewriteRule ^special-finishes/?$ /products/special-finishes/ [R=301,L]
+  RewriteRule ^special-yarn-lubricants/?$ /products/special-yarn-lubricants/ [R=301,L]
+  RewriteRule ^(sizing|special-products|nonwoven|fiber-2|polypropylene|polyamide|polyacrylic|fiberglass|cellulosic|staple-fiber-processing-lubricants)/?$ /products/ [R=301,L]
+  RewriteRule ^(leather|leather-finishings|leather-fatliquors|retanning|tanning|degreasing|beamhouse)/?$ /products/ [R=301,L]
+  RewriteRule ^(feed|comments/feed|wp-admin|wp-login\.php|xmlrpc\.php)(/.*)?$ / [R=301,L]
+</IfModule>
+
+# Compress text files.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain application/javascript application/json image/svg+xml
+</IfModule>
+
+# Cache: hashed build files forever, images for a month, HTML always fresh.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "^.*\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

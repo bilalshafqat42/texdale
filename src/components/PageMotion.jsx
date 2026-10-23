@@ -31,8 +31,14 @@ export default function PageMotion({ children }) {
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(root);
 
+      // On a fresh load the logo intro covers the page until ~1.3s; start the
+      // masthead as it clears. Later client navigations start straight away.
+      const intro = document.querySelector(".tx-intro");
+      const introShowing = intro && getComputedStyle(intro).display !== "none";
+      const delay = introShowing ? Math.max(0, 1.25 - performance.now() / 1000) : 0;
+
       gsap
-        .timeline({ defaults: { ease: EASE } })
+        .timeline({ delay, defaults: { ease: EASE } })
         .from(q(".mast-meta .mono"), { y: 10, opacity: 0, duration: 0.6, stagger: 0.05 }, 0.1)
         .from(q(".mast .rule"), { scaleX: 0, duration: 1.1, ease: "power2.inOut" }, 0.15)
         .from(
