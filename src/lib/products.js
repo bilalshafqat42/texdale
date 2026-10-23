@@ -3,7 +3,7 @@ export const categories = [
     slug: "pretreatment",
     tags: "Wetting agents · Detergents · Sequestrants · Peroxide stabilisers",
     name: "Pretreatment",
-    image: "/pretreatment.jpg",
+    image: "/ranges/pretreatment.jpg",
     summary: "Wetting agents, detergents, sequestrants and peroxide stabilisers.",
     intro:
       "Our pretreatment range prepares fabric for even, predictable dyeing and finishing. It removes size, oils and natural impurities before colour goes on.",
@@ -19,7 +19,7 @@ export const categories = [
     slug: "dyeing-auxiliaries",
     tags: "Washing · Levelling · Dispersing · Fixing",
     name: "Dyeing auxiliaries",
-    image: "/dyeing-auxiliaries.jpg",
+    image: "/ranges/dyeing-auxiliaries.jpg",
     summary: "Dispersing, washing, levelling and formaldehyde-free fixing agents.",
     intro:
       "Dispersing, washing, levelling and fixing agents for reactive, VAT and disperse dyeing, formulated for consistent shade and colour fastness.",
@@ -35,7 +35,7 @@ export const categories = [
     slug: "printing",
     tags: "Thickeners · Acrylates · Alginates · Guar gum",
     name: "Printing",
-    image: "/printing.jpg",
+    image: "/ranges/printing.jpg",
     summary: "Thickening agents for textile printing.",
     intro:
       "We supply natural and synthetic thickening agents for flat screen, rotary screen, transfer and jet printing: natural thickeners such as alginates and guar gum for cotton, wool and silk, and acrylates for polyester and silk. We use natural-source, biodegradable materials wherever possible.",
@@ -45,7 +45,7 @@ export const categories = [
     slug: "finishing",
     tags: "Silicone softeners · Polyethylene softeners · Wax emulsions",
     name: "Finishing",
-    image: "/finishing.jpg",
+    image: "/ranges/finishing.jpg",
     summary: "Silicone and micro-emulsion softeners for handle, feel and performance.",
     intro:
       "Silicone and micro-emulsion softeners that shape the final hand-feel, drape and sewability of the fabric, from cost-effective macro emulsions to ultra-smooth silicone micro-emulsions.",
@@ -55,7 +55,7 @@ export const categories = [
     slug: "softening",
     tags: "Hydrophilic softeners · Macro emulsions · Denim softeners",
     name: "Softening",
-    image: "/soft-textile.jpg",
+    image: "/ranges/softening.jpg",
     summary: "Smoothing agents, antistatic softeners and denim-specific softeners.",
     intro:
       "Softening agents that function as smoothing and antistatic treatments across textile fibres, including dedicated denim-softening emulsions.",
@@ -65,7 +65,7 @@ export const categories = [
     slug: "denim-washing",
     tags: "Enzymes · Reducing agents · Fixers · Anti back-staining",
     name: "Denim washing",
-    image: "/denim-washing.jpg",
+    image: "/ranges/denim-washing.jpg",
     summary:
       "Enzymes, reducing agents, resins, wetting agents, fixers, anti back-staining agents and silicones for denim.",
     intro:
@@ -85,7 +85,7 @@ export const categories = [
     slug: "special-finishes",
     tags: "Resins · Water & oil repellents · Anti-microbial · Flame retardants",
     name: "Special finishes",
-    image: "/special-finishes.jpg",
+    image: "/ranges/special-finishes.jpg",
     summary:
       "Low-formaldehyde resins, water/oil repellents, anti-microbial and flame-retardant finishes.",
     intro:
@@ -102,7 +102,7 @@ export const categories = [
     slug: "special-yarn-lubricants",
     tags: "DALEROL water-free · DALEFIL emulsions",
     name: "Special yarn lubricants",
-    image: "/special-yarn-lubricants.jpg",
+    image: "/ranges/special-yarn-lubricants.jpg",
     summary: "DALEROL water-free lubricants and DALEFIL processing agents.",
     intro:
       "Our DALEROL range of water-free sewing-thread lubricants and DALEFIL processing agents smooth knitting, weaving and embroidery yarns for polyester, polyamide, cotton and rayon.",
