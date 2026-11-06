@@ -36,7 +36,8 @@ export const categories = [
     tags: "Thickeners · Acrylates · Alginates · Guar gum",
     name: "Printing",
     image: "/ranges/printing.jpg",
-    summary: "Thickening agents for textile printing.",
+    summary:
+      "Natural and synthetic thickening agents for textile printing, including alginates, guar gum and acrylates.",
     intro:
       "We supply natural and synthetic thickening agents for flat screen, rotary screen, transfer and jet printing: natural thickeners such as alginates and guar gum for cotton, wool and silk, and acrylates for polyester and silk. We use natural-source, biodegradable materials wherever possible.",
     faqs: [],
@@ -56,6 +57,7 @@ export const categories = [
     tags: "Hydrophilic softeners · Macro emulsions · Denim softeners",
     name: "Softening",
     image: "/ranges/softening.jpg",
+    imageWidth: 2000,
     summary: "Smoothing agents, antistatic softeners and denim-specific softeners.",
     intro:
       "Softening agents that function as smoothing and antistatic treatments across textile fibres, including dedicated denim-softening emulsions.",

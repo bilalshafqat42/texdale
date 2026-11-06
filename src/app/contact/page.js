@@ -5,6 +5,7 @@ import { ContactStack, EdHead, PageHead } from "@/components/Editorial";
 import { CONTACT } from "@/lib/site";
 
 export const metadata = {
+  alternates: { canonical: "/contact/" },
   title: "Contact",
   description:
     "Get in touch with Texdale for a quote, a sample, a technical data sheet or a safety data sheet.",

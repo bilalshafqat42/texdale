@@ -3,6 +3,9 @@ import { PageHead, TextLink } from "@/components/Editorial";
 
 export const metadata = {
   title: "Page not found",
+  description:
+    "This page has moved or no longer exists. Browse Texdale textile chemicals or contact our team.",
+  robots: { index: false },
 };
 
 export default function NotFound() {

@@ -3,6 +3,7 @@ import PageMotion from "@/components/PageMotion";
 import { CtaBand, EdHead, PageHead } from "@/components/Editorial";
 
 export const metadata = {
+  alternates: { canonical: "/sustainability/" },
   title: "Sustainability & compliance",
   description:
     "How Texdale approaches sustainability, REACH compliance and SVHC disclosure across its textile chemical range.",

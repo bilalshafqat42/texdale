@@ -14,7 +14,7 @@ export default function sitemap() {
   const allRoutes = [...staticRoutes, ...categoryRoutes, ...productRoutes, ...articleRoutes];
 
   return allRoutes.map((route) => ({
-    url: `${SITE_URL}${route}`,
+    url: `${SITE_URL}${route}/`,
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : 0.6,
   }));

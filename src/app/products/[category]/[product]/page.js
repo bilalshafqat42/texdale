@@ -21,8 +21,21 @@ export async function generateMetadata({ params }) {
 
   return {
     title: product.name,
-    description: product.functionSummary,
+    description: productDescription(product),
+    alternates: { canonical: `/products/${product.category}/${product.slug}/` },
   };
+}
+
+// Search snippet: the function summary plus the product and range names,
+// keeping as much context as fits in about 160 characters.
+function productDescription(product) {
+  const range = getCategory(product.category)?.name.toLowerCase() ?? "textile";
+  const options = [
+    `${product.functionSummary} ${product.name} from Texdale's ${range} range. TDS and MSDS on request.`,
+    `${product.functionSummary} ${product.name} from Texdale's ${range} range.`,
+    `${product.functionSummary} From Texdale's ${range} range.`,
+  ];
+  return options.find((d) => d.length <= 160) ?? product.functionSummary;
 }
 
 export default async function ProductPage({ params }) {

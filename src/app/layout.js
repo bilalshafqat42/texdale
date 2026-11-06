@@ -8,7 +8,7 @@ import LogoIntro from "@/components/LogoIntro";
 import { SITE_URL, SITE_NAME, CONTACT } from "@/lib/site";
 
 const description =
-  "Texdale manufactures pretreatment, dyeing, finishing and denim-washing chemicals for the textile industry, UK-made and REACH compliant.";
+  "Texdale manufactures pretreatment, dyeing, finishing and denim-washing chemicals for the textile industry. Made in England, with REACH-compliant sourcing.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -23,7 +23,7 @@ export const metadata = {
     locale: "en_GB",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
   },
 };
 
@@ -44,10 +44,10 @@ const organizationJsonLd = {
   },
 };
 
-// Flags the document before first paint so animated pages can stay hidden until
-// their GSAP set-up runs, instead of flashing fully visible and then vanishing.
+// Flags the document before first paint: tx-motion enables the CSS masthead
+// entrance, tx-first holds it back while the logo intro plays.
 const MOTION_FLAG_SCRIPT =
-  "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('tx-motion')";
+  "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('tx-motion','tx-first')";
 
 const websiteJsonLd = {
   "@context": "https://schema.org",

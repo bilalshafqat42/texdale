@@ -5,7 +5,7 @@ import { categories } from "@/lib/products";
 
 const COMPANY_LINKS = [
   { label: "About Texdale", href: "/about" },
-  { label: "Products", href: "/products" },
+  { label: "All products", href: "/products" },
   { label: "Sustainability", href: "/sustainability" },
   { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
@@ -15,15 +15,21 @@ export default function Footer() {
   return (
     <footer className="tx-foot">
       <div className="tx-wrap">
-        <div className="tx-foot-top">
-          <div className="tx-foot-brand">
-            <Image src="/texdale-light.svg" alt="Texdale" width={97} height={34} />
-            <p>
-              Textile chemicals for pretreatment, dyeing, finishing and denim. Manufactured in the
-              North of England.
-            </p>
+        <div className="tx-foot-lead">
+          <p className="tx-foot-statement">
+            Chemistry for the wet process, made in the North of England.
+          </p>
+          <div className="tx-foot-actions">
+            <Link className="tx-foot-btn" href="/contact/?reason=sample">
+              Request a sample
+            </Link>
+            <a className="tx-foot-mail" href={`mailto:${CONTACT.email}`}>
+              {CONTACT.email}
+            </a>
           </div>
+        </div>
 
+        <div className="tx-foot-cols">
           <div>
             <h2>Range</h2>
             <ul>
@@ -43,6 +49,29 @@ export default function Footer() {
                   <Link href={link.href}>{link.label}</Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2>Works</h2>
+            <address className="addr">
+              Unit 1, 45 Lambeth Road
+              <br />
+              Reddish, Stockport
+              <br />
+              SK5 6TW, United Kingdom
+            </address>
+          </div>
+
+          <div>
+            <h2>Contact</h2>
+            <ul>
+              <li>
+                <a href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a>
+              </li>
+              <li>
+                <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+              </li>
               <li>
                 <a
                   href="https://twitter.com/texdaleukltd"
@@ -54,32 +83,26 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+        </div>
 
-          <div>
-            <h2>Contact</h2>
-            <address className="addr">
-              Unit 1, 45 Lambeth Road
-              <br />
-              Reddish, Stockport
-              <br />
-              SK5 6TW, United Kingdom
-              <br />
-              <br />
-              <b>
-                <a href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a>
-              </b>
-              <br />
-              <b>
-                <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-              </b>
-            </address>
-          </div>
+        <div className="tx-foot-mark">
+          <Image src="/texdale-light.svg" alt="Texdale" width={742} height={260} />
         </div>
 
         <div className="tx-foot-bottom">
-          <span>© {new Date().getFullYear()} Texdale</span>
-          <span>Registered office — {CONTACT.registeredOffice}</span>
-          <span>All rights reserved</span>
+          <span>© {new Date().getFullYear()} Texdale Chemicals. All rights reserved.</span>
+          <span>Registered office: {CONTACT.registeredOffice}</span>
+          <a
+            className="tx-foot-credit"
+            href="https://bilalshafqat.com/"
+            target="_blank"
+            rel="noopener"
+          >
+            Designed and developed by Bilal Shafqat
+          </a>
+          <a className="tx-foot-top-link" href="#main">
+            Back to top ↑
+          </a>
         </div>
       </div>
     </footer>

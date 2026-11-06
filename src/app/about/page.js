@@ -2,9 +2,10 @@ import PageMotion, { SplitWords } from "@/components/PageMotion";
 import { CtaBand, EdHead, PageHead, TextLink } from "@/components/Editorial";
 
 export const metadata = {
+  alternates: { canonical: "/about/" },
   title: "About",
   description:
-    "Texdale is a UK manufacturer of textile chemicals for pretreatment, dyeing, finishing and denim washing, based in the North of England and supplying mills internationally.",
+    "Texdale is a UK manufacturer of textile chemicals for pretreatment, dyeing, finishing and denim washing, based in Stockport and supplying mills internationally.",
 };
 
 const FACTS = [

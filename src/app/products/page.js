@@ -5,9 +5,10 @@ import { CtaBand, EdHead, PageHead, RowArrow } from "@/components/Editorial";
 import { categories, getProductsByCategory, products } from "@/lib/products";
 
 export const metadata = {
+  alternates: { canonical: "/products/" },
   title: "Products",
   description:
-    "Browse Texdale's range of pretreatment, dyeing, printing, finishing, softening, denim-washing, special-finish and yarn-lubricant chemicals for textile mills and finishers.",
+    "Browse 87 Texdale textile chemicals across eight ranges, from pretreatment and dyeing auxiliaries to finishing, denim washing and yarn lubricants.",
 };
 
 export default function ProductsPage() {

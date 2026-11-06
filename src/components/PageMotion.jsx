@@ -12,44 +12,38 @@ const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : use
 
 const EASE = "power3.out";
 
-// Drives every reveal on a .tx page from data attributes: data-split headings
-// (pre-split into words by SplitWords), data-rule lines, data-fade groups,
-// data-row index rows and data-shot image chapters.
+// Drives the scroll reveals on a .tx page from data attributes: data-split
+// headings (pre-split into words by SplitWords), data-rule lines, data-fade
+// groups, data-row index rows and data-shot image chapters. The masthead
+// entrance is pure CSS (see "masthead entrance" in texdale.css).
 export default function PageMotion({ children }) {
   const ref = useRef(null);
 
   useIsoLayoutEffect(() => {
     const root = ref.current;
     if (!root) return;
-    if (prefersReducedMotion()) {
-      root.style.visibility = "visible";
-      return;
-    }
+
+    // The first page's CSS masthead waits for the logo intro; once that has
+    // played, later pages should enter without the delay.
+    const html = document.documentElement;
+    const firstLoad = html.classList.contains("tx-first")
+      ? setTimeout(() => html.classList.remove("tx-first"), 3600)
+      : null;
+
+    if (prefersReducedMotion()) return () => clearTimeout(firstLoad);
 
     gsap.registerPlugin(ScrollTrigger);
+
+    // Anything already on screen when the page opens is shown as is: hiding
+    // it until scripts load only delays the main content. Reveals are kept for
+    // content that scrolls into view later.
+    const below = (el) => el.getBoundingClientRect().top > window.innerHeight;
 
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(root);
 
-      // On a fresh load the logo intro covers the page until ~1.3s; start the
-      // masthead as it clears. Later client navigations start straight away.
-      const intro = document.querySelector(".tx-intro");
-      const introShowing = intro && getComputedStyle(intro).display !== "none";
-      const delay = introShowing ? Math.max(0, 1.25 - performance.now() / 1000) : 0;
-
-      gsap
-        .timeline({ delay, defaults: { ease: EASE } })
-        .from(q(".mast-meta .mono"), { y: 10, opacity: 0, duration: 0.6, stagger: 0.05 }, 0.1)
-        .from(q(".mast .rule"), { scaleX: 0, duration: 1.1, ease: "power2.inOut" }, 0.15)
-        .from(
-          q(".mast h1 .wi"),
-          { yPercent: 130, duration: 1.1, stagger: 0.055, ease: "power4.out" },
-          0.3,
-        )
-        .from(q(".mast-foot > *"), { y: 18, opacity: 0, duration: 0.8, stagger: 0.09 }, 0.85);
-
       q("[data-rule]").forEach((r) => {
-        if (r.closest(".mast")) return;
+        if (r.closest(".mast") || !below(r)) return;
         gsap.from(r, {
           scaleX: 0,
           duration: 1,
@@ -59,6 +53,7 @@ export default function PageMotion({ children }) {
       });
 
       q("h2[data-split], blockquote[data-split]").forEach((h) => {
+        if (!below(h)) return;
         gsap.from(h.querySelectorAll(".wi"), {
           yPercent: 130,
           duration: 0.95,
@@ -74,21 +69,20 @@ export default function PageMotion({ children }) {
         if (!el.closest(".mast")) parents.add(el.parentNode);
       });
       parents.forEach((p) => {
-        gsap.from(
-          Array.from(p.children).filter((c) => c.hasAttribute("data-fade")),
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.08,
-            ease: EASE,
-            scrollTrigger: { trigger: p, start: "top 88%", once: true },
-          },
-        );
+        const items = Array.from(p.children).filter((c) => c.hasAttribute("data-fade") && below(c));
+        if (!items.length) return;
+        gsap.from(items, {
+          y: 20,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: EASE,
+          scrollTrigger: { trigger: p, start: "top 88%", once: true },
+        });
       });
 
       q(".idx").forEach((idx) => {
-        const rows = idx.querySelectorAll("[data-row]");
+        const rows = Array.from(idx.querySelectorAll("[data-row]")).filter(below);
         if (!rows.length) return;
         gsap.from(rows, {
           y: 24,
@@ -101,6 +95,7 @@ export default function PageMotion({ children }) {
       });
 
       q("[data-shot]").forEach((s) => {
+        if (!below(s)) return;
         gsap.from(s, {
           scaleY: 0.88,
           opacity: 0,
@@ -111,7 +106,6 @@ export default function PageMotion({ children }) {
         });
       });
     }, root);
-    root.style.visibility = "visible";
 
     // Trigger positions are measured before the web fonts swap in, and the
     // display headings change height when they do, so measure again after.
@@ -122,6 +116,7 @@ export default function PageMotion({ children }) {
 
     return () => {
       active = false;
+      clearTimeout(firstLoad);
       window.removeEventListener("load", refresh);
       ctx.revert();
     };
@@ -140,7 +135,9 @@ export function SplitWords({ text }) {
     <span key={i}>
       {i > 0 && " "}
       <span className="w">
-        <span className="wi">{word}</span>
+        <span className="wi" style={{ "--i": i }}>
+          {word}
+        </span>
       </span>
     </span>
   ));

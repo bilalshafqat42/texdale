@@ -4,6 +4,7 @@ import { CtaBand, PageHead, RowArrow } from "@/components/Editorial";
 import { articles, formatDate } from "@/lib/articles";
 
 export const metadata = {
+  alternates: { canonical: "/insights/" },
   title: "Insights",
   description:
     "Technical articles from Texdale on pretreatment, dyeing auxiliaries, finishing and denim washing.",

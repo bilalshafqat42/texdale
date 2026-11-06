@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Breadcrumb from "./Breadcrumb";
 import { SplitWords } from "./PageMotion";
@@ -22,12 +21,41 @@ export function RowArrow() {
   );
 }
 
+// Smaller copies sit beside each photo (photo-800.jpg, photo-1400.jpg, or
+// photo-640.jpg for portrait crops), made ahead of time because the static
+// export cannot resize images. The browser picks the one that fits the screen.
+function srcSet(src, wide, srcWidth) {
+  const base = src.replace(/\.jpg$/, "");
+  return wide
+    ? `${base}-800.jpg 800w, ${base}-1400.jpg 1400w, ${src} ${srcWidth ?? 2400}w`
+    : `${base}-640.jpg 640w, ${src} ${srcWidth ?? 1200}w`;
+}
+
 // An image chapter. Shows the "Image to supply" placeholder until `src` is set.
-export function Shot({ fig, title, spec, src, alt, wide = false, sizes = "100vw", priority }) {
+export function Shot({
+  fig,
+  title,
+  spec,
+  src,
+  alt,
+  wide = false,
+  sizes = "100vw",
+  priority,
+  srcWidth,
+}) {
   return (
     <figure className={`shot ${wide ? "shot-xl" : "shot-sq"}`} data-shot>
       {src ? (
-        <Image src={src} alt={alt ?? title} fill sizes={sizes} priority={priority} />
+        // eslint-disable-next-line @next/next/no-img-element -- pre-sized srcset; next/image cannot resize in a static export
+        <img
+          src={src}
+          srcSet={srcSet(src, wide, srcWidth)}
+          sizes={sizes}
+          alt={alt ?? title}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
+          decoding="async"
+        />
       ) : (
         <div className="await">
           <span>Image to supply</span>

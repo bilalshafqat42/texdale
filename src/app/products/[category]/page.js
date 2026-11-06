@@ -21,6 +21,7 @@ export async function generateMetadata({ params }) {
   return {
     title: category.name,
     description: category.summary,
+    alternates: { canonical: `/products/${category.slug}/` },
   };
 }
 
@@ -62,6 +63,7 @@ export default async function CategoryPage({ params }) {
           spec={category.tags}
           src={category.image}
           alt={`${category.name} textile chemicals`}
+          srcWidth={category.imageWidth}
           wide
           priority
         />
