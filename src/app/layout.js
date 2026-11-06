@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LogoIntro from "@/components/LogoIntro";
-import { SITE_URL, SITE_NAME, CONTACT } from "@/lib/site";
+import { SITE_URL, SITE_NAME, CONTACT, ORG_ID } from "@/lib/site";
+import { categories } from "@/lib/products";
 
 const description =
   "Texdale manufactures pretreatment, dyeing, finishing and denim-washing chemicals for the textile industry. Made in England, with REACH-compliant sourcing.";
@@ -13,7 +14,7 @@ const description =
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Texdale Chemicals | UK Textile Chemical Manufacturer",
+    default: "Textile Chemicals Manufacturer UK | Texdale Chemicals",
     template: "%s | Texdale Chemicals",
   },
   description,
@@ -27,11 +28,17 @@ export const metadata = {
   },
 };
 
+// Who Texdale is, in the form search engines and AI assistants read: identity,
+// location, contact routes, subject areas and the product catalogue.
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": ORG_ID,
   name: SITE_NAME,
-  url: SITE_URL,
+  alternateName: "Texdale",
+  url: `${SITE_URL}/`,
+  logo: `${SITE_URL}/texdale-dark.svg`,
+  image: `${SITE_URL}/opengraph-image.png`,
   description,
   telephone: CONTACT.phone,
   email: CONTACT.email,
@@ -39,8 +46,40 @@ const organizationJsonLd = {
     "@type": "PostalAddress",
     streetAddress: "Unit 1, 45 Lambeth Road, Reddish",
     addressLocality: "Stockport",
+    addressRegion: "Greater Manchester",
     postalCode: "SK5 6TW",
     addressCountry: "GB",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    telephone: CONTACT.phone,
+    email: CONTACT.email,
+    areaServed: "Worldwide",
+    availableLanguage: "en",
+  },
+  sameAs: ["https://twitter.com/texdaleukltd"],
+  knowsAbout: [
+    "Textile chemicals",
+    "Textile pretreatment",
+    "Dyeing auxiliaries",
+    "Textile printing thickeners",
+    "Textile finishing",
+    "Textile softeners",
+    "Denim washing chemicals",
+    "Water and oil repellent finishes",
+    "Flame retardant finishes",
+    "Yarn lubricants",
+    "REACH compliance",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Textile chemicals",
+    itemListElement: categories.map((c) => ({
+      "@type": "OfferCatalog",
+      name: c.name,
+      url: `${SITE_URL}/products/${c.slug}/`,
+    })),
   },
 };
 
@@ -53,7 +92,9 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: SITE_NAME,
-  url: SITE_URL,
+  url: `${SITE_URL}/`,
+  inLanguage: "en-GB",
+  publisher: { "@id": ORG_ID },
 };
 
 export default function RootLayout({ children }) {

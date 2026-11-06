@@ -6,7 +6,7 @@ import { categories, getProductsByCategory, products } from "@/lib/products";
 
 export const metadata = {
   alternates: { canonical: "/products/" },
-  title: "Products",
+  title: "Textile Chemicals: Full Product Range",
   description:
     "Browse 87 Texdale textile chemicals across eight ranges, from pretreatment and dyeing auxiliaries to finishing, denim washing and yarn lubricants.",
 };
@@ -19,7 +19,7 @@ export default function ProductsPage() {
       <PageHead
         crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
         title={`Eight ranges. ${products.length} products.`}
-        lede="The whole wet-processing chain, from pretreatment to the final finish, with denim washing and yarn lubricants alongside."
+        lede="Textile chemicals for the whole wet-processing chain, from pretreatment to the final finish, with denim washing and yarn lubricants alongside."
       />
 
       <section className="band" style={{ paddingTop: "clamp(30px,4vw,64px)" }}>

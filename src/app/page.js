@@ -1,7 +1,9 @@
 import Link from "next/link";
+import FAQAccordion from "@/components/FAQAccordion";
 import PageMotion, { SplitWords } from "@/components/PageMotion";
 import { Arrow, ContactStack, EdHead, RowArrow, Shot, TextLink } from "@/components/Editorial";
 import { categories, products } from "@/lib/products";
+import { CONTACT } from "@/lib/site";
 
 const FACTS = [
   { k: String(products.length), v: "Products in the range" },
@@ -55,7 +57,42 @@ const PILLARS = [
 
 export const metadata = {
   alternates: { canonical: "/" },
+  description:
+    "Texdale makes textile chemicals in Stockport, UK: 87 pretreatment, dyeing, finishing, denim-washing and yarn-lubricant products, with REACH-compliant sourcing.",
 };
+
+// Short, factual answers: they read well on the page and are what search
+// engines and AI assistants quote. The accordion also emits FAQPage data.
+const FAQS = [
+  {
+    question: "What are textile chemicals?",
+    answer:
+      "Textile chemicals are the auxiliaries used in the wet processing of fibre, yarn and fabric. Pretreatment chemicals clean and prepare the fibre, dyeing auxiliaries control how colour goes on and how well it lasts, and finishing chemicals give the fabric its final handle and performance, such as softness or water repellency.",
+  },
+  {
+    question: "Which textile chemicals does Texdale make?",
+    answer: `Texdale makes ${products.length} products across eight ranges: pretreatment, dyeing auxiliaries, printing, finishing, softening, denim washing, special finishes and special yarn lubricants. They include wetting agents, detergents, sequestrants, fixing agents, silicone softeners, resins, water and oil repellents, flame retardants and DALEROL yarn lubricants.`,
+  },
+  {
+    question: "Where are Texdale's textile chemicals made?",
+    answer:
+      "Texdale formulates and manufactures its textile chemicals at its works in Reddish, Stockport, in the North of England, and supplies mills and finishers internationally.",
+  },
+  {
+    question: "Are Texdale's textile chemicals REACH compliant?",
+    answer:
+      "Texdale buys raw materials only from EU and international REACH-compliant suppliers. No new substances form during formulation, so the range does not need REACH registration of its own. Any Substance of Very High Concern is listed in the product's Material Safety Data Sheet.",
+  },
+  {
+    question: "Can Texdale develop a textile chemical for my process?",
+    answer:
+      "Yes. Texdale develops products tailored to a client's exact requirement. Share your fabric, machinery and target result with the technical team and they will recommend or formulate a product.",
+  },
+  {
+    question: "How do I get a sample, TDS or MSDS?",
+    answer: `Use the contact form on this site or email ${CONTACT.email}, naming the product. Samples, technical data sheets and material safety data sheets are available on request.`,
+  },
+];
 
 export default function HomePage() {
   return (
@@ -65,13 +102,13 @@ export default function HomePage() {
         <div className="tx-wrap">
           <div className="mast-meta">
             <span className="mono">Texdale Chemicals</span>
-            <span className="mono">Textile chemicals</span>
+            <span className="mono">{products.length} products</span>
             <span className="mono">Stockport, England</span>
             <span className="mono">REACH-compliant sourcing</span>
           </div>
           <div className="rule" data-rule />
           <h1 data-split>
-            <SplitWords text="Chemistry for the wet process." />
+            <SplitWords text="Textile chemicals for the wet process." />
           </h1>
           <div className="mast-foot">
             <p className="lede">
@@ -250,13 +287,23 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ================= QUESTIONS ================= */}
+      <section className="band" id="questions">
+        <div className="tx-wrap">
+          <EdHead label="06 — Questions" title="Textile chemicals, answered." />
+          <div style={{ marginTop: "clamp(36px,4vw,56px)" }}>
+            <FAQAccordion items={FAQS} />
+          </div>
+        </div>
+      </section>
+
       {/* ================= CONTACT ================= */}
       <section className="band" id="contact">
         <div className="tx-wrap">
           <div className="contact-grid">
             <div>
               <span className="mono" data-fade>
-                06 — Contact
+                07 — Contact
               </span>
               <h2 data-split style={{ marginTop: 22, maxWidth: "13ch" }}>
                 <SplitWords text="Send us the cloth." />

@@ -5,6 +5,7 @@ import PageMotion from "@/components/PageMotion";
 import ProductFinder from "@/components/ProductFinder";
 import { CtaBand, EdHead, PageHead, RowArrow, Shot, TextLink } from "@/components/Editorial";
 import { categories, getCategory, getProductsByCategory } from "@/lib/products";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateStaticParams() {
   return categories.map((category) => ({ category: category.slug }));
@@ -39,8 +40,32 @@ export default async function CategoryPage({ params }) {
   const hasFaqs = category.faqs && category.faqs.length > 0;
   const enquiry = encodeURIComponent(category.name);
 
+  // The range as a list of products, so search engines and AI tools can see
+  // exactly what it contains.
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${category.name} textile chemicals`,
+    description: category.summary,
+    url: `${SITE_URL}/products/${category.slug}/`,
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: products.length,
+      itemListElement: products.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: p.name,
+        url: `${SITE_URL}/products/${p.category}/${p.slug}/`,
+      })),
+    },
+  };
+
   return (
     <PageMotion>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
       <PageHead
         crumbs={[
           { label: "Home", href: "/" },

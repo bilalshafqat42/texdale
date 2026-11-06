@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageMotion from "@/components/PageMotion";
 import { CtaBand, EdHead, PageHead, RowArrow, TextLink } from "@/components/Editorial";
+import { ORG_ID, SITE_URL } from "@/lib/site";
 import { getCategory, getProduct, getRelatedProducts, products } from "@/lib/products";
 
 export async function generateStaticParams() {
@@ -57,8 +58,11 @@ export default async function ProductPage({ params }) {
     "@type": "Product",
     name: product.name,
     description: product.functionSummary,
-    category: category.name,
+    url: `${SITE_URL}/products/${category.slug}/${product.slug}/`,
+    category: `Textile chemicals > ${category.name}`,
+    ...(category.image ? { image: `${SITE_URL}${category.image}` } : {}),
     brand: { "@type": "Brand", name: "Texdale" },
+    manufacturer: { "@id": ORG_ID },
   };
 
   return (
